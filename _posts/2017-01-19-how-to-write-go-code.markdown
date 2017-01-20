@@ -6,7 +6,6 @@ author: "Golang"
 tags: [golang]
 categories: golang
 img: "gopher.png"
-terms: 2
 ---
 
 ## Introduction
