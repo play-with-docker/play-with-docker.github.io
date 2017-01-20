@@ -1,0 +1,142 @@
+html, body {
+    height: 100%;
+}
+
+img {
+    max-width: 100%;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+.navbar-brand {
+    font-weight: 900;
+    font-size: 1.85em;
+    padding: 10px;
+    @media screen and (max-width: $on-palm) {
+        font-size: 1.5em;
+    }
+}
+.post-meta {
+    color: $grey-color;
+}
+
+.panel {
+    border:none;
+    box-shadow: 0px 0px 1px $grey-color;
+}
+
+.panel:hover {
+    box-shadow: 0px 0px 6px $grey-color;
+}
+
+
+footer {
+    border-top: 1px solid $grey-color-light;
+}
+
+.social {
+    list-style: none;
+    display: inline;
+    margin-left: 10px;
+    padding: 5px 8px;
+    }
+.social:hover {
+     opacity: 0.7;
+}
+.social img {
+    width: 20px;
+}
+
+.quora img{
+    width: 17px;
+}
+
+.facebook img {
+    width: 16px;
+}
+
+.recent ul {
+    list-style: none;
+    padding: 0;
+    text-align: justify;
+}
+
+.recent {
+    padding: 10px;
+    border: 1px solid $grey-color-light;
+}
+
+.post-img img {
+    width: 100%;
+}
+
+
+.pack {
+
+
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+
+.panel-container {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 82%;
+
+    /* avoid browser level touch actions */
+    xtouch-action: none;
+}
+
+.terminal {
+    font-size: 15px;
+}
+
+
+.panel-left {
+    flex: 0 0 auto;
+    /* only manually resize */
+    padding: 0 15px;
+    width: 50%;
+    min-height: 400px;
+    min-width: 150px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.splitter {
+    flex: 0 0 auto;
+    width: 18px;
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat #2fa8c3;
+    min-height: 200px;
+    cursor: col-resize;
+}
+
+.panel-right {
+    height: 100%;
+    flex: 1 1 auto;
+    /* resizable */
+    width: 100%;
+    min-height: 300px;
+    background: #000;
+}
+
+
+.card {
+    float: none;
+}
+
+code[class*="."] {
+    cursor: pointer;
+}

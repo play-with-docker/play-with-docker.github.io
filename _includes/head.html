@@ -1,0 +1,21 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+{% comment %}
+{% seo %}
+{% endcomment %}
+  
+<link rel="stylesheet" href="{{site.baseurl}}/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{site.baseurl}}/css/xterm.css">
+<style>
+          {% capture include_to_scssify %}
+          {% include main.scss %}
+          {% endcapture %}
+          {{ include_to_scssify | scssify }}
+</style>  
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">  
+</head>
