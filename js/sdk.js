@@ -1,4 +1,4 @@
-(function (window, document) {
+(function (window) {
 
   'use strict';
 
@@ -29,31 +29,28 @@
         if (resp.status == 200) {
           self.init(resp.responseText, self.opts);
           self.selectors.forEach(function(sel){
-            self.terminal(sel, function(){
+            self.terminal(sel, function() {
               //Remove captchas after initializing terminals;
               var captcha = document.querySelectorAll(sel + ' .captcha');
               captcha.forEach(function(el){
                 el.parentNode.removeChild(el);
               });
-
             });
           });
         };
       });
     };
 
-    // register recaptcha onload callback
+    // register recaptcha onload callback only once
     window.onloadCallback = function() {
-      window.pwd.selectors.forEach(function(sel) {
-        var els = document.querySelectorAll(sel);
-        els.forEach(function(el) {
-          var captcha = document.createElement('div');
-          captcha.className = 'captcha';
-          el.appendChild(captcha);
-          window.grecaptcha.render(captcha, {'sitekey': '6Ld8pREUAAAAAOkrGItiEeczO9Tfi99sIHoMvFA_', 'callback': verifyCallback.bind(window.pwd)});
-        });
+      var sel = window.pwd.selectors[0];
+      var els = document.querySelectorAll(sel);
+      els.forEach(function(el) {
+        var captcha = document.createElement('div');
+        captcha.className = 'captcha';
+        el.appendChild(captcha);
+        window.grecaptcha.render(captcha, {'sitekey': '6Ld8pREUAAAAAOkrGItiEeczO9Tfi99sIHoMvFA_', 'callback': verifyCallback.bind(window.pwd)});
       });
-
     };
 
     pwd.prototype.newSession = function(selectors, opts) {
@@ -217,4 +214,4 @@
     // define your namespace myApp
     window.pwd = new pwd();
 
-})(window, document);
+})(window, undefined);

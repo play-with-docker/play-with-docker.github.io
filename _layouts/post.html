@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+
+{% assign terms = page.terms | default: 1 %}
 <div class="panel-container">
 
     <div class="panel-left">
@@ -34,7 +36,10 @@ layout: default
     <div class="splitter">
     </div>
 
-    <div class="term panel-right">
+    <div class="panel-right">
+        {% for i in (1..terms) %}
+        <div class="term{{i}}" style="height: {{ 100 | divided_by: terms }}%;"></div>
+        {% endfor %}
     </div>
 </div>
 
