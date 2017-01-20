@@ -61,16 +61,19 @@ curl http://localhost:80
 ## Scaling up
 
 Next let's inspect the service
+
 ```.term1
 docker service inspect web
 ```
 
 That's lots of info! Now, let's scale the service:
+
 ```.term1
 docker service scale web=15
 ```
 
 Docker has spread the 15 services evenly over all of the nodes
+
 ```.term1
 docker service ps web
 ```
@@ -78,6 +81,7 @@ docker service ps web
 ## Updating nodes
 
 You can also drain a particular node, that is remove all services from that node. The services will automatically be rescheduled on other nodes.
+
 ```.term1
 docker node update --availability drain node2
 ```
@@ -93,6 +97,7 @@ docker node ls
 ## Scaling down
 
 You can also scale down the service
+
 ```.term1
 docker service scale web=10
 ```
@@ -104,6 +109,7 @@ docker service ps web
 ```
 
 Now bring `node2` back online and show it's new availability
+
 ```.term1
 docker node update --availability active node2
 ```
