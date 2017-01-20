@@ -8,8 +8,6 @@ categories: golang
 img: "gopher.png"
 ---
 
-## Introduction
-
 This document demonstrates the development of a simple Go package and introduces the [go tool](/cmd/go/), the standard way to fetch, build, and install Go packages and commands.
 
 The `go` tool requires you to organize your code in a specific way. Please read this document carefully. It explains the simplest way to get up and running with your Go installation.
