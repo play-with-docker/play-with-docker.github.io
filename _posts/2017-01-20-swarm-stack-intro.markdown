@@ -62,10 +62,32 @@ Check the stack deployed from the first terminal
 docker stack ls
 ```
 
-Check the service within the stack
+The output should be the following one. It indicates the 6 services of the voting app's stack (named voting_stack) have been deployed.
+```
+NAME          SERVICES
+voting_stack  6
+```
+
+Let's check the service within the stack
 ```.term1
 docker stack services voting_stack
 ```
 
+The output should be like the following one (your ID should be different though).
+```
+ID            NAME                     MODE        REPLICAS  IMAGE
+10rt1wczotze  voting_stack_visualizer  replicated  1/1       dockersample
+s/visualizer:stable
+8lqj31k3q5ek  voting_stack_redis       replicated  2/2       redis:alpine
+nhb4igkkyg4y  voting_stack_result      replicated  2/2       dockersample
+s/examplevotingapp_result:before
+nv8d2z2qhlx4  voting_stack_db          replicated  1/1       postgres:9.4
+ou47zdyf6cd0  voting_stack_vote        replicated  2/2       dockersample
+s/examplevotingapp_vote:before
+rpnxwmoipagq  voting_stack_worker      replicated  1/1       dockersample
+s/examplevotingapp_worker:latest
+```
+
 ## Conclusion
 
+Using only a couple of commands enables to deploy a stack of services on a Docker Swarw using the really great Docker Compose file format.
