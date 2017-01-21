@@ -10,13 +10,13 @@ Now that you have everything setup, it's time to get our hands dirty. In this se
 
 To get started, let's run the following in our terminal:
 
-```.term
+```.term1
 docker image pull alpine
 ```
 
 The `pull` command fetches the alpine **image** from the **Docker registry** and saves it in our system. You can use the `docker images` command to see a list of all images on your system.
 
-```.term
+```.term1
 docker image ls
 ```
 ```
@@ -28,7 +28,7 @@ hello-world             latest              690ed74de00f        5 months ago    
 ### 1.1 Docker Run
 Great! Let's now run a Docker **container** based on this image. To do that you are going to use the `docker container run` command.
 
-```.term
+```.term1
 docker container run alpine ls -l
 ```
 ```
@@ -45,7 +45,7 @@ What happened? Behind the scenes, a lot of stuff happened. When you call `run`, 
 
 Let's try something more exciting.
 
-```.term
+```.term1
 docker container run alpine echo "hello from alpine"
 ```
 ```
@@ -54,7 +54,7 @@ hello from alpine
 OK, that's some actual output. In this case, the Docker client dutifully ran the `echo` command in our alpine container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast!
 
 Try another command.
-```.term
+```.term1
 docker container run alpine /bin/sh
 ```
 
@@ -65,7 +65,7 @@ You are now inside the container shell and you can try out a few commands like `
 
 Ok, now it's time to see the `docker container ls` command. The `docker ps` command shows you all containers that are currently running.
 
-```.term
+```.term1
 docker container ls
 ```
 ```
@@ -74,7 +74,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 Since no containers are running, you see a blank line. Let's try a more useful variant: `docker ps -a`
 
-```.term
+```.term1
 docker container ls -a
 ```
 ```
@@ -87,7 +87,7 @@ c317d0a9e3d2        hello-world         "/hello"                 34 seconds ago 
 
 What you see above is a list of all containers that you ran. Notice that the `STATUS` column shows that these containers exited a few minutes ago. You're probably wondering if there is a way to run more than just one command in a container. Let's try that now:
 
-```.term
+```.term1
 docker container run -it alpine /bin/sh
 ```
 ```

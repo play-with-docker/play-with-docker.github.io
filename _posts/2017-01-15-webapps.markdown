@@ -15,8 +15,8 @@ Let's start by taking baby-steps. First, we'll use Docker to run a static websit
 
 The image that you are going to use is a single-page website that was already created for this demo and is available on the Docker Hub as [`seqvence/static-site`](https://hub.docker.com/r/seqvence/static-site/). You can download and run the image directly in one go using `docker run` as follows.
 
-```.term
-docker run -d seqvence/static-site
+```.term1
+docker container run -d seqvence/static-site
 ```
 
 >**Note:** The current version of this image doesn't run without the `-d` flag. The `-d` flag enables **detached mode**, which detaches the running container from the terminal/shell and returns your prompt after the container starts. We are debugging the problem with this image but for now, use `-d` even for this first example.
@@ -27,16 +27,16 @@ Since the image doesn't exist on your Docker host, the Docker daemon first fetch
 
 Now that the server is running, do you see the website? What port is it running on? And more importantly, how do you access the container directly from our host machine?
 
-Actually, you probably won't be able to answer any of these questions yet! &#9786; In this case, the client didn't tell the Docker Engine to publish any of the ports, so you need to re-run the `docker run` command to add this instruction.
+Actually, you probably won't be able to answer any of these questions yet! &#9786; In this case, the client didn't tell the Docker Engine to publish any of the ports, so you need to re-run the `docker container run` command to add this instruction.
 
 Let's re-run the command with some new flags to publish ports and pass your name to the container to customize the message displayed. We'll use the *-d* option again to run the container in detached mode.
 
 First, stop the container that you have just launched. In order to do this, we need the container ID.
 
-Since we ran the container in detached mode, we don't have to launch another terminal to do this. Run `docker ps` to view the running containers.
+Since we ran the container in detached mode, we don't have to launch another terminal to do this. Run `docker container ls` to view the running containers.
 
-```.term
-docker ps
+```.term1
+docker container ls
 ```
 ```
 CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS               NAMES
@@ -45,16 +45,16 @@ a7a0e504ca3e        seqvence/static-site   "/bin/sh -c 'cd /usr/"   28 seconds a
 
 Check out the `CONTAINER ID` column. You will need to use this `CONTAINER ID` value, a long sequence of characters, to identify the container you want to stop, and then to remove it. The example below provides the `CONTAINER ID` on our system; you should use the value that you see in your terminal.
 ```
-$ docker stop a7a0e504ca3e
-$ docker rm   a7a0e504ca3e
+$ docker container stop a7a0e504ca3e
+$ docker container rm   a7a0e504ca3e
 ```
 
 >**Note:** A cool feature is that you do not need to specify the entire `CONTAINER ID`. You can just specify a few starting characters and if it is unique among all the containers that you have launched, the Docker client will intelligently pick it up.
 
 Now, let's launch a container in **detached** mode as shown below:
 
-```.term
-docker run --name static-site -e AUTHOR="Your Name" -d -P seqvence/static-site
+```.term1
+docker container run --name static-site -e AUTHOR="Your Name" -d -P seqvence/static-site
 ```
 ```
 e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
@@ -70,7 +70,7 @@ In the above command:
 
 Now you can see the ports by running the `docker port` command.
 
-```.term
+```.term1
 docker port static-site
 ```
 ```
@@ -90,8 +90,8 @@ You can now open `http://<YOUR_IPADDRESS>:[YOUR_PORT_FOR 80/tcp]` to see your si
 
 You can also run a second webserver at the same time, specifying a custom host port mapping to the container's webserver.
 
-```.term
-docker run --name static-site-2 -e AUTHOR="Your Name" -d -p 8888:80 seqvence/static-site
+```.term1
+docker container run --name static-site-2 -e AUTHOR="Your Name" -d -p 8888:80 seqvence/static-site
 ```
 <img src="../images/static.png" title="static">
 
@@ -101,22 +101,22 @@ Now that you've seen how to run a webserver inside a Docker container, how do yo
 
 But first, let's stop and remove the containers since you won't be using them anymore.
 
-```.term
-docker stop static-site
+```.term1
+docker container stop static-site
 ```
-```.term
-docker rm static-site
+```.term1
+docker container rm static-site
 ```
 
 Let's use a shortcut to remove the second site:
 
-```.term
-docker rm -f static-site-2
+```.term1
+docker container rm -f static-site-2
 ```
 
-Run `docker ps` to make sure the containers are gone.
-```.term
-docker ps
+Run `docker container ls` to make sure the containers are gone.
+```.term1
+docker container ls
 ```
 ```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -126,10 +126,10 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 In this section, let's dive deeper into what Docker images are. You will build your own image, use that image to run an application locally, and finally, push some of your own images to Docker Hub.
 
-Docker images are the basis of containers. In the previous example, you **pulled** the *seqvence/static-site* image from the registry and asked the Docker client to run a container **based** on that image. To see the list of images that are available locally on your system, run the `docker images` command.
+Docker images are the basis of containers. In the previous example, you **pulled** the *seqvence/static-site* image from the registry and asked the Docker client to run a container **based** on that image. To see the list of images that are available locally on your system, run the `docker image ls` command.
 
-```.term
-docker images
+```.term1
+docker image ls
 ```
 ```
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
@@ -151,16 +151,16 @@ For simplicity, you can think of an image akin to a git repository - images can 
 
 For example you could pull a specific version of `ubuntu` image as follows:
 
-```.term
-docker pull ubuntu:12.04
+```.term1
+docker image pull ubuntu:12.04
 ```
 
 If you do not specify the version number of the image then, as mentioned, the Docker client will default to a version named `latest`.
 
-So for example, the `docker pull` command given below will pull an image named `ubuntu:latest`:
+So for example, the `docker image pull` command given below will pull an image named `ubuntu:latest`:
 
-```.term
-docker pull ubuntu
+```.term1
+docker image pull ubuntu
 ```
 
 To get a new Docker image you can either get it from a registry (such as the Docker Hub) or create your own. There are hundreds of thousands of images available on [Docker hub](https://hub.docker.com). You can also search for images directly from the command line using `docker search`.
@@ -352,14 +352,14 @@ A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is a text file
 
 ### 2.3.3 Build the image
 
-Now that you have your `Dockerfile`, you can build your image. The `docker build` command does the heavy-lifting of creating a docker image from a `Dockerfile`.
+Now that you have your `Dockerfile`, you can build your image. The `docker image build` command does the heavy-lifting of creating a docker image from a `Dockerfile`.
 
-When you run the `docker build` command given below, make sure to replace `<YOUR_USERNAME>` with your username. This username should be the same one you created when registering on [Docker hub](https://hub.docker.com). If you haven't done that yet, please go ahead and create an account.
+When you run the `docker image build` command given below, make sure to replace `<YOUR_USERNAME>` with your username. This username should be the same one you created when registering on [Docker hub](https://hub.docker.com). If you haven't done that yet, please go ahead and create an account.
 
-The `docker build` command is quite simple - it takes an optional tag name with the `-t` flag, and the location of the directory containing the `Dockerfile` - the `.` indicates the current directory:
+The `docker image build` command is quite simple - it takes an optional tag name with the `-t` flag, and the location of the directory containing the `Dockerfile` - the `.` indicates the current directory:
 
 ```
-$ docker build -t <YOUR_USERNAME>/myfirstapp .
+$ docker image build -t <YOUR_USERNAME>/myfirstapp .
 Sending build context to Docker daemon 9.728 kB
 Step 1 : FROM alpine:latest
  ---> 0d81fc72e790
@@ -424,13 +424,13 @@ Removing intermediate container 78e324d26576
 Successfully built 2f7357a0805d
 ```
 
-If you don't have the `alpine:latest` image, the client will first pull the image and then create your image. Therefore, your output on running the command will look different from mine. If everything went well, your image should be ready! Run `docker images` and see if your image (`<YOUR_USERNAME>/myfirstapp`) shows.
+If you don't have the `alpine:latest` image, the client will first pull the image and then create your image. Therefore, your output on running the command will look different from mine. If everything went well, your image should be ready! Run `docker image ls` and see if your image (`<YOUR_USERNAME>/myfirstapp`) shows.
 
 ### 2.3.4 Run your image
 The last step in this section is to run the image and see if it actually works.
 
 ```
-$ docker run -p 8888:5000 --name myfirstapp YOUR_USERNAME/myfirstapp
+$ docker container run -p 8888:5000 --name myfirstapp YOUR_USERNAME/myfirstapp
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
@@ -445,14 +445,14 @@ OK, now that you are done with this container, stop and remove it since you won'
 Open another terminal window and execute the following commands:
 
 ```
-$ docker stop myfirstapp
-$ docker rm myfirstapp
+$ docker container stop myfirstapp
+$ docker container rm myfirstapp
 ```
 
 or
 
-```.term
-docker rm -f myfirstapp
+```.term1
+docker container rm -f myfirstapp
 ```
 
 ### 2.3.5 Dockerfile commands summary

@@ -57,8 +57,8 @@ We can do that in a container!
 
 Try this:
 
-```.term
-docker run golang go get -v github.com/golang/example/hello/...
+```.term1
+docker container run golang go get -v github.com/golang/example/hello/...
 ```
 
 This will pull the `golang` image (unless you have it already;
@@ -73,11 +73,11 @@ install it in the container ... So how do we run that program now?
 One solution is to *commit* the container that we just built,
 i.e. "freeze" it into a new image:
 
-```.term
-docker commit $(docker ps -lq) awesomeness
+```.term1
+docker container commit $(docker ps -lq) awesomeness
 ```
 
-Note: `docker ps -lq` outputs the ID (and only the ID!) of
+Note: `docker container ls -lq` outputs the ID (and only the ID!) of
 the last container that was executed. If you are the only
 uesr on your machine, and if you haven't created another
 container since the previous command, that container
@@ -87,8 +87,8 @@ example.
 Now, we can run our program in a container based on
 the image that we just built:
 
-```.term
-docker run awesomeness hello
+```.term1
+docker container run awesomeness hello
 ```
 
 The output should be `Hello, Go examples!`.
@@ -96,7 +96,7 @@ The output should be `Hello, Go examples!`.
 
 #### Bonus points
 
-When creating the image with `docker commit`, you can
+When creating the image with `docker container commit`, you can
 use the `--change` flag to specify arbitrary [Dockerfile](
 https://docs.docker.com/engine/reference/builder/) commands.
 For instance, you could use a `CMD` or `ENTRYPOINT` command
@@ -111,15 +111,15 @@ run this Go program?
 
 We got you covered:
 
-```.term
-docker run --rm golang sh -c \
+```.term1
+docker container run --rm golang sh -c \
     "go get github.com/golang/example/hello/... && exec hello"
 ```
 
 Wait a minute, what are all those bells and whistles?
 
 * `--rm` tells to the Docker CLI to automatically issue a
-  `docker rm` command once the container exits. That way,
+  `docker container rm` command once the container exits. That way,
   we don't leave anything behind ourselves.
 * We chain together the build step (`go get`) and the
   execution step (`exec hello`) using the shell logical
@@ -131,7 +131,7 @@ Wait a minute, what are all those bells and whistles?
   which needs to evaluate the right hand side
   only if the left hand side evaluates to `true`.
 * We pass our commands to `sh -c`, because if we were to
-  simply do `docker run golang "go get ... && hello"`,
+  simply do `docker container run golang "go get ... && hello"`,
   Docker would try to execute the program named `go SPACE get
   SPACE etc.` and that wouldn't work. So instead, we start
   a shell and instruct the shell to execute the command
@@ -145,7 +145,7 @@ Wait a minute, what are all those bells and whistles?
   programs, this will allow them to receive external signals
   properly, since external signals are delivered to PID 1 of
   the container. What kind of signal, you might be wondering?
-  A good example is `docker stop`, which sends `SIGTERM` to
+  A good example is `docker container stop`, which sends `SIGTERM` to
   PID 1 in the container.
 
 
@@ -161,8 +161,8 @@ easy: specify that version as a *tag* after the image name.
 For instance, to use Go 1.5, change the example above
 to replace `golang` with `golang:1.5`:
 
-```.term
-docker run --rm golang:1.5 sh -c \
+```.term1
+docker container run --rm golang:1.5 sh -c \
     "go get github.com/golang/example/hello/... && exec hello"
 ```
 
@@ -187,8 +187,8 @@ is to map the `$GOPATH/bin` directory to a local directory.
 In the `golang` container, `$GOPATH` is `/go`. So we can do
 the following:
 
-```.term
-docker run -v /tmp/bin:/go/bin \
+```.term1
+docker container run -v /tmp/bin:/go/bin \
   golang go get github.com/golang/example/hello/...
 /tmp/bin/hello
 ```
@@ -196,7 +196,7 @@ docker run -v /tmp/bin:/go/bin \
 If you are on Linux, you should see the `Hello, Go examples!` message.
 But if you are, for instance, on a Mac, you will probably see:
 
-```.term
+```.term1
 /tmp/test/hello: cannot execute binary file
 ```
 
@@ -214,8 +214,8 @@ To enable cross-compilation, you need to set `GOOS` and/or `GOARCH`.
 
 For instance, assuming that you are on a 64 bits Mac:
 
-```.term
-docker run -e GOOS=darwin -e GOARCH=amd64 -v /tmp/crosstest:/go/bin \
+```.term1
+docker container run -e GOOS=darwin -e GOARCH=amd64 -v /tmp/crosstest:/go/bin \
   golang go get github.com/golang/example/hello/...
 ```
 
@@ -229,8 +229,8 @@ program, you have to execute `/tmp/crosstest/darwin_amd64/hello`.
 If you are on Linux, you can even install directly to your system
 `bin` directories:
 
-```.term
-docker run -v /usr/local/bin:/go/bin \
+```.term1
+docker container run -v /usr/local/bin:/go/bin \
   golang get github.com/golang/example/hello/...
 ```
 
@@ -282,8 +282,8 @@ This means:
 
 Then, produce our `hello` binary as follows:
 
-```.term
-docker run -v $(pwd):/go/bin --rm \
+```.term1
+docker container run -v $(pwd):/go/bin --rm \
   golang go get github.com/golang/example/hello/...
 ```
 
@@ -293,22 +293,22 @@ not on our host system. So leave those variables alone!
 
 Then, we can build the image:
 
-```.term
-docker build -t hello .
+```.term1
+docker image build -t hello .
 ```
 
 And test it:
 
-```.term
-docker run hello
+```.term1
+docker container run hello
 ```
 
 (This should display `Hello, Go examples!`.)
 
 Last but not least, check the image's size:
 
-```.term
-docker images hello
+```.term1
+docker image ls hello
 ```
 
 If we did everything right, this image should be about 2 MB. Not bad!
@@ -326,7 +326,7 @@ you can mount a local directory to `/go` in the `golang` container, so that the
 But you can also mount local directories to specific paths, to "override" some
 packages (the ones that you have edited locally). Here is a complete example:
 
-```.term
+```.term1
 # Adapt the two following environment variables if you are not running on a Mac
 export GOOS=darwin GOARCH=amd64
 mkdir go-and-docker-is-love
@@ -334,7 +334,7 @@ cd go-and-docker-is-love
 git clone git://github.com/golang/example
 cat example/hello/hello.go
 sed -i .bak s/olleH/eyB/ example/hello/hello.go
-docker run --rm \
+docker container run --rm \
   -v $(pwd)/example:/go/src/github.com/golang/example \
   -v $(pwd):/go/bin/${GOOS}_${GOARCH} \
   -e GOOS -e GOARCH \
