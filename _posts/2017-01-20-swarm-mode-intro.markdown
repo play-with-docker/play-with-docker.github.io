@@ -5,7 +5,7 @@ date:   2017-01-20 10:51:47 +0530
 author: "@marcosnils"
 tags: [docker, swarm]
 categories: docker
-img: "compose_swarm.png"
+img: "swarm.jpg"
 terms: 2
 ---
 

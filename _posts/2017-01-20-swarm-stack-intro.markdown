@@ -5,7 +5,7 @@ date:   2017-01-20 10:51:47 +0530
 author: "@lucj"
 tags: [docker, swarm]
 categories: docker
-img: "swarm.jpg"
+img: "compose_swarm.png"
 terms: 2
 ---
 Let's deploy the voting app stack on a swarm !
