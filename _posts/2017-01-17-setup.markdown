@@ -10,8 +10,8 @@ There are no specific skills needed for this tutorial beyond a basic comfort wit
 
 ## Running your first container
 
-```.term
-docker run hello-world
+```.term1
+docker container run hello-world
 ```
 ```
 Unable to find image 'hello-world:latest' locally
