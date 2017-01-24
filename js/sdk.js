@@ -32,7 +32,7 @@
             self.terminal(sel, function() {
               //Remove captchas after initializing terminals;
               var captcha = document.querySelectorAll(sel + ' .captcha');
-              captcha.forEach(function(el){
+              [].forEach.call(captcha, function(el){
                 el.parentNode.removeChild(el);
               });
             });
@@ -45,7 +45,7 @@
     window.onloadCallback = function() {
       var sel = window.pwd.selectors[0];
       var els = document.querySelectorAll(sel);
-      els.forEach(function(el) {
+      [].forEach.call(els, function(el){
         var captcha = document.createElement('div');
         captcha.className = 'captcha';
         el.appendChild(captcha);
@@ -157,7 +157,7 @@
 
 
         var elements = document.querySelectorAll(selector);
-        elements.forEach(function(el) {
+        [].forEach.call(elements, function(el) {
           var term = new Terminal({cursorBlink: false});
           term.open(el);
           term.on('data', function(d) {
@@ -172,7 +172,7 @@
 
         // Attach block actions
         var actions = document.querySelectorAll('code[class*="'+selector+'"]');
-        actions.forEach(function(actionEl) {
+        [].forEach.call(actions, function(actionEl) {
           actionEl.onclick = function() {
             self.socket.emit('terminal in', i.name, this.innerText);
           };
