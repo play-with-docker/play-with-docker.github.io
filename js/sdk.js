@@ -32,9 +32,9 @@
             self.terminal(sel, function() {
               //Remove captchas after initializing terminals;
               var captcha = document.querySelectorAll(sel + ' .captcha');
-              captcha.forEach(function(el){
-                el.parentNode.removeChild(el);
-              });
+	      for (var n=0; n < captcha.length; ++n) { 
+                captcha[n].parentNode.removeChild(captcha[n]);
+              }
             });
           });
         };
@@ -45,12 +45,12 @@
     window.onloadCallback = function() {
       var sel = window.pwd.selectors[0];
       var els = document.querySelectorAll(sel);
-      els.forEach(function(el) {
+      for (var n=0; n < els.length; ++n) { 
         var captcha = document.createElement('div');
         captcha.className = 'captcha';
-        el.appendChild(captcha);
+        els[n].appendChild(captcha);
         window.grecaptcha.render(captcha, {'sitekey': '6Ld8pREUAAAAAOkrGItiEeczO9Tfi99sIHoMvFA_', 'callback': verifyCallback.bind(window.pwd)});
-      });
+      }
     };
 
     pwd.prototype.newSession = function(selectors, opts) {
@@ -157,26 +157,26 @@
 
 
         var elements = document.querySelectorAll(selector);
-        elements.forEach(function(el) {
+        for (var n=0; n < elements.length; ++n) { 
           var term = new Terminal({cursorBlink: false});
-          term.open(el);
+          term.open(elements[n]);
           term.on('data', function(d) {
             self.socket.emit('terminal in', i.name, d);
           });
           var size = term.proposeGeometry();
           self.socket.emit('viewport resize', size.cols, size.rows);
           i.terms.push(term);
-        });
+        }
 
 
 
         // Attach block actions
         var actions = document.querySelectorAll('code[class*="'+selector+'"]');
-        actions.forEach(function(actionEl) {
-          actionEl.onclick = function() {
+        for (var n=0; n < actions.length; ++n) {  
+          actions[n].onclick = function() {
             self.socket.emit('terminal in', i.name, this.innerText);
           };
-        });
+        }
 
 
         if (self.instanceBuffer[name]) {
