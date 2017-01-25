@@ -90,6 +90,7 @@ docker service ps web
 ```
 
 You can check out the nodes and see that `node2` is still active but drained.
+
 ```.term1
 docker node ls
 ```
