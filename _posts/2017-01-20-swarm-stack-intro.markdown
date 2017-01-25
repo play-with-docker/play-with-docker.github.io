@@ -116,6 +116,9 @@ fore  node2  Running        Running 58 seconds ago
 
 From the NODE column, we can see one task is running on each node.
 
+
+Finally, we can check that our app is running [HERE](#){:data-term=".term1"}{:data-port="5000"}
+
 ## Conclusion
 
 Using only a couple of commands enables to deploy a stack of services on a Docker Swarw using the really great Docker Compose file format.
