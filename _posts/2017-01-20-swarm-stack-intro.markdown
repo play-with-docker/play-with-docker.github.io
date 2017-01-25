@@ -117,7 +117,7 @@ fore  node2  Running        Running 58 seconds ago
 From the NODE column, we can see one task is running on each node.
 
 
-Finally, we can check that our app is running [HERE](#){:data-term=".term1"}{:data-port="5000"}
+Finally, we can check that our [APP](#){:data-term=".term1"}{:data-port="5000"} is running, the [RESULT](#){:data-term=".term1"}{:data-port="5001"} page is also available as well as [SWARM VISUALIZER](#){:data-term=".term1"}{:data-port="8080"}
 
 ## Conclusion
 
