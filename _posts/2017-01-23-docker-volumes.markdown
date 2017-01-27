@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lesson05 - Volumes"
+title:  "Docker volumes"
 author: "@lucjuggery"
 tags: [docker, labs]
 ---

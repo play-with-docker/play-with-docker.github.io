@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lesson04 - Registries"
+title:  "Docker registry"
 date:   2017-01-22
 author: "@lucjuggery"
 tags: [docker, labs]

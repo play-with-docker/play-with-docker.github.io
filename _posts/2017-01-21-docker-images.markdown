@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lesson03 - Images"
+title:  "Docker images"
 date:   2017-01-21
 author: "@lucjuggery"
 tags: [docker, labs]
