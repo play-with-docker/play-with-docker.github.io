@@ -2,7 +2,7 @@
 layout: post
 title:  "Lesson05 - Volumes"
 author: "@lucjuggery"
-tags: [techwhale]
+tags: [docker, labs]
 ---
 
 # Understanding what is this volume thing

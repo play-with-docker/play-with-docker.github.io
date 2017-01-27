@@ -3,7 +3,7 @@ layout: post
 title:  "Lesson04 - Registries"
 date:   2017-01-22
 author: "@lucjuggery"
-tags: [techwhale]
+tags: [docker, labs]
 ---
 
 # Using Docker Open Source Registry
