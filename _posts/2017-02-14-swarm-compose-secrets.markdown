@@ -65,7 +65,7 @@ docker service logs -f secret_test
 
 ### Using existing secrets
 
-Create a new service using the docker CLI:
+Create a new secret using the docker CLI:
 
 
 ```.term1
