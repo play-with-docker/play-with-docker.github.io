@@ -2,10 +2,10 @@
 layout: post
 title:  "Live Debugging Node.js with Docker"
 author: "@manomarks"
-tags: [docker, labs]
+tags: [docker, labs, desktop]
 ---
 
-**Note: This tutorial requires you to run your the app locally on your own computer**
+**Note: This tutorial requires you to run your app locally on your own computer**
 
 ### Pre-requisites
 
