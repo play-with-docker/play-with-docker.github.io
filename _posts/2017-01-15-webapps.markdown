@@ -78,15 +78,8 @@ docker port static-site
 80/tcp -> 0.0.0.0:32773
 ```
 
-If you are running [Docker for Mac](https://docs.docker.com/docker-for-mac/), [Docker for Windows](https://docs.docker.com/docker-for-windows/), or Docker on Linux, you can open `http://localhost:[YOUR_PORT_FOR 80/tcp]`. For our example this is `http://localhost:32773`.
 
-If you are using Docker Machine on Mac or Windows, you can find the hostname on the command line using `docker-machine` as follows (assuming you are using the `default` machine).
-
-```
-$ docker-machine ip default
-192.168.99.100
-```
-You can now open `http://<YOUR_IPADDRESS>:[YOUR_PORT_FOR 80/tcp]` to see your site live! For our example, this is: `http://192.168.99.100:32773`.
+If you were running [Docker for Mac](https://docs.docker.com/docker-for-mac/), [Docker for Windows](https://docs.docker.com/docker-for-windows/), or Docker on Linux, you would see your app at http://[YourDockerIP]:32773.
 
 You can also run a second webserver at the same time, specifying a custom host port mapping to the container's webserver.
 
@@ -204,6 +197,11 @@ Start by creating a directory called ```flask-app``` where we'll create the foll
 - [Dockerfile](#dockerfile)
 
 Make sure to ```cd flask-app``` before you start creating the files, because you don't want to start adding a whole bunch of other random files to your image.
+
+You will also need a text editor. We recommend vim, which will already be installed in the terminal. However if you wanted, for example, emacs, you would install it using the Alpine package manager:
+```.term1
+apk add emacs
+```
 
 #### app.py
 Create the **app.py** with the following content:
@@ -434,7 +432,7 @@ $ docker container run -p 8888:5000 --name myfirstapp YOUR_USERNAME/myfirstapp
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
-Head over to `http://localhost:8888` and your app should be live. **Note** If you are using Docker Machine, you may need to open up another terminal and determine the container ip address using `docker-machine ip default`.
+If you were running locally on Docker for Mac or Windows, you would head over to `http://localhost:8888` and your app would be live. In this tutorial you can open [your app here](#){:data-term=".term1"}{:data-port="8888"}.
 
 <img src="../images/catgif.png" title="static">
 
@@ -444,7 +442,7 @@ OK, now that you are done with this container, stop and remove it since you won'
 
 Open another terminal window and execute the following commands:
 
-```
+```.term1
 $ docker container stop myfirstapp
 $ docker container rm myfirstapp
 ```
