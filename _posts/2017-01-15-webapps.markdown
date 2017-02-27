@@ -79,9 +79,7 @@ docker port static-site
 ```
 
 
-If you were running [Docker for Mac](https://docs.docker.com/docker-for-mac/), [Docker for Windows](https://docs.docker.com/docker-for-windows/), or Docker on Linux, you would see your app at `(http://localhost:80)`.
-
-However, you can see it now [here](#){:data-term=".term1"}{:data-port="32773"}
+If you were running [Docker for Mac](https://docs.docker.com/docker-for-mac/), [Docker for Windows](https://docs.docker.com/docker-for-windows/), or Docker on Linux, you would see your app at http://[YourDockerIP]:32773.
 
 You can also run a second webserver at the same time, specifying a custom host port mapping to the container's webserver.
 
@@ -201,8 +199,7 @@ Start by creating a directory called ```flask-app``` where we'll create the foll
 Make sure to ```cd flask-app``` before you start creating the files, because you don't want to start adding a whole bunch of other random files to your image.
 
 You will also need a text editor. We recommend vim, which will already be installed in the terminal. However if you wanted, for example, emacs, you would install it using the Alpine package manager:
-```
-apk update
+```.term1
 apk add emacs
 ```
 
