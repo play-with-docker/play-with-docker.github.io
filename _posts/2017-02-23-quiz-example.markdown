@@ -20,7 +20,6 @@ What platforms does Docker run on?
 - [x] Amazon EC2
 - [x] Google Compute Engine
 - [x] Microsoft Azure
-- [x] Rackspace
 
 {:.quiz}
 How much does Engine cost?
