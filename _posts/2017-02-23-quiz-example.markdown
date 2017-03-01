@@ -34,6 +34,3 @@ What open source license are you using?
 - ( ) MIT License
 - ( ) BSD 3-Clause
 - ( ) GNU General Public License (GPL)
-
-{:.quiz-submit}
-Submit
