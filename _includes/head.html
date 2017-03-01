@@ -2,12 +2,19 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ page.title }}" />
+<meta name="twitter:description" content="We’re excited to celebrate Docker’s 4th birthday by providing courses and labs to help everyone learn Docker and welcome new members into the community. Each lab and course is listed below. A big shout out and thank you to Docker Captains Marcos Lilljedahl and Jonathan Leibiusky for creating play-with-docker, a fun and easy way to work through these labs and courses!" />
+<meta name="twitter:image" content="http://birthday.play-with-docker.com/images/bday-logo.jpg" />
+
   
 {% comment %}
 {% seo %}
 {% endcomment %}
   
-<link rel="stylesheet" href="{{site.baseurl}}/css/bootstrap.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="{{site.baseurl}}/css/xterm.css">
 <style>
           {% capture include_to_scssify %}
@@ -18,4 +25,5 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">  
+<link rel="stylesheet" href="{{site.baseurl}}/css/quiz.css">
 </head>
