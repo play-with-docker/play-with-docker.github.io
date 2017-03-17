@@ -16,14 +16,17 @@
   }
 
 
-  // Process recaptcha input ant inits SDK
+  // Process recaptcha input and inits SDK
   var verifyCallback = function(response) {
     var self = this;
     var data = encodeURIComponent('g-recaptcha-response') + '=' + encodeURIComponent(response);
+    data += '&' + encodeURIComponent('session-duration') + '=' + encodeURIComponent('90m');
     sendRequest('POST', this.opts.baseUrl + '/', {headers:{'Content-type':'application/x-www-form-urlencoded'}}, data, function(resp) {
       //TODO handle errors
       if (resp.status == 200) {
-        self.init(resp.responseText, self.opts);
+        var sessionData = JSON.parse(resp.responseText);
+        self.opts.baseUrl = 'http://' + sessionData.hostname;
+        self.init(sessionData.session_id, self.opts);
         self.terms.forEach(function(term) {
 
           // Create terminals only for those elements that exist at least once in the DOM
@@ -38,6 +41,16 @@
           }
 
         });
+      } else if (resp.status == 403) {
+        // Forbidden, we need to display te captcha
+        var term = window.pwd.terms[0];
+        var els = document.querySelectorAll(term.selector);
+        for (var n=0; n < els.length; ++n) {
+          var captcha = document.createElement('div');
+          captcha.className = 'captcha';
+          els[n].appendChild(captcha);
+          window.grecaptcha.render(captcha, {'sitekey': '6Ld8pREUAAAAAOkrGItiEeczO9Tfi99sIHoMvFA_', 'callback': verifyCallback.bind(window.pwd)});
+        }
       };
     });
   };
@@ -45,15 +58,8 @@
   // register Recaptcha global onload callback
   window.onloadCallback = function() {
     //Register captcha only on the first term to avoid showing multiple times
-    var term = window.pwd.terms[0];
-    var els = document.querySelectorAll(term.selector);
-    for (var n=0; n < els.length; ++n) {
-      var captcha = document.createElement('div');
-      captcha.className = 'captcha';
-      els[n].appendChild(captcha);
-      window.grecaptcha.render(captcha, {'sitekey': '6Ld8pREUAAAAAOkrGItiEeczO9Tfi99sIHoMvFA_', 'callback': verifyCallback.bind(window.pwd)});
-    }
-  };
+    verifyCallback.call(window.pwd);
+  }
 
   function registerInputHandlers(termName, instance) {
     var self = this;
@@ -93,7 +99,7 @@
   function setOpts(opts) {
     var opts = opts || {};
     this.opts = opts;
-    this.opts.baseUrl = this.opts.baseUrl || 'http://play-with-docker.com';
+    this.opts.baseUrl = this.opts.baseUrl || 'http://labs.play-with-docker.com';
     this.opts.ports = this.opts.ports || [];
   }
 
@@ -178,6 +184,7 @@
         request.setRequestHeader(key, opts.headers[key]);
       }
     }
+    request.withCredentials = true;
     request.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
     request.onload = function() {
       callback(request);
