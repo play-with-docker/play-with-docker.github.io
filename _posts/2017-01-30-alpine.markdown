@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Alpine"
-date:   2017-01-16 10:51:47 +0530
-categories: alpine beginner
-tags: [docker, alpine]
+title:  "First Alpine Linux Container"
+date:   2017-01-30
+categories: beginner
+tags: [linux,operations,developer]
 ---
 ## 1.0 Running your first container
 Now that you have everything setup, it's time to get our hands dirty. In this section, you are going to run an [Alpine Linux](http://www.alpinelinux.org/) container (a lightweight linux distribution) on your system and get a taste of the `docker container run` command.
@@ -14,7 +14,9 @@ To get started, let's run the following in our terminal:
 docker image pull alpine
 ```
 
-The `pull` command fetches the alpine **image** from the **Docker registry** and saves it in our system. You can use the `docker images` command to see a list of all images on your system.
+The `pull` command fetches the alpine **image** from the **Docker registry** and saves it in our system. In this case the registry is **[Docker Store](https://store.docker.com)**. You can change the registry, but that's a different lab.
+
+You can use the `docker image` command to see a list of all images on your system.
 
 ```.term1
 docker image ls
@@ -25,7 +27,7 @@ alpine                 latest              c51f86c28340        4 weeks ago      
 hello-world             latest              690ed74de00f        5 months ago        960 B
 ```
 
-### 1.1 Docker Run
+### 1.1 Docker Container Run
 Great! Let's now run a Docker **container** based on this image. To do that you are going to use the `docker container run` command.
 
 ```.term1
@@ -63,7 +65,7 @@ Wait, nothing happened! Is that a bug? Well, no. These interactive shells will e
 You are now inside the container shell and you can try out a few commands like `ls -l`, `uname -a` and others. Exit out of the container by giving the `exit` command.
 
 
-Ok, now it's time to see the `docker container ls` command. The `docker ps` command shows you all containers that are currently running.
+Ok, now it's time to see the `docker container ls` command. The `docker container ls` command shows you all containers that are currently running.
 
 ```.term1
 docker container ls
@@ -72,7 +74,7 @@ docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
 
-Since no containers are running, you see a blank line. Let's try a more useful variant: `docker ps -a`
+Since no containers are running, you see a blank line. Let's try a more useful variant: `docker container ls -a`
 
 ```.term1
 docker container ls -a
@@ -103,10 +105,20 @@ That concludes a whirlwind tour of the `docker container run` command which woul
 In the last section, you saw a lot of Docker-specific jargon which might be confusing to some. So before you go further, let's clarify some terminology that is used frequently in the Docker ecosystem.
 
 - *Images* - The file system and configuration of our application which are used to create containers. To find out more about a Docker image, run `docker image inspect alpine`. In the demo above, you used the `docker image pull` command to download the **alpine** image. When you executed the command `docker container run hello-world`, it also did a `docker image pull` behind the scenes to download the **hello-world** image.
-- *Containers* - Running instances of Docker images &mdash; containers run the actual applications. A container includes an application and all of its dependencies. It shares the kernel with other containers, and runs as an isolated process in user space on the host OS. You created a container using `docker run` which you did using the alpine image that you downloaded. A list of running containers can be seen using the `docker ps` command.
+- *Containers* - Running instances of Docker images &mdash; containers run the actual applications. A container includes an application and all of its dependencies. It shares the kernel with other containers, and runs as an isolated process in user space on the host OS. You created a container using `docker run` which you did using the alpine image that you downloaded. A list of running containers can be seen using the `docker container ls` command.
 - *Docker daemon* - The background service running on the host that manages building, running and distributing Docker containers.
 - *Docker client* - The command line tool that allows the user to interact with the Docker daemon.
-- *Docker Hub* - A [registry](https://hub.docker.com/explore/) of Docker images. You can think of the registry as a directory of all available Docker images. You'll be using this later in this tutorial.
+- *Docker Store* - Store is, among other things, a [registry](https://store.docker.com/) of Docker images. You can think of the registry as a directory of all available Docker images. You'll be using this later in this tutorial.
 
-## Next Steps
-For the next step in the tutorial, head over to [2.0 Webapps with Docker](../webapps)-
+{:.quiz}
+Where do images get pulled from by default?
+- ( ) Docker Registry
+- ( ) Something you have set up on your machine
+- ( ) There is no default
+- (x) Docker Store
+
+{:.quiz}
+Which command lists your Docker images?
+- (x) docker image ls
+- ( ) docker run
+- ( ) docker container ls

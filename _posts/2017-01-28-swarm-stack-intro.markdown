@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Swarm stack introduction"
-date:   2017-01-20 23:35:00 +0100
+date:   2017-01-28
 author: "@lucj"
-tags: [docker, swarm]
-categories: docker
+tags: [linux,operations]
+categories: beginner
 img: "compose_swarm.png"
 terms: 2
 ---
-Let's deploy the voting app stack on a swarm !
+Let's deploy the voting app stack on a swarm
 
 ## Purpose
 
@@ -32,9 +32,9 @@ docker swarm init --advertise-addr $(hostname -i)
 
 From the output above, copy the join command (*watch out for newlines*) and paste it in the other terminal.
 
-## show members of swarm
+## Show members of swarm
 
-From the first terminal, check the number of nodes in the swarm (running this command from the second terminal will fail as swarm related commands need to be issued against a swarm manager).
+From the first terminal, check the number of nodes in the swarm (running this command from the second terminal `worker` will fail as swarm related commands need to be issued against a swarm manager).
 
 ```.term1
 docker node ls
@@ -44,7 +44,9 @@ The above command should output 2 nodes, the first one being the manager, and th
 
 ## Clone the voting-app
 
-Let's retreive the voting app code from Github and go into the application folder.
+Let's retrieve the voting app code from Github and go into the application folder.
+
+Ensure you are in the first terminal and do the below:
 
 ```.term1
 git clone https://github.com/docker/example-voting-app
@@ -55,6 +57,8 @@ cd example-voting-app
 
 A stack is a group of service that are deployed together.
 The docker-stack.yml in the current folder will be used to deploy the voting app as a stack.
+
+Ensure you are in the first terminal and do the below:
 
 ```.term1
 docker stack deploy --compose-file=docker-stack.yml voting_stack
@@ -121,4 +125,18 @@ Finally, we can check that our [APP](#){:data-term=".term1"}{:data-port="5000"} 
 
 ## Conclusion
 
-Using only a couple of commands enables to deploy a stack of services on a Docker Swarw using the really great Docker Compose file format.
+Using only a couple of commands enables to deploy a stack of services on a Docker Swarm using the really great Docker Compose file format.
+
+{:.quiz}
+What is a stack?
+- (x) a multi-service app running on a Swarm
+- ( ) a way of creating multiple nodes
+- ( ) a method of using multiple compose files to run an app
+
+{:.quiz}
+A stack can:
+- [x] be deployed from the commandline
+- [x] can use the compose file format to deploy
+- [ ] can run a Dockerfile
+- [ ] be used to manage your hosts
+- [x] can be used to manage services over multiple nodes

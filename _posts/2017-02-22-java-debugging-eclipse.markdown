@@ -1,8 +1,11 @@
 ---
 layout: post
 title:  "In-container Java Development: Eclipse"
+date:   2017-02-22
 author: "@manomarks"
-tags: [docker, labs, desktop]
+tags: [desktop,linux,windows,developer,java]
+categories: intermediate
+terms: 0
 ---
 
 **Note: This tutorial requires you to run your app locally on your own computer**
@@ -72,7 +75,9 @@ The results of the build will be displayed in the console.
 
 Open a terminal and go to the application directory. Start the application with docker-compose
 
-<pre>&gt; docker-compose up </pre>
+```
+docker-compose up
+```
 
 Docker will build the images for Apache Tomcat and MySQL and start the containers. It will also mount the application directory (`./app/target/UserSignup`) as a data volume on the host system to the Tomcat webapps directory in the web server container.
 
@@ -177,3 +182,13 @@ Set a breakpoint in UserServiceImpl on the findByLogin method. Log in again and 
 Continue (`F8`) and you should successfully log in.
 
 ![](../images/app_debug_success.png)
+
+{:.quiz}
+True or false: You have to restart a container after you make changes to the code or they won't be reflected in the application
+- ( ) True
+- (x) False
+
+{:.quiz}
+True or false: Debugging a Java app running in a container requires a special plugin for the IDE
+- ( ) True
+- (x) False

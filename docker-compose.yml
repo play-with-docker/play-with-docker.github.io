@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  jekyll:
+    image: jekyll/jekyll
+    volumes:
+      - ./:/srv/jekyll
+    ports:
+      - 4000:4000
+    command: ["/usr/local/bin/jekyll", "serve"]

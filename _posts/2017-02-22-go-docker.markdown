@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Go + Docker = ♥"
-date:   2016-09-09 10:51:47 +0530
+date:   2017-02-23
 author: "Jérôme Petazzoni (jpetazzo)"
-tags: [docker, golang]
-categories: docker go
+tags: [linux,developer,golang]
+categories: intermediate
 img: "docker-go.png"
 ---
 
@@ -74,7 +74,7 @@ One solution is to *commit* the container that we just built,
 i.e. "freeze" it into a new image:
 
 ```.term1
-docker container commit $(docker ps -lq) awesomeness
+docker container commit $(docker container ls -lq) awesomeness
 ```
 
 Note: `docker container ls -lq` outputs the ID (and only the ID!) of
@@ -231,7 +231,7 @@ If you are on Linux, you can even install directly to your system
 
 ```.term1
 docker container run -v /usr/local/bin:/go/bin \
-  golang get github.com/golang/example/hello/...
+  golang go get github.com/golang/example/hello/...
 ```
 
 However, on a Mac, trying to use `/usr` as a volume will not

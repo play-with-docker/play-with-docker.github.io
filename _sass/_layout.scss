@@ -1,3 +1,5 @@
+$docker-color: #1488C6;
+
 html, body {
     height: 100%;
 }
@@ -16,10 +18,40 @@ img {
 .mt10 {
     margin-top: 10px;
 }
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+body > * {
+    flex: none;
+}
+
+.navbar {
+    border-radius: 0px;
+    margin-bottom: 0px;
+
+    &.navbar-inverse {
+        background-color: $docker-color;
+        border-color: $docker-color;
+
+        a, .navbar-nav li a {
+            color: white;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
 .navbar-brand {
     font-weight: 900;
-    font-size: 1.85em;
-    padding: 10px;
     @media screen and (max-width: $on-palm) {
         font-size: 1.5em;
     }
@@ -67,6 +99,16 @@ footer {
     list-style: none;
     padding: 0;
     text-align: justify;
+
+}
+
+.recent li {
+    margin: 20px;
+}
+
+.recent img {
+    display: block;
+    margin: auto;
 }
 
 .recent {
@@ -78,10 +120,15 @@ footer {
     width: 100%;
 }
 
+.announce {
+    margin-top:10px;
+    margin-bottom:60px;
+    text-align: center;
+
+}
+
 
 .pack {
-
-
     display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
@@ -89,11 +136,17 @@ footer {
     -webkit-flex-wrap: wrap;
 }
 
+.banner {
+    display: block;
+    margin: auto;
+}
+
 .panel-container {
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    height: 82%;
+    height: 100%;
+    flex: 1 1 auto;
 
     /* avoid browser level touch actions */
     xtouch-action: none;
@@ -107,13 +160,19 @@ footer {
 .panel-left {
     flex: 0 0 auto;
     /* only manually resize */
-    padding: 0 15px;
     width: 50%;
-    min-height: 400px;
     min-width: 150px;
-    height: 100%;
+}
+
+.content {
+    padding: 0 15px;
     overflow-y: auto;
 }
+
+.content {
+    padding: 0 15px;
+}
+
 
 .splitter {
     flex: 0 0 auto;
@@ -124,12 +183,26 @@ footer {
 }
 
 .panel-right {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     flex: 1 1 auto;
     /* resizable */
     width: 100%;
-    min-height: 300px;
     background: #565656;
+
+    > div {
+        flex: 1 1 auto;
+        margin-bottom: 15px;
+        overflow-y: auto;
+
+        &:last-of-type {
+            margin-bottom: 0px;
+        }
+
+        &.initialized {
+            background-color: black;
+        }
+    }
 }
 
 

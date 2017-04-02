@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Setup"
-date:   2017-01-17
-tags: [docker]
-categories: setup
+title:  "Hello World"
+date:   2017-01-31
+tags: [developer,operations]
+categories: beginner
 ---
 ## Prerequisites
-There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications will be helpful but is not required. As you proceed further along the tutorial, we'll make use of [Docker Hub](https://hub.docker.com/).
+There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications will be helpful but is not required. As you proceed further along the tutorial, we'll make use of [Docker Cloud](https://cloud.docker.com/).
 
 ## Running your first container
 

@@ -1,8 +1,10 @@
 ---
 layout: post
-title:  "Docker volumes"
+title:  "Docker Volumes"
+date:   2017-01-25
 author: "@lucjuggery"
-tags: [docker, labs]
+tags: [linux,developer,operations]
+categories: beginner
 ---
 
 # Understanding what is this volume thing
@@ -16,7 +18,7 @@ We will also see what is bind-mounting on a simple example.
 
 ## Data persistency without a volume ?
 
-We will first illustrate how data are **not** persisted outside of a container by default.
+We will first illustrate how data is **not** persisted outside of a container by default.
 
 Let's run an interactive shell within an alpine container named c1.
 
@@ -39,7 +41,7 @@ exit
 ```
 
 Let's inspect our container in order to get the location of the container's layer.
-We can use the use inspect command and then scroll into the output until the **GraphDriver** key, like the following.
+We can use the `inspect` command and then scroll into the output until the **GraphDriver** key, like the following.
 
 ```.term1
 docker container inspect c1
@@ -67,13 +69,18 @@ You should then get an output like the following (the ID will not be the same th
 
 From our host, if we inspect the folder which path is specified in **UpperDir**, we can see our /data and the hello.txt file we created are there. 
 
+Try the below command, to see the contents of the /data folder:
+```
+ls /graph/overlay2/[YOUR_ID]/diff/data
+```
+
 What happen if we remove our c1 container now ? Let's try.
 
 ```.term1
 docker container rm c1
 ```
 
-It seems the folder defined in the **UpperDir** above does not exist anymore. Do you confirm that ?
+It seems the folder defined in the **UpperDir** above does not exist anymore. Do you confirm that ? Try running the `ls` command again and see the results.
 
 This shows that data created in a container is not persisted. It's removed with the container's layer when the container is deleted.
 
@@ -103,7 +110,7 @@ docker image build -t img1 .
 We will then create a container in interactive mode (using -ti flags) from this image and name it c2.
 
 ```.term1
-docker container run --name c2 -ti img
+docker container run --name c2 -ti img1
 ```
 
 We should then end up in a shell within the container. From there, we will go into /data and create a hello.txt file.
@@ -114,7 +121,7 @@ touch hello.txt
 ls
 ```
 
-Let's exit the container making sure it remains running: use the Control-P / Control-Q combinaison for this.
+Let's exit the container making sure it remains running: use the Control-P / Control-Q combination for this.
 Use the following command to make sure it's still running.
 
 ```.term1
@@ -153,7 +160,7 @@ You should then get an output like the following (the ID will not be the same th
 ]
 ```
 
-This output shows that the volume defined in /data is stored in **/graph/volumes/2f5...01c/_data** on the host (removing part of the ID for a better readibility).
+This output shows that the volume defined in /data is stored in **/graph/volumes/2f5...01c/_data** on the host (removing part of the ID for a better readability).
 
 Copy your own path (the one under the **Source** key) and make sure the **hello.txt** file we created (from within the container) is there.
 
@@ -165,7 +172,7 @@ docker container stop c2 && docker container rm c2
 
 Check that the folder defined under the **Source** key is still there and contains **hello.txt** file.
 
-From all of that, we can see that a volume bypass the union filesystem and is not dependent of a container's lifecycle.
+From the above, we can see that a volume bypasses the union filesystem and is not dependent on a container's lifecycle.
 
 ## Defining a volume at runtime
 
@@ -187,7 +194,7 @@ docker container run --name c3 -d -v /data alpine sh -c 'ping 8.8.8.8 > /data/pi
 Let's inspect the container and get the **Mounts** key using the Go template notation.
 
 ```.term1
-docker inspect -f "{{ "{{ json .Mounts "}}}}" c3 | python -m json.tool
+docker container inspect -f "{{ "{{ json .Mounts "}}}}" c3 | python -m json.tool
 ```
 
 We have pretty much the same output as we had when we defined the volume in the Dockerfile.
@@ -210,7 +217,7 @@ We have pretty much the same output as we had when we defined the volume in the 
 If we use the folder defined in the **Source** key, and check the content of the ping.txt within the /data folder, we get something similar to the following.
 
 ```
-tail -f /graph/volumes/OUR_ID/_data /ping.txt
+tail -f /graph/volumes/OUR_ID/_data/ping.txt
 64 bytes from 8.8.8.8: seq=34 ttl=37 time=0.462 ms
 64 bytes from 8.8.8.8: seq=35 ttl=37 time=0.436 ms
 64 bytes from 8.8.8.8: seq=36 ttl=37 time=0.512 ms
@@ -225,11 +232,11 @@ The ping.txt file is updated regularly by the command running in the **c3** cont
 
 Stopping and removing the container will obviously stop the ping command but the /data/ping.txt file will still be there. Give it a try :)
 
-## Usage of the volume API
+## Usage of the Volume API
 
 The volume API introduced in Docker 1.9 enables to perform operations on volume very easily.
 
-First have a look of the commands available in the volume API.
+First have a look at the commands available in the volume API.
 
 ```.term1
 docker volume --help
@@ -251,6 +258,7 @@ The output should be something like
 
 ```
 DRIVER              VOLUME NAME
+[other previously created volumes]
 local               html
 ```
 
@@ -275,14 +283,14 @@ The output should be the following one.
 ]
 ```
 
-The **Mountpoint** defined here is the path on the Docker host where the volume can be accessed. We can note that this path uses the name of the volume instead of the autogenerated ID we saw in the example above. 
+The **Mountpoint** defined here is the path on the Docker host where the volume can be accessed. We can note that this path uses the name of the volume instead of the auto-generated ID we saw in the example above. 
 
 We can now use this volume and mount it on a specific path of a container. We will use a Nginx image and mount the **html** volume onto **/usr/share/nginx/html** folder within the container.
 
 Note: /usr/share/nginx/html is the default folder served by nginx. It contains 2 files: index.html and 50x.html
 
 ```.term1
-docker run --name www -d -p 8080:80 -v html:/usr/share/nginx/html nginx
+docker container run --name www -d -p 8080:80 -v html:/usr/share/nginx/html nginx
 ```
 
 Note: we use the -p option to map the nginx default port (80) to a port on the host (8080). We will come back to this in the lesson dedicated to the networking.
@@ -311,7 +319,7 @@ Note: please reload the page if you cannot see the changes.
 
 ## Mount host's folder into a container
 
-The last item we will talk about is named bind-mount and consist of mouting a host's folder into a container's folder. This is done using the **-v** option of the **docker container run** command. Instead of specifying one single path (as we did when defining volumes) we will specified 2 paths separated by a column.
+The last item we will talk about is named bind-mount and consist of mounting a host's folder into a container's folder. This is done using the **-v** option of the **docker container run** command. Instead of specifying one single path (as we did when defining volumes) we will specified 2 paths separated by a column.
 
 ```
 docker container run -v HOST_PATH:CONTAINER_PATH [OPTIONS] IMAGE [CMD]
@@ -341,7 +349,7 @@ The /data folder has been created inside the container and it contains the conte
 
 ### 2nd case
 
-Let's run a nginx container bind mouting the local /tmp folder inside the /usr/share/nginx/html folder of the container.
+Let's run a nginx container bind mounting the local /tmp folder inside the /usr/share/nginx/html folder of the container.
 
 ```.term1
 docker container run -ti -v /tmp:/usr/share/nginx/html nginx bash
@@ -355,4 +363,4 @@ ls /usr/share/nginx/html
 
 No ! The content of the container's folder has been overridden with the content of the host folder.
 
-Bind-mouting is very usefull in development as it enables, for instance, to share source code on the host with the container.
+**Bind-mounting** is very usefull in development as it enables, for instance, to share source code on the host with the container.

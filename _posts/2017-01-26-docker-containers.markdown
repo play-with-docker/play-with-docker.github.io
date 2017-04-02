@@ -1,9 +1,10 @@
----
+con---
 layout: post
-title:  "Docker containers"
-date:   2017-01-20 12:00:00 +0100
+title:  "Docker containers deeper dive"
+date:   2017-01-26
 author: "@lucjuggery"
-tags: [docker, labs]
+tags: [linux,developer,operations]
+categories: beginner
 ---
 Let's play with Docker containers !
 
@@ -12,30 +13,30 @@ Let's play with Docker containers !
 In this first lab, you’ll put into practice the base commands to manage Docker containers.
 That means you will start to play and to have fun with containers :)
 
-Important note: in the labs, when you see command inside some grey rectangle, you just need to click on it so it is executed on the terminal (but if you want you can write it manually).
-Let's see the first example below to get the version of the Docker Engine running on the plateform.
+Important note: in the labs, when you see a command inside some grey rectangle, you just need to click on it so it is executed in the terminal (but if you want you can also write it manually into the terminal).
+Let's see the first example below to get the version of the Docker Engine running on the platform.
 
 ```.term1
 docker version
 ```
 
-You should get an output like the following that shows Docker Engine (Server) and Client are running version 1.13.
+You should get an output like the following that shows Docker Engine (Server) and Client are running version 17.03.0.
 
 ```
 Client:
- Version:      1.13.0
- API version:  1.25
- Go version:   go1.7.3
- Git commit:   49bf474
- Built:        Wed Jan 18 16:20:26 2017
- OS/Arch:      linux/amd64
+ Version:      17.03.0-ce
+ API version:  1.26
+ Go version:   go1.7.5
+ Git commit:   60ccb22
+ Built:        Thu Feb 23 10:40:59 2017
+ OS/Arch:      darwin/amd64
 
 Server:
- Version:      1.13.0
- API version:  1.25 (minimum version 1.12)
- Go version:   go1.7.3
- Git commit:   49bf474
- Built:        Wed Jan 18 16:20:26 2017
+ Version:      17.03.0-ce
+ API version:  1.26 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   3a232c8
+ Built:        Tue Feb 28 07:52:04 2017
  OS/Arch:      linux/amd64
  Experimental: true
 ```
@@ -94,7 +95,7 @@ exit
 
 Very often, containers are ran in background. They can expose services like HTTP API, databases, ...
 
-Ley's now use the **mongo** official image (for those who might not be very familiar with it, MongoDB is a very popular NoSQL database) and run a container in background (using the **-d** option).
+Let's now use the **mongo** official image (for those who might not be very familiar with it, MongoDB is a very popular NoSQL database) and run a container in background (using the **-d** option).
 
 ```.term1
 docker container run -d --name mongo mongo:3.2
@@ -144,6 +145,11 @@ The output should be pretty much like the following one. As we can see, the proc
     51 ?        R+     0:00 ps ax
 ```
 
+You can now exit the **mongodb** container:
+```.term1
+exit
+```
+
 ## Inspection of a container
 
 A container is a quite complex thing under the hood, the container API provides the **inspect** command to get all its details.
@@ -168,15 +174,25 @@ The **Hostname** key is under the **Config** one, and can be retrieved with the 
 docker container inspect --format "{{ "{{ .Config.Hostname " }}}}" www
 ```
 
+You should see the below sha (not the exact value but something similar):
+```
+ec7cee99c78d
+```
+
 The **IPAdress** key is under the **NetworkSettings** and can be retrieved with
 
 ```.term1
 docker container inspect --format "{{ "{{ .NetworkSettings.IPAddress " }}}}" www
 ```
 
+You should see the below IP address (value may vary):
+```
+172.17.0.3
+```
+
 Select some other elements of the whole json structure returned by the **inspect** command and try to get them using the Go template format.
 
-## Explore the other command of the container's API
+## Explore the other commands of the container's API
 
 All the commands linked to the container can be listed with
 
@@ -184,12 +200,12 @@ All the commands linked to the container can be listed with
 docker container --help
 ```
 
-We have already seen some of them and will see some other ones in the following but feel free to test them by yourself and to experiment funny container stuff.
+We have already seen some of them and will see some other ones in the following but feel free to test them by yourself and to experiment with some fun container commands and features.
 
 ## Understand the container layer
 
-The container layer is the layer created when a container is ran. This is the layer in which changes done in the container are stored.
-This layer is deleted when the container is removed and thus cannot be used for presistent storage.
+The container layer is the layer created when a container is run. This is the layer in which the changes applied are stored.
+This layer is deleted when the container is removed and thus cannot be used for persistent storage.
 
 We will start by running a container in interactive mode based on the **ubuntu** image.
 
@@ -199,7 +215,7 @@ docker container run -ti ubuntu
 
 Note: you can notice here that we do not have any error message as this was the case when we ran our first alpine container. The reason for this is because ubuntu does have a default command **bash** that is specified. The **bash** command with the **-ti** option enables us to get into an interactive shell within this container.
 
-**figlet** is a package that get a text as input and that output the same text in a funny format. By default this package is not installed in the ubuntu image, let's check that.
+**figlet** is a package that takes a text as input and displays the same text in an Ascii-art format. By default this package is not installed in the ubuntu image, but let's check that.
 
 ```.term1
 figlet
@@ -227,10 +243,10 @@ figlet Holla
 You should get a nicely formated output
 
 ```
- _           _ _
-| |__   ___ | | | __ _
-| '_ \ / _ \| | |/ _` |
-| | | | (_) | | | (_| |
+ _   _       _ _
+| | | | ___ | | | __ _
+| |_| |/ _ \| | |/ _` |
+|  _  | (_) | | | (_| |
 |_| |_|\___/|_|_|\__,_|
 ```
 
@@ -251,7 +267,7 @@ Is **figlet** package still there ? Let's figure this out.
 figlet
 ```
 
-You should get an error message like the fllowing.
+You should get an error message like the following.
 
 ```
 bash: figlet: command not found
@@ -289,13 +305,13 @@ docker container start CONTAINER_ID
 Run an interactive shell in this container. We will use the **exec** command to do so.
 
 ```
-docker container exec -ti CONTAINER_ID
+docker container exec -ti CONTAINER_ID bash
 ```
 
 Verify figlet is present in this container.
 
 ```.term1
-figet still there !
+figlet still there !
 ```
 
 If you get the funny output, everything is fine.
@@ -308,7 +324,7 @@ exit
 
 ## Cleanup
 
-We will now remove all the container from the machine. There should not be any container in the running state though.
+We will now remove all the containers from the machine. There should not be any container in the running state though.
 Let's check that.
 
 ```.term1
@@ -324,7 +340,7 @@ docker container ls -aq
 This is really handy when we need to remove several containers at the same time as we can feed the **rm** command with this list of ids.
 
 ```.term1
-docker container rm $(docker container ls -aq)
+docker container rm -f $(docker container ls -aq)
 ```
 
 There should not be any more container on the host.
@@ -336,3 +352,15 @@ docker container ls -a
 ## What we seen in this lab
 
 We have started to play with containers and to understand the container layer, the read-write layer that is added to each container that is ran. We also started to play with the container API and the commands used the most (run, exec, ls, rm, inspect).
+
+{:.quiz}
+Which command helps you access the commandline on a running container?
+- ( ) docker container ls
+- ( ) docker container inspect
+- ( ) you can't access the commandline of a running container
+- (x) docker container exec
+
+{:.quiz}
+True or false: Once a container stops it is removed from the system?
+( ) True
+(x) False

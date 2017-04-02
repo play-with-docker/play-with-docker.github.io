@@ -19,6 +19,20 @@
   }
 }
 
+small .post-tag {
+  background: #eee;
+  color: #000;
+  &:before {
+    content: none;
+  }
+  &:hover {
+    text-decoration: none;
+    background: #000;
+    color: #fff;
+    cursor: default;
+  }
+}
+
 .tags-expo {
   :target:before {
     content:"";
@@ -43,12 +57,11 @@
         padding: 0 1rem;
         &:hover {
           list-style-type: disc;
-          padding: 0 .5rem;
         }
       }
     }
     a {
-      text-decoration: none;
+      font-size: 20px;
     }
     .post-date {
       display: inline-block;

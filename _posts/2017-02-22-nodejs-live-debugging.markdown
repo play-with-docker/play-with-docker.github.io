@@ -1,8 +1,11 @@
 ---
 layout: post
 title:  "Live Debugging Node.js with Docker"
+date:   2017-02-22
 author: "@manomarks"
-tags: [docker, labs, desktop]
+tags: [desktop,linux,windows,developer,nodejs]
+categories: intermediate
+terms: 0
 ---
 
 **Note: This tutorial requires you to run your app locally on your own computer**
@@ -25,6 +28,7 @@ We've created a simple application which includes an error. You can see the app 
 - docker-compose.yml
 
 `app.js` defines a simple node app. It serves up `index.html`, refreshing every 2 seconds with quote from an array. Here's what it looks like:
+
 ![Image of Browser with quotations from app](../images/browser-broken.gif "Image of a green background with quotes cycling through. Last image is just two quotation marks")
 
 Let's take a look at the `Dockerfile`:
@@ -151,6 +155,7 @@ The reason becomes clear if you open up the “Closure” section under “VARIA
 
 ### Fix the bug
 Replace the `> ` with `>=` in the conditional on the next line:
+
 ![Image of VS Code line 24 to fix](../images/fixing-line.png "Image of Visual Studio Code line 24 to fix")
 
 Now save the file. A second or two later, you should see the debugger detach and then reattach (the yellow line highlighting the breakpoint will disappear and reappear). This is because several things have just happened:
@@ -170,3 +175,14 @@ Remove the breakpoint and detach the debugger by clicking the stop button. Go ba
 ![Animated image of browser without error](../images/attach.png "Animated image of browser without error")
 
 And that's it, you're done!
+
+
+{:.quiz}
+True or false: You have to restart a container after you make changes to the code or they won't be reflected in the application
+- ( ) True
+- (x) False
+
+{:.quiz}
+True or false: Debugging a NodeJS app running in a container requires a special plugin for the IDE
+- ( ) True
+- (x) False

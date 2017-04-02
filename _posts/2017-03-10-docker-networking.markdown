@@ -3,6 +3,7 @@ layout: post
 title:  "Docker networking"
 author: "@lucjuggery"
 tags: [docker, labs]
+category: intermediate
 ---
 
 # Understanding container's networking

@@ -1,29 +1,30 @@
 <div class="col-md-offset-1 col-md-3">
-        <div class="post-img">
-           {% if page.img %}
-            <img width="600" src="{{site.baseurl}}/images/{{page.img}}" alt="{{page.title}}">
-            {% else %}
-            <img width="600" src="{{site.baseurl}}/images/{{site.default-image}}" alt="Docker">
-            {% endif %}
-        </div>
-            
-        
-        <div class="mt10 recent">
-            <h3>Recent articles</h3>        
-             <ul>
-                {% for post in site.posts limit:3 %}
+    <div class="post-img">
+        {% if page.img %}
+        <img width="600" src="{{site.baseurl}}/images/{{page.img}}" alt="{{page.title}}">
+        {% else %}
+        <img width="600" src="{{site.baseurl}}/images/{{site.default-image}}" alt="Docker">
+        {% endif %}
+    </div>
 
-                      <li>
-                      <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a><small>&nbsp;&nbsp;{{ post.date | date_to_string }}</small></p>
-                      </li>
 
-                {% endfor %}
-              </ul>
-        </div>
-        
-        <div class="mt10">
-            <a class="twitter-timeline"  href="https://twitter.com/hashtag/learndocker" data-widget-id="821484361048621058">#learndocker Tweets</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
+    <div class="mt10 recent">
+        <ul>
+
+            <li>
+                <img src="{{site.baseurl}}/images/slack.png" width="250px" alt=""/> <p>Join the docker community on Slack! Connect with your peers, share ideas and ask questions - <a href=" https://community.docker.com/registrations/groups/4316">Register here</a></p>
+            </li>
+            <li>
+                <img src="{{site.baseurl}}/images/dockercon.jpg" alt="Dockercon"/>
+                <p>Register for DockerCon! - <a href="http://2017.dockercon.com/">http://2017.dockercon.com/</a></p>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="mt10">
+        <a class="twitter-timeline"  href="https://twitter.com/hashtag/learndocker" data-widget-id="821484361048621058">#learndocker Tweets</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
 
 </div>
