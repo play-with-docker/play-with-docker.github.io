@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Multi-stage builds"
-date:   2017-01-31
+date:   2017-03-26
 tags: [developer,operations]
 categories: intermediate
 ---
