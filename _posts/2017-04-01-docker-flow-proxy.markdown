@@ -3,7 +3,7 @@ layout: post
 title:  "WebApps with Docker Flow Proxy"
 date:   2017-04-01 10:51:47 +0530
 author: "Sébastien Allamand (allamand)"
-categories: webapps
+category: intermediate
 tags: [docker, webapp]
 #img: traefik.png
 terms: 2
