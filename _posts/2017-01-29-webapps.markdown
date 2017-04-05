@@ -437,7 +437,7 @@ $ docker container run -p 8888:5000 --name myfirstapp YOUR_USERNAME/myfirstapp
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
-If you were running locally on Docker for Mac or Windows, you would head over to `http://localhost:8888` and your app would be live. In this tutorial you can open [your app here](#){:data-term=".term1"}{:data-port="8888"}.
+If you were running locally on Docker for Mac or Windows, you would head over to `http://localhost:8888` and your app would be live. In this tutorial you can open [your app here](/){:data-term=".term1"}{:data-port="8888"}.
 
 <img src="../images/catgif.png" title="static">
 

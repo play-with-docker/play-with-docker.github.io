@@ -303,7 +303,7 @@ ls /graph/volumes/html/_data
 
 The content of the **/usr/share/nginx/html** folder of the **www** container has been copied into the **/graph/volumes/html/_data** folder on the host.
 
-Let's have a look at the nginx's [welcome page](#){:data-term=".term1"}{:data-port="8080"}
+Let's have a look at the nginx's [welcome page](/){:data-term=".term1"}{:data-port="8080"}
 
 From our host, we can now modify the index.html file and verify the changes are taken into account within the container.
 
@@ -313,7 +313,7 @@ SOMEONE HERE ?
 END
 ```
 
-Let's have a look at the nginx's [welcome page](#){:data-term=".term1"}{:data-port="8080"}. We can see the changes we have done in the index.html.
+Let's have a look at the nginx's [welcome page](/){:data-term=".term1"}{:data-port="8080"}. We can see the changes we have done in the index.html.
 
 Note: please reload the page if you cannot see the changes.
 

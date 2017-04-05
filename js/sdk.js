@@ -81,7 +81,7 @@
         evt.preventDefault();
         var port = this.getAttribute("data-port");
         if (port) {
-          window.open('//pwd'+ instance.ip.replace(/\./g, "_") + '-' + port + '.' + self.opts.baseUrl.split('/')[2]);
+          window.open('//pwd'+ instance.ip.replace(/\./g, "_") + '-' + port + '.' + self.opts.baseUrl.split('/')[2] + this.pathname);
         }
       };
     }
