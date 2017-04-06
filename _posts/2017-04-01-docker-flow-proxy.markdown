@@ -5,7 +5,6 @@ date:   2017-04-01 10:51:47 +0530
 author: "Sébastien Allamand (allamand)"
 category: intermediate
 tags: [docker, webapp]
-#img: traefik.png
 terms: 2
 ---
 
@@ -330,9 +329,7 @@ We Have see how we can leverage Docker labels to dynamically customize our LoadB
 
 Now let's try to launch a **more complicated** Microservice application.
 
-We will uses the **docker's vote** microservice application with custom labels to be used within our traefik loadbalancer.
-
-<img src="https://github.com/allamand/example-voting-app/raw/master/traefik_voting.png" width="600">
+We will uses the **docker's vote** microservice application with custom labels to be used within our Docker Flow Proxy.
 
 Which is composed of :
 - A Python webapp which lets you vote between two options
