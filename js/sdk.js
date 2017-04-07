@@ -31,7 +31,7 @@
 
           // Create terminals only for those elements that exist at least once in the DOM
           if (document.querySelector(term.selector)) {
-            self.terminal(term, function() {
+            self.terminal(function() {
               //Remove captchas after initializing terminals;
               var captcha = document.querySelectorAll(term.selector + ' .captcha');
               for (var n=0; n < captcha.length; ++n) {
@@ -246,7 +246,7 @@
     return i.terms;
   }
 
-  pwd.prototype.terminal = function(term, callback) {
+  pwd.prototype.terminal = function(callback) {
     var self = this;
     this.createInstance(function(err, instance) {
       if (err && err.max) {
@@ -257,7 +257,8 @@
         return
       }
 
-      self.createTerminal(term, instance.name);
+      var instance_number = instance.name[instance.name.length -1 ];
+      self.createTerminal(self.terms[instance_number - 1], instance.name);
 
 
       !callback || callback(undefined, instance);
