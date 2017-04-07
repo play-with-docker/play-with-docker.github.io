@@ -2,7 +2,7 @@
 layout: post
 title:  "WebApps with Traefik LoadBalancing"
 date:   2017-03-31 10:51:47 +0530
-author: "Sébastien Allamand (allamand)"
+author: "Sébastien Allamand (@allamand)"
 category: intermediate
 tags: [docker, webapp]
 img: traefik.png
@@ -103,17 +103,17 @@ EOF
 
 - We are using version 3 of compose file (mandatory for docker stack deploy)
 - We are using the traefik image from Docker Hub
-- Docker will create an overlay network named public, on which will will add each container we want to publish
+- Docker will create an overlay network named **public**, on which will will add each container we want to publish
 - We uses constraints to deploy the service on a swarm manager (as it needs to listen to swarm events)
 
 
-### Launch the LoadBalancer Docker Container
+### Launch the Docker Container
 
 ```.term1
 docker stack deploy traefik --compose-file traefik.yml
 ```
 
-The Load Balancer is configured to listen on ports 80 and 443 for the standard HTTP traffic, but also exposes port 8080 for a web dashboard.
+The Traefik container is configured to listen on ports 80 and 443 for the standard HTTP traffic, but also exposes port 8080 for a web dashboard.
 
 The use of docker socket allows traefik to listen to the Docker Host Daemon events, and reconfigure itself when containers are started/stopped.
 
@@ -218,7 +218,6 @@ curl http://localhost:8080/api/providers
 
 > We have defined that our service will receive the request if an incoming request starts with the path **/http/**. This was done using the traefik **PathPrefixStrip** rule in the service's **traefik.frontend.rule** label
 
-
 ```.term1
 curl http://localhost/http/
 ```
@@ -245,7 +244,7 @@ docker service logs --tail=10 http_http
 
 ### Scaling Service
 
-We can use docker-compose to scale the services of our applications: Example, scale our http service to use 5 instances:
+We can use docker swarm to scale the services of our applications: Example, scale our http service to use 5 instances:
 
 ```.term1
 docker service scale http_http=5
@@ -354,7 +353,6 @@ docker stack deploy cloud -c docker-compose-pwd.yml
 
 
 To monitor the setup state, you can use:
-
 
 ```.term1
 docker stack ps cloud
