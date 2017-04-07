@@ -27,6 +27,8 @@ ssh-keygen -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
 /usr/sbin/sshd
 ```
 
+You can safely ignore any `Could not load host key` error messages.
+
 Now, let's install the plugin and create a docker volume with it
 
 ```.term1
