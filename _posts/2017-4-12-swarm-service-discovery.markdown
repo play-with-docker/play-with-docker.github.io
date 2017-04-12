@@ -24,7 +24,7 @@ It is a very simple containers application often used for demo purposes during m
 
 Let's create a Docker Swarm first
 
-```
+```.term1
 docker swarm init --advertise-addr $(hostname -i)
 ```
 
@@ -45,7 +45,7 @@ For example, the above command shows 2 nodes, the first one being the manager, a
 
 ## Create an overlay network
 
-```
+```.term1
 docker network create -d overlay net1
 ```
 
@@ -68,7 +68,7 @@ The output should show the newly added network called "net1" holding swarm scope
 
 ### Creating MYSQL service
 
-```
+```.term1
 docker service create \
            --replicas 1 \
            --name wordpressdb \
@@ -89,7 +89,7 @@ obuppwh76qfn        wordpressdb         replicated          1/1                 
 
 Let's list the tasks of the wordpressdb service.
 
-```
+```.term1
 docker service ps wordpressdb
 ```
 
@@ -107,7 +107,7 @@ wnhlu88p4ipn        wordpressdb.1       mysql:latest        node2               
 ## Creating WordPress service
 
 
-```
+```.term1
 docker service create \
            --env WORDPRESS_DB_HOST=wordpressdb \
            --env WORDPRESS_DB_PASSWORD=mysql123 \
@@ -132,7 +132,7 @@ obuppwh76qfn        wordpressdb         replicated          1/1                 
 
 You can list the tasks of the wordpressapp service using the command:
 
-```
+```.term1
 $ docker service ps wordpressapp
 ```
 ### Service Discovery
