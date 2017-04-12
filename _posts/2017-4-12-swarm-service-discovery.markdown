@@ -25,7 +25,7 @@ It is a very simple containers application often used for demo purposes during m
 Let's create a Docker Swarm first. Open up the first instance and initiate Swarm mode cluster.
 
 ```.term1
-docker swarm init --listen-addr `hostname -i`:2377
+docker swarm init --advertise-addr $(hostname -i)
 ```
 
 This node becomes a master node. The output displays a command to add a worker node to this swarm as shown below:
