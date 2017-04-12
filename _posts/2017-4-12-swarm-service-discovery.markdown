@@ -119,7 +119,7 @@ docker service create \
            wordpress:latest
 ```
 
-Let's list out the services:
+You should get an output where new wordpressapp service should initiate 4 tasks of the service as listed.:
 
 
 
@@ -130,8 +130,6 @@ bawmqm2hymnq        wordpressapp        replicated          4/4                 
 st
 obuppwh76qfn        wordpressdb         replicated          1/1                 mysql:latest
 ```
-
-You should get the output shown above where it shows both the service up and running with desired replicas of the containers.
 
 You can list the tasks of the wordpressapp service using the command:
 
@@ -160,7 +158,7 @@ PING wordpressdb (10.0.0.2): 56 data bytes
 1 packets transmitted, 1 packets received, 0% packet loss
 round-trip min/avg/max/stddev = 0.060/0.060/0.060/0.000 ms
 ```
-Voila ! We are able to ping one service from another using the service name.
+Voila ! We are able to ping wordpressdb service from container(running wordpresapp task) using the service name.
 
 
 {:.quiz}
