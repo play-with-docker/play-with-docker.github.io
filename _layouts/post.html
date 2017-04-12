@@ -4,7 +4,6 @@ layout: default
 
 {% assign terms = page.terms | default: 1 %}
 <div class="panel-container">
-
     {% if terms > 0 %}
     <div class="panel-left content">
     {% else %}
@@ -68,8 +67,9 @@ layout: default
 <script src="{{site.baseurl}}/js/sdk.js?v=1"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
 <script>
-  pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}]);
-  $(".panel-left").resizable({
+    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {ImageName: '{{page.image}}'
+});
+      $(".panel-left").resizable({
       handleSelector: ".splitter",
       resizeHeight: false,
       onDragEnd: pwd.resize.bind(pwd)

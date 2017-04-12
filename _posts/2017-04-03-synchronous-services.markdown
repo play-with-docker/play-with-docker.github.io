@@ -5,6 +5,7 @@ date:   2017-04-03
 author: "@marcosnils"
 tags: [linux,operations, swarm]
 categories: intermediate
+image: franela/dind:overlay2-dev
 ---
 
 ## Synchronous service create and service update 

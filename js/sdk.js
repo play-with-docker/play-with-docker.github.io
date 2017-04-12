@@ -101,6 +101,7 @@
     this.opts = opts;
     this.opts.baseUrl = this.opts.baseUrl || 'http://labs.play-with-docker.com';
     this.opts.ports = this.opts.ports || [];
+    this.opts.ImageName = this.opts.ImageName || '';
   }
 
   pwd.prototype.newSession = function(terms, opts) {
@@ -189,13 +190,13 @@
     request.onload = function() {
       callback(request);
     };
-    request.send(data);
+    request.send(JSON.stringify(data));
   };
 
   pwd.prototype.createInstance = function(callback) {
     var self = this;
     //TODO handle http connection errors
-    sendRequest('POST', self.opts.baseUrl + '/sessions/' + this.sessionId + '/instances', undefined, undefined, function(response) {
+    sendRequest('POST', self.opts.baseUrl + '/sessions/' + this.sessionId + '/instances', {headers:{'Content-type':'application/json'}}, {ImageName: self.opts.ImageName}, function(response) {
       if (response.status == 200) {
         var i = JSON.parse(response.responseText);
         i.terms = [];
