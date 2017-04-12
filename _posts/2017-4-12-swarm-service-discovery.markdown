@@ -6,7 +6,7 @@ author: "@ajeetsraina"
 tags: [linux,operations]
 categories: beginner
 img: "swarm-service-discovery.png"
-terms: 2
+terms: 1
 ---
 Service Discovery under Swarm Mode.
 
@@ -39,8 +39,6 @@ docker node ls
 $ docker node ls
 ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
 sxn3hrguu3n41bdt9srhqbnva *  node1     Ready   Active        Leader
-tuhf7tmw4vxs3zq141x4ccgqg    node4     Ready   Active
-w8dwf7sbgv3sa1otwy4ptqa5p    node3     Ready   Active
 xsuyuqj2v254dy09t00w8we0t    node2     Ready   Active
 ```
 
@@ -49,7 +47,7 @@ For example, the above command shows 4 nodes, the first one being the manager, a
 ## Create an overlay network
 
 ```.term1
-docker network create -d overlay net1
+$docker network create -d overlay net1
 ```
 
 ### Verify that the new network gets created under swarm scope
@@ -96,7 +94,7 @@ Let's list the tasks of the wordpressdb service.
 docker service ps wordpressdb
 ```
 
-You should get an output like the following one where the 2 tasks (replicas) of the service are listed.
+You should get an output like the following one where the 1 task  of the service are listed.
 
 ```.term1
 $  docker service ps wordpressdb
@@ -135,20 +133,10 @@ obuppwh76qfn        wordpressdb         replicated          1/1                 
 
 You should get the output shown above where it shows both the service up and running with desired replicas of the containers.
 
-Let's list the tasks of the wordpressapp service.
+You can list the tasks of the wordpressapp service using the command:
 
 ```.term1
 $ docker service ps wordpressapp
-ID                  NAME                IMAGE               NODE                DESIRED STATE
-      CURRENT STATE           ERROR               PORTS
-z8afhri573j6        wordpressapp.1      wordpress:latest    node4               Running
-      Running 6 minutes ago
-uuintj34xy2f        wordpressapp.2      wordpress:latest    node2               Running
-      Running 6 minutes ago
-xs1tijusm4u6        wordpressapp.3      wordpress:latest    node1               Running
-      Running 6 minutes ago
-okboroerec73        wordpressapp.4      wordpress:latest    node3               Running
-      Running 6 minutes ago
 ```
 ### Service Discovery
 
@@ -172,14 +160,13 @@ PING wordpressdb (10.0.0.2): 56 data bytes
 1 packets transmitted, 1 packets received, 0% packet loss
 round-trip min/avg/max/stddev = 0.060/0.060/0.060/0.000 ms
 ```
-Voila ! We are able to ping one service to another using the service name.
+Voila ! We are able to ping one service from another using the service name.
 
 
 {:.quiz}
-What features are available under Swarm Mode?
-
-- [] Service Discovery
-- [] Load Balancing
-- [] Routing Mesh
-- [] Container Orchestration
-- [] All of the above
+What features are available under Docker Swarm Mode:
+- [ ] Service Discovery
+- [ ] Routing Mesh
+- [ ] Load Balancing
+- [ ] Orchestration
+- [x] All of the above
