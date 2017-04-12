@@ -4,7 +4,7 @@ title: "Service Discovery under Docker Swarm Mode"
 date:   2017-04-12
 author: "@ajeetsraina"
 tags: [linux,operations]
-categories: beginner
+categories: intermediate
 img: "swarm-service-discovery.png"
 terms: 1
 ---
@@ -24,7 +24,7 @@ It is a very simple containers application often used for demo purposes during m
 
 Let's create a Docker Swarm first
 
-```.term1
+```
 docker swarm init --advertise-addr $(hostname -i)
 ```
 
@@ -34,7 +34,7 @@ From the output above, copy the join command (*watch out for newlines*) and past
 
 From the first terminal, check the number of nodes in the swarm.
 
-```.term1
+```
 docker node ls
 ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
 sxn3hrguu3n41bdt9srhqbnva *  node1     Ready   Active        Leader
@@ -45,14 +45,14 @@ For example, the above command shows 2 nodes, the first one being the manager, a
 
 ## Create an overlay network
 
-```.term1
+```
 docker network create -d overlay net1
 ```
 
 ### Verify that the new network gets created under swarm scope
 
 
-```.term1
+```
 docker network ls
 NETWORK ID          NAME                DRIVER              SCOPE
 f35f0f62b82f        bridge              bridge              local
@@ -68,7 +68,7 @@ The output should show the newly added network called "net1" holding swarm scope
 
 ### Creating MYSQL service
 
-```.term1
+```
 docker service create \
            --replicas 1 \
            --name wordpressdb \
@@ -80,7 +80,7 @@ docker service create \
 
 The output should be like the following one (your ID should be different though).
 
-```.term1
+```
 ID            NAME                     MODE        REPLICAS  IMAGE
 docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE
@@ -89,13 +89,13 @@ obuppwh76qfn        wordpressdb         replicated          1/1                 
 
 Let's list the tasks of the wordpressdb service.
 
-```.term1
+```
 docker service ps wordpressdb
 ```
 
 You should get an output like the following one where the 1 task  of the service are listed.
 
-```.term1
+```
 docker service ps wordpressdb
 ID                  NAME                IMAGE               NODE                DESIRED STATE
       CURRENT STATE           ERROR               PORTS
@@ -107,7 +107,7 @@ wnhlu88p4ipn        wordpressdb.1       mysql:latest        node2               
 ## Creating WordPress service
 
 
-```.term1
+```
 docker service create \
            --env WORDPRESS_DB_HOST=wordpressdb \
            --env WORDPRESS_DB_PASSWORD=mysql123 \
@@ -122,7 +122,7 @@ The output should list 4-replicas of wordpressapp running across the 2-node clus
 
 
 
-```.term1
+```
 docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE
 bawmqm2hymnq        wordpressapp        replicated          4/4                 wordpress:late
@@ -132,14 +132,14 @@ obuppwh76qfn        wordpressdb         replicated          1/1                 
 
 You can list the tasks of the wordpressapp service using the command:
 
-```.term1
+```
 $ docker service ps wordpressapp
 ```
 ### Service Discovery
 
 Let us try to discover wordpressdb service from within one of wordpressapp container. Open up the manager node instance and run the below command:
 
-```.term1
+```
 docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS
            PORTS               NAMES
@@ -150,7 +150,7 @@ There is a wordpressapp task(container) running on the manager node(shown above)
 Let us enter into the wordpressapp.3 task(container) and 
 try to reach out to wordpressab service using the service name.
 
-```.term1
+```
 docker container exec -it 31b ping wordpressdb
 PING wordpressdb (10.0.0.2): 56 data bytes
 64 bytes from 10.0.0.2: icmp_seq=0 ttl=64 time=0.060 ms
