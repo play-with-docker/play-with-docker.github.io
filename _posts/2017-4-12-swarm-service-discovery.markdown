@@ -205,7 +205,7 @@ st
 You can list the tasks of the wordpressapp service using the command:
 
 ```.term1
-$ docker service ps wordpressapp
+docker service ps wordpressapp
 ```
 
 Output:
@@ -232,7 +232,7 @@ Let us try to discover wordpressdb service from within one of wordpressapp conta
 Open up instance of worker node and verify what containers are running:
 
 ```.term2
-$ docker ps
+docker ps
 ```
 
 This should display number of tasks(containers) running on the worker node locally:
@@ -252,9 +252,10 @@ As shown above, there are 2 instances of wordpressapp task(container) running on
 Now, Open up manager node and confirm what task are running:
 
 ```.term1
-$ docker ps
+docker ps
 ```
 
+```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS
            PORTS               NAMES
 b68d99cad3da        wordpress:latest    "docker-entrypoint..."   5 minutes ago       Up 4 minu
@@ -263,6 +264,7 @@ tes        80/tcp              wordpressapp.2.8rybe5m4urikqsqje6hcpou9t
 tes        80/tcp              wordpressapp.4.4avyixggcb8neej1h395ognt2
 e71c164c36b3        mysql:latest        "docker-entrypoint..."   10 minutes ago      Up 10 min
 utes       3306/tcp            wordpressdb.1.puoe9lvfkciavkrzrkbrhrl6e
+```
 
 
 As we notice, there are 2 instances of wordpressapp task(container) running on the manager node(shown above) and 1 instance of wordpressdb. 
@@ -270,7 +272,7 @@ As we notice, there are 2 instances of wordpressapp task(container) running on t
 Let's pick up one of wordpressdb task running on the manager node  and try to reach out to wordpressapp running on the remote worker node as shown below:
 
 ```.term1
-$ docker exec -it e71 ping wordpressapp
+docker exec -it e71 ping wordpressapp
 ```
 
 This should work successfully and able to ping the wordpressapp as service name.
@@ -286,7 +288,7 @@ round-trip min/avg/max/stddev = 0.052/0.052/0.052/0.000 ms
 Let us try to reach out to remote wordpressapp container from one of the wordpressdb instance running on the worker node by its hostname:
 
 ```.term1
-$ docker exec -it e71 ping wordpressapp.3.scia4v5i1znj378gujluad2ku
+docker exec -it e71 ping wordpressapp.3.scia4v5i1znj378gujluad2ku
 ```
 
 Output:
