@@ -190,7 +190,11 @@
     request.onload = function() {
       callback(request);
     };
-    request.send(JSON.stringify(data));
+    if (typeof(data) === 'object') {
+      request.send(JSON.stringify(data));
+    } else {
+      request.send(data);
+    }
   };
 
   pwd.prototype.createInstance = function(callback) {
