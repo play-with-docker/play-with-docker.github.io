@@ -243,7 +243,7 @@ docker network create --driver bridge bnet
 
 Note: we specify **--driver bridge** but this is not needed as bridge is the default driver.
 
-We run a container in background and name it c1 and attach it to the **bnet** we have created.
+We run a container in background and name it cb1 and attach it to the **bnet** we have created.
 
 ```.term1
 docker container run -d --name cb1 --network bnet alpine sleep 10000
@@ -255,7 +255,7 @@ We then get the IP of cb1 using the inspect command.
 docker container inspect -f "{{ "{{ json .NetworkSettings "}}}}" cb1 | python -m json.tool
 ```
 
-From another container, also attached to the **bnet** network, we will check how we can adress **cb1**.
+From another container, also attached to the **bnet** network, we will check how we can address **cb1**.
 
 ```.term1
 docker container run -ti --network bnet alpine sh
@@ -273,7 +273,7 @@ Ping cb1 from it's name
 ping -c 3 cb1
 ```
 
-In the case of a user-defined bridge network we can that the containers can be addressed by their name as well.
+In the case of a user-defined bridge network we see that the containers can be addressed by their names as well.
 
 Let's exit the container.
 
@@ -283,11 +283,11 @@ exit
 
 ## Overlay network
 
-Whereas a bridge network provides conectivity between containers that are on the same host, an overlay network enables connectivity between containers across hosts.
+Whereas a bridge network provides connectivity between containers that are on the same host, an overlay network enables connectivity between containers across hosts.
 
 There are several possibilities to create a cluster of Docker hosts:
-- setup several Docker engines that communicate through a key value store (like Consul, Etcd or Zookeeper). Some additional options need to be provided to each Docker daemon so it targets the KV store
-- using a Docker Swarm, which is the recommended approach
+- Setup several Docker engines that communicate through a key value store (like Consul, Etcd or Zookeeper). Some additional options need to be provided to each Docker daemon so it targets the KV store.
+- Using a Docker Swarm, which is the recommended approach.
 
 An overlay network is created the same way as a user defined **bridge** network but uses the **overlay** driver instead.
 
