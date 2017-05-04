@@ -21,8 +21,7 @@ echo 'execute command on node1!!'
 echo 'execute command on node2!!'
 ```
 
->Please note that this platform is not secure and you should not store personal datas<br>
->the instance will be removed after few hours
+> Note: This tutorial might use some Docker experimental features. Refer to the [following guide](https://github.com/moby/moby/tree/master/experimental) to see how to enable them if you plan to run it in your local computer.
 
 
 ## Predictive Load-balancing name using Traefik

@@ -14,7 +14,7 @@ Start securing your swarm services using the latest compose reference that allow
 
 Docker 1.13.1 and compose 1.11.1
 
-> Note: This tutorial uses some Docker experimental features. Refer to the [following guide](https://github.com/moby/moby/tree/master/experimental) to see how to enable them.
+> Note: This tutorial might use some Docker experimental features. Refer to the [following guide](https://github.com/moby/moby/tree/master/experimental) to see how to enable them if you plan to run it in your local computer.
 
 ## Getting started
 
