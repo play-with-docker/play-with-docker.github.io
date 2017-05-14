@@ -182,7 +182,10 @@ and expect a PONG back:
 +PONG
 ```
 
-That's sweet!
+That's sweet! In few minutes we built with LinuxKit an operating system from a simple YAML file.
 
 ## Next Steps
-For the next step in the tutorial, head over to [1.0 Running an alpine container](../alpine)`
+
+Go explore other [examples](https://github.com/linuxkit/linuxkit/tree/master/examples) from LinuxKit and make sure to stop by the [projects](https://github.com/linuxkit/linuxkit/tree/master/projects) too.
+
+Make sure to join the [Docker community](https://community.docker.com/registrations/groups/4316) on Slack and drop any question there!
