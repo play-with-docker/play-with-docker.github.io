@@ -17,8 +17,8 @@ and:
 As you should know by now, Docker introduced the [Moby project](http://mobyproject.org/)!
 If you missed it, go read the [announcement](https://blog.docker.com/2017/04/introducing-the-moby-project/) here by Solomon Hykes.
 
-At the core of the Moby umbrella project, is Moby tool and, LinuxKit.
-The [Moby project](http://mobyproject.org/) site, invite you to:
+At the core of the Moby umbrella project, are Moby tool and, LinuxKit.
+The [Moby project](http://mobyproject.org/) site, invites you to:
 >get started with Moby by running some of the examples assemblies in the LinuxKit GitHub repository.
 
 The purpose of this tutorial is to build the redis-os which was demoed in the DockerCon2017 keynote.
@@ -154,7 +154,7 @@ Welcome to LinuxKit
               \____\_______/
 ```
 
-Make sure to Wait till you get a link becomes ready message before trying to test.
+You'll have to wait till you get a *link becomes ready* message before trying to test.
 
 ```
 [   25.091563] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
