@@ -1,18 +1,17 @@
 ---
 layout: post
-title:  "LinuxKit 101: building the redis-os from DockerCon2017"
-date:   2017-05-12
-author: "Johnny Mkhael (@jmkhael)"
+title:  "Listening to Swarm events"
+date:   2017-05-23
+author: "@marcosnils"
 category: others
-tags: [docker, linuxkit, redis-os]
+tags: [docker, swarm]
+image: franela/dind:overlay2-dev
 terms: 2
 ---
 
 ## What are Moby and LinuxKit?
->Moby: An open framework to assemble specialized container systems without reinventing the wheel.
 
-and:
->LinuxKit, a toolkit for building custom minimal, immutable Linux distributions.
+>MouxKit, a toolkit for building custom minimal, immutable Linux distributions.
 
 As you should know by now, Docker introduced the [Moby project](http://mobyproject.org/)!
 If you missed it, go read the [announcement](https://blog.docker.com/2017/04/introducing-the-moby-project/) here by Solomon Hykes.

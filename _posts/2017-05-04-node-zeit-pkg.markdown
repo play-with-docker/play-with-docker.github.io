@@ -4,7 +4,7 @@ title: "Reducing nodejs Docker images size by %50 using multi-stage builds and Z
 date:   2017-05-04
 author: "@marcosnils"
 tags: [linux,development, nodejs, zeit]
-categories: intermediate
+categories: others
 image: franela/dind:overlay2-dev
 ---
 
