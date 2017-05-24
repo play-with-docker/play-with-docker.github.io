@@ -57,7 +57,7 @@ the config value the `--pretty` flag needs to added
 docker config inspect --pretty my_config
 ```
 
-Finally, let's deploy a service using our recently created secret
+Finally, let's deploy a service using our recently created config
 
 ```.term1
 docker service create --name test_cfg --config my_config alpine cat /my_config
