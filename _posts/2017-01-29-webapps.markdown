@@ -85,7 +85,7 @@ You can also run a second webserver at the same time, specifying a custom host p
 docker container run --name static-site-2 -e AUTHOR="Your Name" -d -p 8888:80 seqvence/static-site
 ```
 
-You should see your website running [HERE](/){:data-term=".term1"}{:data-port="8888"}
+You should see your website running [HERE](/){:data-term=".term1"}{:data-port="8888"}{:target="_blank"}
 
 <img src="../images/static.png" title="static">
 
