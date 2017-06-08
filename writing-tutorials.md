@@ -72,3 +72,5 @@ For instance, if you wanted to link to a webserver running in terminal 2 at port
 This is necessary because when you write the post you won't know in advance what the base URL of an individual session will be on Play with Docker. That will produce a URL such as this:
 
 ```http://pwd10-0-117-3-8080.host2.labs.play-with-docker.com/```
+
+When you are ready, submit your PR against this repository. The Play with Docker team will evaluate it before merging it, and may require changes or close the PR at their descretion.
