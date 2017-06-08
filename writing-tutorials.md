@@ -73,4 +73,4 @@ This is necessary because when you write the post you won't know in advance what
 
 ```http://pwd10-0-117-3-8080.host2.labs.play-with-docker.com/```
 
-When you are ready, submit your PR against this repository. The Play with Docker team will evaluate it before merging it, and may require changes or close the PR at their descretion.
+When you are ready, submit your PR against this repository. The Play with Docker team will evaluate it before merging it, and may require changes or close the PR at their discretion.
