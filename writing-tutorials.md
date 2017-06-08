@@ -1,8 +1,3 @@
----
-layout: page
-title: Writing Tutorials
-permalink: /writing-tutorials/
----
 # Writing Tutorials
 This document shows you how to write a tutorial for the [Play with Docker](http://training.play-with-docker.com/) training site. For more information about Play with Docker, check out our [about page](./about.md).
 
@@ -55,13 +50,10 @@ You shouldn't need to use any CSS in your tutorials or change any of the CSS in 
 ## Auto populating code in the terminal
 
 The Play with Docker SDK allows us to auto populate code into the terminal. Code blocks are specified with triple backticks ` ``` ` on each end. With the addition of a `.termN` after the open set of backticks, you can direct that code block to a specific terminal. For instance, to run code in the first terminal, you would add `.term1`. For instance:
-```
 
-```.term1
-docker swarm init --advertise-addr $(hostname -i)
-```
-
-```
+    ````.term1
+    docker swarm init --advertise-addr $(hostname -i)
+    ````
 
 You can write multiple lines as well as just one, and they will sequentially be added to the terminal. If you do not specify `termN` clicking on the code block will not cause it to be placed in the terminal. This is useful if you want to show example code that someone would copy and paste into a file before running.
 
