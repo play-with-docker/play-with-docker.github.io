@@ -286,7 +286,7 @@ PING 172.17.0.2 (172.17.0.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.031/0.041/0.055/0.011 ms
 ```
 
-The replies above show that the Docker host can ping the container over the **bridge** network. But, we can also verify the container can connect to the outside world too. Lets log into the container, install the `ping` program, and then ping `www.docker.com`.
+The replies above show that the Docker host can ping the container over the **bridge** network. But, we can also verify the container can connect to the outside world too. Lets log into the container, install the `ping` program, and then ping `www.github.com`.
 
 First, we need to get the ID of the container started in the previous step. You can run `docker ps` to get that.
 
