@@ -404,7 +404,7 @@ Syscall numbers are architecture dependent. This limits the portability of BPF f
 
 * Seccomp is supported as of Docker 1.10.
 
-* Using the `--privileged` flag when creating a container with `docker run` disables seccomp in all versions of docker - even if you explicitly specify a seccomp profile. In general you should avoid using the `--privileged` flag as it does too many things. You can achieve the same goal with `--cap-add ALL --security-opt apparmor=unconfined --security-opt seccomp=unconfined`. If you need access to devices use `--device`.
+* Using the `--privileged` flag when creating a container with `docker run` disables seccomp in all versions of docker - even if you explicitly specify a seccomp profile. In general you should avoid using the `--privileged` flag as it does too many things. You can achieve the same goal with `--cap-add ALL --security-opt apparmor=unconfined --security-opt seccomp=unconfined`. If you need access to devices use `-ice`.
 
 * In docker 1.10-1.12 `docker exec --privileged` does not bypass seccomp. This may change in future versions https://github.com/docker/docker/issues/21984.
 

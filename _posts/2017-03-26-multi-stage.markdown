@@ -4,7 +4,7 @@ title:  "Multi-stage builds"
 date:   2017-03-26
 tags: [developer,operations]
 categories: intermediate
-image: franela/dind:overlay2-dev
+image: franela/dind:overlay2
 ---
 ## Prerequisites
 This tutorial will need the `master` build of Docker, which is available on Play With Docker. 

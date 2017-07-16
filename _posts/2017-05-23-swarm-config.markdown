@@ -5,7 +5,7 @@ date:   2017-01-22
 author: "@marcosnils"
 tags: [developer,operations,linux]
 categories: beginner
-image: franela/dind:overlay2-dev
+image: franela/dind:overlay2
 terms: 1
 ---
 
