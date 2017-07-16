@@ -103,7 +103,7 @@ EOF
 - We are using version 3 of compose file (mandatory for docker stack deploy)
 - We are using the traefik image from Docker Hub
 - Docker will create an overlay network named **public**, on which will will add each container we want to publish
-- We uses constraints to deploy the service on a swarm manager (as it needs to listen to swarm events)
+- We use constraints to deploy the service on a swarm manager (as it needs to listen to swarm events)
 
 
 ### Launch the Docker Container
