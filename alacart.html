@@ -1,0 +1,28 @@
+---
+layout: page
+---
+
+
+
+<div class="tags-expo">
+  <div class="tags-expo-list">
+    {% assign categories = site.categories %}
+    {% for cat in categories %}
+    <a href="#{{ cat[0] | slugify }}" class="post-tag">{{ cat[0] }}</a>
+    {% endfor %}
+  </div>
+  <hr/>
+  <div class="tags-expo-section">
+    {% for cat in categories %}
+    <h2 id="{{ cat[0] | slugify }}">{{ cat[0] | capitalize }}</h2>
+    <ul class="tags-expo-posts">
+      {% for post in cat[1] %}
+      <li>
+        <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+        <small class="post-date">( {% for tag in post.tags %}<span class="post-tag">{{ tag | capitalize }}</span>{% endfor %})</small>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
+</div>
