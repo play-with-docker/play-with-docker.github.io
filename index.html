@@ -3,42 +3,22 @@ layout: page
 ---
 
 
-<div style="list-style-type: none;font-size:18px">
+<div style="list-style-type:none;font-size:18px">
+  <h1>Play with Docker Classroom</h1>
+  <span><p>The Play with Docker classroom brings you labs and tutorials that help you get hands-on experience using Docker.
+    In this classroom you will find a mix labs and tutorials that will help Docker users, including SysAdmins, IT Pros, and Developers.
+    There is a mix of hands-on tutorials right in the browser, instructions on setting up and using Docker in your own environment, and resources about best practices for developing and deploying your own applications.</p>
+    <p>We recommend you start with one of our Getting Started Guides, and then explore the individual labs that explore many advanced features of Docker</p></span>
   <h2>Getting Started Guides</h2>
   <span><em>For a comprehensive approach to understanding Docker, choose your preferred 3 stage journey.</em></span>
   <ul>
     <li><a href="/ops-landing">Getting Started Walk-through for IT Pros and System Administrators</a></li>
     <li><a href="/dev-landing">Getting Started Walk-through for Developers</a></li>
   </ul>
+  <span><em>Or for a full list of individual labs on this site, check out our labs page</em></span>
+  <br/>
+  <br/>
+  <a href="/alacart">Full list of individual labs</a>
 </div>
-<!-- <div class="tags-expo">
-  <div class="tags-expo-list">
-    {% assign categories = site.categories %}
-    {% for cat in categories %}
-    <a href="#{{ cat[0] | slugify }}" class="post-tag">{{ cat[0] }}</a>
-    {% endfor %}
-  </div> -->
-  <hr/>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <hr/>
+<hr/>
   
-  <h2>Full list of individual labs</h2>
-  <span><em>To learn just what you're looking for, choose from one of these individual labs</em></span>
-  <div class="tags-expo-section">
-    {% for cat in categories %}
-    <h3 id="{{ cat[0] | slugify }}">{{ cat[0] | capitalize }}</h2>
-    <ul class="tags-expo-posts">
-      {% for post in cat[1] %}
-      <li>
-        <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-        <small class="post-date">( {% for tag in post.tags %}<span class="post-tag">{{ tag | capitalize }}</span>{% endfor %})</small>
-      </li>
-      {% endfor %}
-    </ul>
-    {% endfor %}
-  </div>
-</div>
