@@ -1,0 +1,24 @@
+---
+layout: landing
+title:  "Docker for Developers Stage 3"
+date:   2017-01-20
+author: "@manomarks"
+tags: [developer]
+categories:
+terms: 0
+---
+This final stage will help you
+
+  * Deploy an application to a staging environment
+
+  * Manage your staging environment with Docker Swarm Mode
+
+  * Learn how to build a secure application
+
+## Videos
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tjxkxVI_PVU?list=PLkA60AVN3hh8_lyxE2jjGaGyr0UoqIv4K" frameborder="0" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f0jOoIm1dbs?list=PLkA60AVN3hh-HFXhOCZXyIi-du9FxliCN" frameborder="0" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7bt-zJAahNo?list=PLkA60AVN3hh-HFXhOCZXyIi-du9FxliCN" frameborder="0" allowfullscreen></iframe>

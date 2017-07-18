@@ -3,18 +3,34 @@ layout: page
 ---
 
 
-
-<div class="tags-expo">
+<div style="list-style-type: none;font-size:18px">
+  <h2>Getting Started Guides</h2>
+  <span><em>For a comprehensive approach to understanding Docker, choose your preferred 3 stage journey.</em></span>
+  <ul>
+    <li><a href="/ops-landing">Getting Started Walk-through for IT Pros and System Administrators</a></li>
+    <li><a href="/dev-landing">Getting Started Walk-through for Developers</a></li>
+  </ul>
+</div>
+<!-- <div class="tags-expo">
   <div class="tags-expo-list">
     {% assign categories = site.categories %}
     {% for cat in categories %}
     <a href="#{{ cat[0] | slugify }}" class="post-tag">{{ cat[0] }}</a>
     {% endfor %}
-  </div>
+  </div> -->
   <hr/>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <hr/>
+  
+  <h2>Full list of individual labs</h2>
+  <span><em>To learn just what you're looking for, choose from one of these individual labs</em></span>
   <div class="tags-expo-section">
     {% for cat in categories %}
-    <h2 id="{{ cat[0] | slugify }}">{{ cat[0] | capitalize }}</h2>
+    <h3 id="{{ cat[0] | slugify }}">{{ cat[0] | capitalize }}</h2>
     <ul class="tags-expo-posts">
       {% for post in cat[1] %}
       <li>
