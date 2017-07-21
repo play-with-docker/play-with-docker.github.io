@@ -1,28 +1,27 @@
 <div class="col-md-offset-1 col-md-3">
     <div class="post-img">
-        {% if page.img %}
-        <img width="300" src="{{site.baseurl}}/images/{{page.img}}" alt="{{page.title}}">
-        {% else %}
-        <img width="300" src="{{site.baseurl}}/images/{{site.default-image}}" alt="Docker">
-        {% endif %}
+        
     </div>
-
-
+    {% include social-share.html %}
     <div class="mt10 recent">
+        Learn more &rarr;
         <ul>
+            <li>
+                <img src="/images/instructor.svg" alt="Official Docker Instructor Led Courses"/>
+                <p>Want to take an in-depth, official Docker training course? Check out <a href="https://training.docker.com/instructor-led-training" alt="training.docker.com">training.docker.com</a></p>
+            </li>
             <li>
                 <img src="{{site.baseurl}}/images/dockercon.png" alt="Dockercon"/>
                 <p>Register for DockerCon! - <a href="http://europe.dockercon.com/">http://europe.dockercon.com/</a></p>
             </li>
             <li>
-                <img src="{{site.baseurl}}/images/slack.png" width="125px" alt=""/> <p>Join the docker community on Slack! Connect with your peers, share ideas and ask questions - <a href=" https://community.docker.com/registrations/groups/4316">Register here</a></p>
+                {% if page.img %}
+                <img width="200" src="{{site.baseurl}}/images/{{page.img}}" alt="{{page.title}}">
+                {% else %}
+                <img width="200" src="{{site.baseurl}}/images/{{site.default-image}}" alt="Docker">
+                {% endif %} <p>Join the docker community on Slack! Connect with your peers, share ideas and ask questions - <a href=" https://community.docker.com/registrations/groups/4316">Register here</a></p>
             </li>
         </ul>
     </div>
-
-    <div class="mt10">
-        <a class="twitter-timeline"  href="https://twitter.com/hashtag/learndocker" data-widget-id="821484361048621058">#learndocker Tweets</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    </div>
-
+    
 </div>
