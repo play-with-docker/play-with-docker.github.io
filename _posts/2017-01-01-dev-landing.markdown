@@ -28,7 +28,7 @@ This stage show you how to
   * Use Docker with in a continuous integration environment
  
 
-## [Stage 3: Moving to production](/dev-stage3)
+## [Stage 3: Moving to Staging](/dev-stage3)
 
 This final stage will help you
 

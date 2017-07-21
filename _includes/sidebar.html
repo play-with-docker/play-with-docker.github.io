@@ -1,24 +1,22 @@
 <div class="col-md-offset-1 col-md-3">
     <div class="post-img">
         {% if page.img %}
-        <img width="600" src="{{site.baseurl}}/images/{{page.img}}" alt="{{page.title}}">
+        <img width="300" src="{{site.baseurl}}/images/{{page.img}}" alt="{{page.title}}">
         {% else %}
-        <img width="600" src="{{site.baseurl}}/images/{{site.default-image}}" alt="Docker">
+        <img width="300" src="{{site.baseurl}}/images/{{site.default-image}}" alt="Docker">
         {% endif %}
     </div>
 
 
     <div class="mt10 recent">
         <ul>
-
-            <li>
-                <img src="{{site.baseurl}}/images/slack.png" width="250px" alt=""/> <p>Join the docker community on Slack! Connect with your peers, share ideas and ask questions - <a href=" https://community.docker.com/registrations/groups/4316">Register here</a></p>
-            </li>
             <li>
                 <img src="{{site.baseurl}}/images/dockercon.png" alt="Dockercon"/>
                 <p>Register for DockerCon! - <a href="http://europe.dockercon.com/">http://europe.dockercon.com/</a></p>
             </li>
-
+            <li>
+                <img src="{{site.baseurl}}/images/slack.png" width="125px" alt=""/> <p>Join the docker community on Slack! Connect with your peers, share ideas and ask questions - <a href=" https://community.docker.com/registrations/groups/4316">Register here</a></p>
+            </li>
         </ul>
     </div>
 

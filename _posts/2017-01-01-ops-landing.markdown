@@ -32,7 +32,7 @@ This stage will help you
 
   * Develop a proof of concept application deployment
 
-## [Stage 3: Moving to production](/ops-stage3)
+## [Stage 3: Moving to Production](/ops-stage3)
 
 This final stage will help you
 

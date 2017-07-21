@@ -17,7 +17,7 @@ This final stage will help you
 
   * Become recognized as a leader in your organization on implementing Docker
 
-In this stage we have a series of design and reference architectures that help you understand the best ways to structure your apps with Docker.
+In this stage we have a series of design and reference architectures that help you understand the best ways to structure your apps with Docker. And a good video overview of the process at the end.
 <!-- ## Use case-focused example architectures
 CI/CD TODO: Create
 Deploying Multi-OS Apps to EE TODO: Create -->
@@ -40,3 +40,5 @@ Deploying Multi-OS Apps to EE TODO: Create -->
 <!-- ## Docker White Papers
 Docker / Microsoft Security White Paper TODO: create
 “Integration” White Papers -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZdUcKtg84T8?list=PLkA60AVN3hh8_lyxE2jjGaGyr0UoqIv4K" frameborder="0" allowfullscreen></iframe>
