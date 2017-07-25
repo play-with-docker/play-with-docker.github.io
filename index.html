@@ -1,28 +1,28 @@
 ---
-layout: page
+layout: home
+title: Play with Docker Classroom
 ---
 
 
-
-<div class="tags-expo">
-  <div class="tags-expo-list">
-    {% assign categories = site.categories %}
-    {% for cat in categories %}
-    <a href="#{{ cat[0] | slugify }}" class="post-tag">{{ cat[0] }}</a>
-    {% endfor %}
-  </div>
-  <hr/>
-  <div class="tags-expo-section">
-    {% for cat in categories %}
-    <h2 id="{{ cat[0] | slugify }}">{{ cat[0] | capitalize }}</h2>
-    <ul class="tags-expo-posts">
-      {% for post in cat[1] %}
-      <li>
-        <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-        <small class="post-date">( {% for tag in post.tags %}<span class="post-tag">{{ tag | capitalize }}</span>{% endfor %})</small>
-      </li>
-      {% endfor %}
-    </ul>
-    {% endfor %}
-  </div>
+<div style="list-style-type:none;font-size:18px">
+  <span><p>The Play with Docker classroom brings you labs and tutorials that help you get hands-on experience using Docker.
+    In this classroom you will find a mix labs and tutorials that will help Docker users, including SysAdmins, IT Pros, and Developers.
+    There is a mix of hands-on tutorials right in the browser, instructions on setting up and using Docker in your own environment, and resources about best practices for developing and deploying your own applications.</p>
+    <p>We recommend you start with one of our Getting Started Guides, and then explore the individual labs that explore many advanced features of Docker</p></span>
+  <h2>Getting Started Guides</h2>
+  <span><em>For a comprehensive approach to understanding Docker, choose your preferred journey.</em></span>
+  <br/>
+  <br/>
+  <ul style="list-style-type: none;">
+    <li><a href="/ops-landing">Getting Started Walk-through for IT Pros and System Administrators</a></li>
+    <p><em>Learn more about Docker, how it works and how it can help you deploy secure, scalable applications and save money along the way.</em></p><br/>
+    <li><a href="/dev-landing">Getting Started Walk-through for Developers</a></li>
+    <p><em>Learn the core concepts of Docker and how it can make building apps faster, easier, and more secure.
+  </ul>
+  <span><em>Or for a full list of individual labs on this site, check out our labs page</em></span>
+  <br/>
+  <br/>
+  <a href="/alacart">Full list of individual labs</a>
 </div>
+<hr/>
+  

@@ -1,0 +1,29 @@
+---
+layout: landing
+title:  "Docker for Developers Stage 1"
+date:   2017-01-20
+author: "@manomarks"
+tags: [developer]
+categories:
+terms: 0
+---
+
+This stage will 
+  
+  * Get you familiar with the core concepts of Docker
+
+  * Show you how to build and deploy basic applications
+
+## Self-guided in-browser tutorials
+
+  * [Hello World](/helloworld)
+
+  * [Your First Linux Container](/alpine)
+
+  * [Developing a Simple Web App](/webapps)
+
+  * [Deploying a Multi-Service App in Docker Swarm Mode](./swarm-stack-intro)
+
+
+<!-- ## Videos
+ TODO: Add Docker 101 video -->
