@@ -32,6 +32,10 @@ This stage show you how to
     * [Java Development: IntelliJ](/java-debugging-intellij/)
     * [Java Development: Netbeans](/java-debugging-netbeans/)
     * [Live Debugging Node.js with Docker and Visual Studio Code](/nodejs-live-debugging/)
+  * Windows Containers
+    * [Windows Container Setup](/windows-containers-setup/) Setup up your environment to work with Windows Containers
+    * [Windows Container Basics](/windows-containers-basics/)
+    * [Windows Containers Multi-Container Applications](/windows-containers-multicontainer/)
   
 
 ## Videos
