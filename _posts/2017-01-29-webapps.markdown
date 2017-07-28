@@ -292,7 +292,7 @@ A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is a text file
     ```
 
 2. The next step usually is to write the commands of copying the files and installing the dependencies. But first we will install the Python pip package to the alpine linux distribution. This will not just install the pip package but any other dependencies too, which includes the python interpreter. Add the following [RUN](https://docs.docker.com/engine/reference/builder/#run) command next:
-  
+
     ```
     RUN apk add --update py2-pip
     ```
@@ -314,7 +314,7 @@ A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is a text file
     ```
 
 4. Specify the port number which needs to be exposed. Since our flask app is running on `5000` that's what we'll expose.
-  
+
     ```
     EXPOSE 5000
     ```
@@ -443,7 +443,7 @@ If you were running locally on Docker for Mac or Windows, you would head over to
 
 Hit the Refresh button in the web browser to see a few more cat images.
 
-OK, now that you are done with this container, stop and remove it since you won't be using it again. If you are working in the terminal to the right, select the terminal and press `Control-C`. The run 
+OK, now that you are done with this container, stop and remove it since you won't be using it again. If you are working in the terminal to the right, select the terminal and press `Control-C`. The run
 
 ```.term1
 docker container rm myfirstapp
@@ -504,7 +504,7 @@ True or False: Docker only runs Python containers
 (X) False
 
 {:.quiz}
-Which of the following is a Dockerfile command?
+Which of the following are Dockerfile commands?
 - [x] RUN
 - [ ] DOCKER
 - [x] CMD
@@ -517,4 +517,3 @@ What is the first command in every Dockerfile?
 - ( ) RUN
 - ( ) INDEX
 - (x) FROM
-
