@@ -21,7 +21,7 @@ Let's start by running an interactive shell in a ubuntu container.
 docker container run -ti ubuntu bash
 ```
 
-As we've done in the previous lab, we will install the figlet package in this container.
+Let's install the [figlet](http://www.figlet.org/) package in this container.
 
 ```.term1
 apt-get update
@@ -326,7 +326,7 @@ docker container run -d nginx
 ```
 
 We can now see 2 additional folders (ID, ID-init), those ones correspond to the read-write layer of the running container.
- 
+
 ```
 11995e6da1dc5acab33aceacea3656d3795a4fb136c3a65b37d40b97747b5f84
 11995e6da1dc5acab33aceacea3656d3795a4fb136c3a65b37d40b97747b5f84-init
