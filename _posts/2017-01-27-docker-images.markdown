@@ -134,7 +134,7 @@ WORKDIR /app
 CMD ["node","index.js"]
 ```
 
-Basically, it is not that different from the previous one, it just uses a base image that embeds alpine and a Node.js runtime so we do not have to install it ourself. In this example, installing Node.js is not a big deal, but it is really helpful to use image where a runtime (or else) is already packages when using more complex environments.
+Basically, it is not that different from the previous one, it just uses a base image that embeds alpine and a Node.js runtime so we do not have to install it ourself. In this example, installing Node.js is not a big deal, but it is really helpful to use an image where a runtime (or else) is already packaged to build more complex environments.
 
 We will now create a new image using this Dockerfile.
 
