@@ -167,7 +167,7 @@ ENTRYPOINT ["ping"]
 CMD ["localhost"]
 ```
 
-Here, we define the **ping** command as the ENTRYPOINT and the **localhost** as the CMD, the command that will be ran by default is the concatenation of ENTRYPOINT and CMD: **ping localhost**.  This command can be seen as a wrapper around the **ping** utility to which we can change the address we provide as a parameter.
+Here, we define the **ping** command as the ENTRYPOINT and the **localhost** as the CMD, the command that will be run by default is the concatenation of ENTRYPOINT and CMD: **ping localhost**.  This command can be seen as a wrapper around the **ping** utility to which we can change the address we provide as a parameter.
 
 Let's create an image based on this new file.
 
@@ -192,7 +192,7 @@ PING localhost (127.0.0.1): 56 data bytes
 64 bytes from 127.0.0.1: seq=4 ttl=64 time=0.047 ms
 ```
 
-You can also override the default CMD indicating another IP address. We will use **8.8.8.8** which is the IP of a Google's DNS.
+You can also override the default CMD indicating another IP address. We will use **8.8.8.8** which is the IP of a Google's DNS servers.
 
 ```.term1
 docker container run ping:v0.1 8.8.8.8
