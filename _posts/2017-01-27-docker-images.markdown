@@ -158,7 +158,7 @@ hello from 4094ff6bffbd
 
 ## ENTRYPOINT vs COMMAND
 
-In the 2 previous Dockerfile, we used CMD to define the command to be ran when a container is launched. As we have seen, there are several ways to define the command, using ENTRYPOINT and/or CMD.
+In the 2 previous Dockerfile, we used CMD to define the command that runs when a container is launched. As we have seen, there are several ways to define the command, using ENTRYPOINT and/or CMD.
 We will illustrate this on a new Dockerfile, named Dockerfile-v3, that as the following content.
 
 ```
