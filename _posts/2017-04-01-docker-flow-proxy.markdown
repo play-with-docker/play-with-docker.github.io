@@ -439,7 +439,7 @@ version: "3"
 
 services:
   visu:
-    image: manomarks/visualizer
+    image: dockersamples/visualizer
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
