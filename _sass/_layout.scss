@@ -75,7 +75,11 @@ div.post-content {
 footer {
     border-top: 1px solid $grey-color-light;
 }
-
+.social-share {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
 .social {
     list-style: none;
     display: inline;
