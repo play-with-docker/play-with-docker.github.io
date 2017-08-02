@@ -1,9 +1,11 @@
-
-  <footer>
+   <footer>
+     {% include social-share.html %}
     <div class="container">
 
       <div class="row mt10 mb10">
-      {% if site.copyright.name %}
+       
+        {% if site.copyright.name %}
+
       <div class="col-md-4 text-center">All rights reserved by <a target="_blank" href="{{site.copyright.link}}">{{site.copyright.name}}</a></div>
         {% endif %}
         
@@ -21,3 +23,4 @@
   </div> 
 
 </footer>
+
