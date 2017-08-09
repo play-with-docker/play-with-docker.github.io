@@ -22,13 +22,14 @@ This stage will
 
   * [Developing a Simple Web App](/webapps)
 
+  * [Deploying a Multi-Service App in Docker Swarm Mode](/swarm-stack-intro)
 
-  * [Deploying a Multi-Service App in Docker Swarm Mode](./swarm-stack-intro)
+  
 
 
 <!-- ## Videos
  TODO: Add Docker 101 video -->
-  * [Deploying a Multi-Service App in Docker Swarm Mode](/swarm-stack-intro)
+  
 
 
 <!-- ## Videos
