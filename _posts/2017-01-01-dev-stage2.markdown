@@ -21,8 +21,8 @@ This stage show you how to
    Cloud build lab TODO: create
    Docker Trusted Registry lab TODO: create 
   -->
-  * [Docker registry for Linux Part 1](./linux-registry-part1)
-  * [Docker registry for Linux Part 2](./linux-registry-part2)
+  * [Docker registry for Linux Part 1](/linux-registry-part1)
+  * [Docker registry for Linux Part 2](/linux-registry-part2)
 
 ## Self-guided on desktop labs
 
