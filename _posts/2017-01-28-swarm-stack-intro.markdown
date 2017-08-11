@@ -55,7 +55,7 @@ cd example-voting-app
 
 ## Deploy a stack
 
-A stack is a group of service that are deployed together.
+A stack is a group of services that are deployed together.
 The docker-stack.yml in the current folder will be used to deploy the voting app as a stack.
 
 Ensure you are in the first terminal and do the below:
