@@ -79,7 +79,7 @@ docker container commit $(docker container ls -lq) awesomeness
 
 Note: `docker container ls -lq` outputs the ID (and only the ID!) of
 the last container that was executed. If you are the only
-uesr on your machine, and if you haven't created another
+user on your machine, and if you haven't created another
 container since the previous command, that container
 should be the one in which we just built the "hello world"
 example.
