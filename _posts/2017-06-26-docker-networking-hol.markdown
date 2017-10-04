@@ -311,7 +311,7 @@ Next, we need to install the ping program. So, lets run `apt-get update && apt-g
 apt-get update && apt-get install -y iputils-ping
 ```
 
-Lets ping www.docker.com by running `ping -c5 www.github.com`
+Lets ping www.docker.com by running `ping -c5 www.docker.com`
 
 ```.term1
 ping -c5 www.docker.com
