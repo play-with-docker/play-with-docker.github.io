@@ -315,7 +315,6 @@ Lets ping www.github.com by running `ping -c5 www.github.com`
 ```.term1
   ping -c5 www.github.com
 ```
-
 ```
 PING www.docker.com (104.239.220.248) 56(84) bytes of data.
 64 bytes from 104.239.220.248: icmp_seq=1 ttl=45 time=38.1 ms
