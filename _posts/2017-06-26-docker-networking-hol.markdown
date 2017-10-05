@@ -311,10 +311,9 @@ Next, we need to install the ping program. So, lets run `apt-get update && apt-g
 apt-get update && apt-get install -y iputils-ping
 ```
 
-Lets ping www.docker.com by running `ping -c5 www.github.com`
-
+Lets ping www.github.com by running `ping -c5 www.github.com`
 ```.term1
-ping -c5 www.docker.com
+  ping -c5 www.github.com
 ```
 ```
 PING www.docker.com (104.239.220.248) 56(84) bytes of data.
