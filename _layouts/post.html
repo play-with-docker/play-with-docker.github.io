@@ -49,15 +49,14 @@ layout: default
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
-<script src="https://rawgit.com/play-with-docker/sdk/master/dist/pwd.js"></script>
+<script src="https://cdn.rawgit.com/play-with-docker/sdk/b0d86f3a8c5f1e2b4525d0caa8754cbbe573a63a/dist/pwd.js"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
 <script>
-    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {ImageName: '{{page.image}}'
-});
-      $(".panel-left").resizable({
-      handleSelector: ".splitter",
-      resizeHeight: false,
-      onDragEnd: pwd.resize.bind(pwd)
-  });
+    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: 'https://hybrid.play-with-docker.com', ImageName: '{{page.image}}'});
+    $(".panel-left").resizable({
+        handleSelector: ".splitter",
+        resizeHeight: false,
+        onDragEnd: pwd.resize.bind(pwd)
+    });
 </script>
 
