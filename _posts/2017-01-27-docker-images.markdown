@@ -21,7 +21,7 @@ Let's start by running an interactive shell in a ubuntu container.
 docker container run -ti ubuntu bash
 ```
 
-As we've done in the previous lab, we will install the figlet package in this container.
+Let's install the [figlet](http://www.figlet.org/) package in this container.
 
 ```.term1
 apt-get update
@@ -134,7 +134,7 @@ WORKDIR /app
 CMD ["node","index.js"]
 ```
 
-Basically, it is not that different from the previous one, it just uses a base image that embeds alpine and a Node.js runtime so we do not have to install it ourself. In this example, installing Node.js is not a big deal, but it is really helpful to use image where a runtime (or else) is already packages when using more complex environments.
+Basically, it is not that different from the previous one, it just uses a base image that embeds alpine and a Node.js runtime so we do not have to install it ourself. In this example, installing Node.js is not a big deal, but it is really helpful to use an image where a runtime (or else) is already packaged to build more complex environments.
 
 We will now create a new image using this Dockerfile.
 
@@ -158,8 +158,8 @@ hello from 4094ff6bffbd
 
 ## ENTRYPOINT vs COMMAND
 
-In the 2 previous Dockerfile, we used CMD to define the command to be ran when a container is launched. As we have seen, there are several ways to define the command, using ENTRYPOINT and/or CMD.
-We will illustrate this on a new Dockerfile, named Dockerfile-v3, that as the following content.
+In the 2 previous Dockerfile, we used CMD to define the command that runs when a container is launched. As we have seen, there are several ways to define the command, using ENTRYPOINT and/or CMD.
+We will illustrate this on a new Dockerfile, named Dockerfile-v3, that has the following content.
 
 ```
 FROM alpine
@@ -167,7 +167,7 @@ ENTRYPOINT ["ping"]
 CMD ["localhost"]
 ```
 
-Here, we define the **ping** command as the ENTRYPOINT and the **localhost** as the CMD, the command that will be ran by default is the concatenation of ENTRYPOINT and CMD: **ping localhost**.  This command can be seen as a wrapper around the **ping** utility to which we can change the address we provide as a parameter.
+Here, we define the **ping** command as the ENTRYPOINT and the **localhost** as the CMD, the command that will be run by default is the concatenation of ENTRYPOINT and CMD: **ping localhost**.  This command can be seen as a wrapper around the **ping** utility to which we can change the address we provide as a parameter.
 
 Let's create an image based on this new file.
 
@@ -192,7 +192,7 @@ PING localhost (127.0.0.1): 56 data bytes
 64 bytes from 127.0.0.1: seq=4 ttl=64 time=0.047 ms
 ```
 
-You can also override the default CMD indicating another IP address. We will use **8.8.8.8** which is the IP of a Google's DNS.
+You can also override the default CMD indicating another IP address. We will use **8.8.8.8** which is the IP of a Google's DNS servers.
 
 ```.term1
 docker container run ping:v0.1 8.8.8.8
@@ -326,7 +326,7 @@ docker container run -d nginx
 ```
 
 We can now see 2 additional folders (ID, ID-init), those ones correspond to the read-write layer of the running container.
- 
+
 ```
 11995e6da1dc5acab33aceacea3656d3795a4fb136c3a65b37d40b97747b5f84
 11995e6da1dc5acab33aceacea3656d3795a4fb136c3a65b37d40b97747b5f84-init
