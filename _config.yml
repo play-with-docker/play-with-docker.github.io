@@ -54,3 +54,5 @@ sass:
 # Ruby Gems
 gems: [jekyll-paginate]
 
+# Play with Docker
+pwdurl: https://hybrid.play-with-docker.com
