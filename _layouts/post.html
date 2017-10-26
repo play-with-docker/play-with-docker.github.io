@@ -52,7 +52,7 @@ layout: default
 <script src="https://cdn.rawgit.com/play-with-docker/sdk/eb093d919b2d4302f3aca72653e819b7ecb80589/dist/pwd.js"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
 <script>
-    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: 'https://hybrid.play-with-docker.com', ImageName: '{{page.image}}'});
+    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}'});
     $(".panel-left").resizable({
         handleSelector: ".splitter",
         resizeHeight: false,
