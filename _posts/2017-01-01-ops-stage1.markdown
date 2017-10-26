@@ -25,11 +25,9 @@ For an introduction to Docker specifically for sys admins and IT Pros, check out
 <!-- Docker 101 Webinar TODO: Find right video -->
 
 ## Hands-on Learning
-Give Docker a try with these three beginning tutorials:
+Give Docker a try with these two beginning tutorials:
 
-[Hello World](/helloworld)
-
-[Using your first Linux Container](/alpine)
+[Docker for Beginners - Linux](/beginner-linux)
 
 [Deploy a multi-service application](/swarm-stack-intro)
 
