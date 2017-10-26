@@ -42,3 +42,13 @@ This final stage will help you
   environment
 
   * Become recognized as a leader in your organization on implementing Docker
+
+## Next Steps
+
+Once you've finished the three stages, you can
+
+  * [Download Docker](https://docker.com/get-docker)
+
+  * [Sign up for the Docker Community](https://community.docker.com)
+
+  * [Explore the Docker documentation](https://docs.docker.com)
