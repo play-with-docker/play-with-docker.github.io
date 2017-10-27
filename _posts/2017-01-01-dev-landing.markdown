@@ -3,7 +3,7 @@ layout: landing
 title:  "Docker for Developers"
 date:   2017-01-20
 author: "@manomarks"
-tags: [windows,operations,developer]
+tags: [windows,operations,developer, landing]
 categories: 
 terms: 0
 ---

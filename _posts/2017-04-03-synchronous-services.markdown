@@ -3,7 +3,7 @@ layout: post
 title:  "Swarm synchronous services"
 date:   2017-04-03
 author: "@marcosnils"
-tags: [linux,operations, swarm]
+tags: [linux,operations,swarm,community]
 categories: intermediate
 image: franela/dind:overlay2
 ---

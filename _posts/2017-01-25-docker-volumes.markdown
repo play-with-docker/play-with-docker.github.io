@@ -3,7 +3,7 @@ layout: post
 title:  "Docker Volumes"
 date:   2017-01-25
 author: "@lucjuggery"
-tags: [linux,developer,operations]
+tags: [linux,developer,operations, community]
 categories: beginner
 ---
 

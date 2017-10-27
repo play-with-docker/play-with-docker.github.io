@@ -3,18 +3,12 @@ layout: post
 title: "Docker compose with swarm secrets"
 date:   2017-01-23
 author: "@marcosnils"
-tags: [developer,operations,linux]
+tags: [developer,operations,linux, swarm, community]
 categories: beginner
 img: "docker-secrets.png"
 ---
 
 Start securing your swarm services using the latest compose reference that allows to specify secrets in your application stack
-
-## Requirements
-
-Docker 1.13.1 and compose 1.11.1
-
-> Note: This tutorial might use some Docker experimental features. Refer to the [following guide](https://github.com/moby/moby/tree/master/experimental) to see how to enable them if you plan to run it in your local computer.
 
 ## Getting started
 

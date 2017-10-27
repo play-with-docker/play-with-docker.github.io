@@ -3,8 +3,8 @@ layout: landing
 title:  "Docker for Developers Stage 3"
 date:   2017-01-20
 author: "@manomarks"
-tags: [developer]
-categories:
+tags: [developer, landing]
+categories: 
 terms: 0
 ---
 This final stage will help you

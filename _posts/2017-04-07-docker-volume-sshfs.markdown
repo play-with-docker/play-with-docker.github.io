@@ -3,7 +3,7 @@ layout: post
 title:  "Docker volume sshfs"
 date:   2017-04-07
 author: "@marcosnils"
-tags: [linux,operations, plugins, volumes]
+tags: [linux,operations, plugins, volumes,community]
 categories: intermediate
 terms: 2
 ---

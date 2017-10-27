@@ -3,7 +3,7 @@ layout: post
 title:  "Orchestration, part 2: securing and operating Swarm"
 date:   2017-03-13
 author: "@jpetazzo"
-tags: [linux,operations]
+tags: [linux,operations,landing]
 categories: intermediate
 terms: 0
 ---
