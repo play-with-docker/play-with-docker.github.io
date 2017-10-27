@@ -3,7 +3,7 @@ layout: post
 title: "Swarm mode introduction"
 date:   2017-01-24
 author: "@marcosnils"
-tags: [linux,operations]
+tags: [linux,operations, swarm, community]
 categories: beginner
 img: "swarm.jpg"
 terms: 2

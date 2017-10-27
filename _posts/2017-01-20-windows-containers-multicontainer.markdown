@@ -3,7 +3,7 @@ layout: post
 title:  "Windows Containers Multi-Container Applications"
 date:   2017-01-20
 author: "@manomarks"
-tags: [windows,operations,developer]
+tags: [windows,operations,developer, swarm]
 categories: beginner
 terms: 0
 ---

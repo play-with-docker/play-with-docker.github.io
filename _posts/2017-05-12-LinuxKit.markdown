@@ -4,7 +4,7 @@ title:  "LinuxKit 101: building the redis-os from DockerCon2017"
 date:   2017-05-12
 author: "Johnny Mkhael (@jmkhael)"
 category: others
-tags: [docker, linuxkit, redis-os]
+tags: [docker, linuxkit, redis-os, community]
 terms: 2
 ---
 

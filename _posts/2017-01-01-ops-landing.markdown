@@ -3,8 +3,8 @@ layout: landing
 title:  "Docker for IT Pros and System Administrators"
 date:   2017-01-20
 author: "@manomarks"
-tags: [windows,operations,developer]
-categories: 
+tags: [windows,operations,developer, landing]
+categories:
 terms: 0
 ---
 

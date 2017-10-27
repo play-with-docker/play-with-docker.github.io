@@ -4,7 +4,7 @@ title:  "Docker images deeper dive"
 date:   2017-01-27
 author: "@lucjuggery"
 img: "docker-image.png"
-tags: [developer,operations,linux]
+tags: [developer,operations,linux, community]
 categories: beginner
 ---
 

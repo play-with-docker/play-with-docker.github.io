@@ -3,8 +3,8 @@ layout: landing
 title:  "Docker for Developers Stage 1"
 date:   2017-01-20
 author: "@manomarks"
-tags: [developer]
-categories:
+tags: [developer, landing]
+categories: 
 terms: 0
 ---
 
@@ -16,11 +16,7 @@ This stage will
 
 ## Self-guided in-browser tutorials
 
-  * [Hello World](/helloworld)
-
-  * [Your First Linux Container](/alpine)
-
-  * [Developing a Simple Web App](/webapps)
+  * [Docker for Beginners - Linux](/beginner-linux)
 
   * [Deploying a Multi-Service App in Docker Swarm Mode](/swarm-stack-intro)
 

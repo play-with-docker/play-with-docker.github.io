@@ -3,7 +3,7 @@ layout: post
 title: "Service Discovery under Docker Swarm Mode"
 date:   2017-04-12
 author: "@ajeetsraina"
-tags: [linux,operations]
+tags: [linux,operations,swarm]
 categories: intermediate
 img: "swarm-service-discovery.png"
 terms: 2

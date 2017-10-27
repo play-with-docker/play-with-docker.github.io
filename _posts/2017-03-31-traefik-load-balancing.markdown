@@ -3,8 +3,8 @@ layout: post
 title:  "WebApps with Traefik LoadBalancing"
 date:   2017-03-31 10:51:47 +0530
 author: "Sébastien Allamand (@allamand)"
-category: intermediate
-tags: [docker, webapp]
+category: others
+tags: [docker,operations,linux,community]
 img: traefik.png
 terms: 2
 ---
@@ -20,9 +20,6 @@ echo 'execute command on node1!!'
 ```.term2
 echo 'execute command on node2!!'
 ```
-
-> Note: This tutorial might use some Docker experimental features. Refer to the [following guide](https://github.com/moby/moby/tree/master/experimental) to see how to enable them if you plan to run it in your local computer.
-
 
 ## Predictive Load-balancing name using Traefik
 
