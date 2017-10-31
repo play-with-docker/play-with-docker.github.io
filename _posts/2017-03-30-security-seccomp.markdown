@@ -101,7 +101,7 @@ In this step you will use the `deny.json` seccomp profile included the lab guide
 
 In this scenario, Docker doesn't actually have enough syscalls to start the container!
 
-2. Inspect the contents of the `seccomp-profiles/deny/json` profile.
+2. Inspect the contents of the `seccomp-profiles/deny.json` profile.
 
    ```.term1
    cat seccomp-profiles/deny.json
