@@ -49,9 +49,23 @@ layout: default
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
-<script src="https://cdn.rawgit.com/play-with-docker/sdk/87c86f26/dist/pwd.js"></script>
+<script src="https://cdn.rawgit.com/play-with-docker/sdk/master/dist/pwd.js"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
 <script>
+var target = document.getElementsByClassName('term1')[0];
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    var xtermvp = document.getElementsByClassName('xterm-viewport');
+    if (xtermvp.length>0) {
+        observer.disconnect();
+        console.log('worked');
+    }
+  });    
+});
+var config = { childList: true };
+observer.observe(target, config);
+
+
     pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}'});
     $(".panel-left").resizable({
         handleSelector: ".splitter",
@@ -62,5 +76,6 @@ layout: default
         pwd.closeSession(function(){});
         return;
     }
+
 </script>
 
