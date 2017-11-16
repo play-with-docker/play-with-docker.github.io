@@ -51,9 +51,8 @@ layout: default
 <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
 <script src="https://cdn.rawgit.com/play-with-docker/sdk/master/dist/pwd.js"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
-
+{% if site.url == 'http://training.play-with-docker.com' %}
 <script>
-    
     pwd.on('init', function() {
       pwd.getUserInfo(function(pwduser){
         user = pwduser;
@@ -76,4 +75,4 @@ layout: default
     }
 
 </script>
-
+{% endif %}
