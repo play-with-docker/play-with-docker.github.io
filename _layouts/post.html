@@ -52,7 +52,7 @@ layout: default
 <script src="https://cdn.rawgit.com/play-with-docker/sdk/master/dist/pwd.js"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
 <script>
-    var siteUrl = '{{ site.url }}'
+    var siteUrl = "{{ site.url }}"
       {% if site.url == 'http://training.play-with-docker.com' %}
       if (window.location.hostname == siteUrl) {
       pwd.on('init', function() {
