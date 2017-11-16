@@ -58,37 +58,19 @@ layout: default
         }}();
 </script>
 <script>
-    function getUser() {
-      var terms = {{ terms }}
-      if(terms>0) {
-        var target = document.getElementsByClassName('xterm-rows');
-        if (target.length === 0) {
-            setTimeout(getUser,1000);
-        } else
-        
-        pwd.getUserInfo(function(pwduser){
-                    user = pwduser;
-                    console.log(user);
-                    analytics.identify(user.provider_user_id);
-                });
-      } else {
-          try {
-            pwd.getUserInfo(function(pwduser){
-                    user = pwduser;
-                    if(user !== undefined){
-                        console.log(user);
-                        analytics.identify(user.provider_user_id);
-                    } else {
-                        analytics.identify();
-                    }
-                });
-          } catch (error) {
-              analytics.identify();
-          }
-      }
-    }
+    
+    pwd.on('init', function() {
+      pwd.getUserInfo(function(user){
+        user = pwduser;
+          if(user !== undefined){
+              console.log(user);
+              analytics.identify(user.provider_user_id);
+              } else {
+                  analytics.identify();
+                  }
+      });
+    });
     pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}'});
-    getUser();
     $(".panel-left").resizable({
         handleSelector: ".splitter",
         resizeHeight: false,
