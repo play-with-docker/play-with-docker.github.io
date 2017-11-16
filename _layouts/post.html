@@ -51,11 +51,11 @@ layout: default
 <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
 <script src="https://cdn.rawgit.com/play-with-docker/sdk/master/dist/pwd.js"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
-{% if site.url == 'http://training.play-with-docker.com' %}
 <script>
-    var siteUrl = {{ site.url }}
-    if (window.location.hostname == siteUrl) {
-    pwd.on('init', function() {
+    var siteUrl = '{{ site.url }}'
+      {% if site.url == 'http://training.play-with-docker.com' %}
+      if (window.location.hostname == siteUrl) {
+      pwd.on('init', function() {
       pwd.getUserInfo(function(pwduser){
         user = pwduser;
           if(user !== undefined){
@@ -65,6 +65,10 @@ layout: default
                   }
       });
     });
+      } else {
+          console.log('In _config.yml, the site url does not match the url you are serving from so no terminals are created')
+      }
+    {% endif %}
     pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}'});
     $(".panel-left").resizable({
         handleSelector: ".splitter",
@@ -75,6 +79,5 @@ layout: default
         pwd.closeSession(function(){});
         return;
     }
-}
+
 </script>
-{% endif %}
