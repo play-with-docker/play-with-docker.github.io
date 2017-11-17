@@ -54,7 +54,7 @@ layout: default
 <script>
     var siteUrl = "{{ site.url }}"
       {% if site.url == 'http://training.play-with-docker.com' %}
-      if (window.location.hostname == siteUrl) {
+      if ((window.location.protocol + '//' + window.location.hostname) == siteUrl) {
       pwd.on('init', function() {
       pwd.getUserInfo(function(pwduser){
         user = pwduser;
