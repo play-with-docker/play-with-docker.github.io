@@ -237,7 +237,7 @@ Background containers are how you'll run most applications. Here's a simple exam
     docker container top mydb
   ```
 
-  You should see the MySQL demon (`mysqld`) is running in the container.
+  You should see the MySQL daemon (`mysqld`) is running in the container.
 
   ```
   PID                 USER                TIME                COMMAND
