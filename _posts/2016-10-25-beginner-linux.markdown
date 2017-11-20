@@ -61,7 +61,7 @@ In this step we're going to start a new container and tell it to run the `hostna
     docker container run alpine hostname
     ```
 
-    The output below shows that the `alpine:latest` image could not be found locally. When this happens, Docker automatically *pulls* it form Docker Hub.
+    The output below shows that the `alpine:latest` image could not be found locally. When this happens, Docker automatically *pulls* it from Docker Hub.
 
     After the image is pulled, the container's hostname is displayed (`888e89a3b36b` in the example below).
 
@@ -389,7 +389,7 @@ Let's have a look at the  Dockerfile we'll be using, which builds a simple websi
 
     Any external traffic coming into the server on port 80 will now be directed into the container on port 80.
 
-    In a later step you will see how to map traffic from two different ports - this is necessary when to containers use the same port to communicate since you can only expose the port once on the host.  
+    In a later step you will see how to map traffic from two different ports - this is necessary when two containers use the same port to communicate since you can only expose the port once on the host.  
 
 7. [Click here to load the website](/){:data-term=".term1"}{:data-port="80"} which should be running.
 
@@ -431,7 +431,7 @@ docker container run \
 $DOCKERID/linux_tweet_app:1.0
 ```
 
-> Remember from the Dockerfile, `usr/share/nginx/html` is where are html files are stored for the web app.
+> Remember from the Dockerfile, `usr/share/nginx/html` is where the html files are stored for the web app.
 
 2. The [website](/){:data-term=".term1"}{:data-port="80"} should be running
 
@@ -506,8 +506,8 @@ To persist the changes you made to the `index.html` file into the image, you nee
 
     ```
     REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
-    <your docker id>/linux_tweet_app   2.0                 01612e05312b        16 seconds ago      108MB
-    <your docker id>/linux_tweet_app   1.0                 bb32b5783cd3        4 minutes ago       108MB
+    <docker id>/linux_tweet_app    2.0                 01612e05312b        16 seconds ago      108MB
+    <docker id>/linux_tweet_app    1.0                 bb32b5783cd3        4 minutes ago       108MB
     mysql                          latest              b4e78b89bcf3        2 weeks ago         412MB
     ubuntu                         latest              2d696327ab2e        2 weeks ago         122MB
     nginx                          latest              da5939581ac8        3 weeks ago         108MB
@@ -561,8 +561,8 @@ To persist the changes you made to the `index.html` file into the image, you nee
 
     ```
     REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
-    mikegcoleman/linux_tweet_app   2.0                 01612e05312b        3 minutes ago       108MB
-    mikegcoleman/linux_tweet_app   1.0                 bb32b5783cd3        7 minutes ago       108MB
+    <docker id>/linux_tweet_app    2.0                 01612e05312b        3 minutes ago       108MB
+    <docker id>/linux_tweet_app    1.0                 bb32b5783cd3        7 minutes ago       108MB
     ```
 
 These images are only stored in your Docker hosts local repository. You Docker host will be deleted after the workshop. In this step we'll push the images to a public repository so you can run them from any Linux machine with Docker.
@@ -620,6 +620,6 @@ Distribution is built into the Docker platform. You can build images locally and
     2.0: digest: sha256:7c51f77f90b81e5a598a13f129c95543172bae8f5850537225eae0c78e4f3add size: 1363
     ```
 
-You can browse to `https://hub.docker.com/r/<your docker id>/` and see your newly-pushed Docker images. These are public repositories, so anyone can pull the image - you don't even need a Docker ID to pull public images. Docker Hub also support private repositories.
+You can browse to `https://hub.docker.com/r/<your docker id>/` and see your newly-pushed Docker images. These are public repositories, so anyone can pull the image - you don't even need a Docker ID to pull public images. Docker Hub also supports private repositories.
 
 ---
