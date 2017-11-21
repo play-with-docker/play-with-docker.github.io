@@ -41,6 +41,12 @@ Use the following command to clone the application source code from GitHub (you 
 git clone https://github.com/dockersamples/node-bulletin-board.git
 ```
 
+And browse to the source code folder:
+
+```.term1
+cd node-bulletin-board
+```
+
 ### Save your Docker ID
 
 You need a Docker ID to push your images to Docker Hub. If you don't have one, [create a free Docker ID at Docker Hub](https://hub.docker.com). 
@@ -71,8 +77,9 @@ git checkout v1
 
 Now build the Docker image, which uses this [Dockerfile](https://github.com/dockersamples/node-bulletin-board/blob/v1/bulletin-board-app/Dockerfile) to package the source code on top of the official Node.js image:
 
+
 ```.term1
-docker image build --tag $dockerId/bb-app:v1 --file bulletin-board-app/Dockerfile .
+docker image build --tag $dockerId/bb-app:v1 --file bulletin-board-app/Dockerfile ./bulletin-board-app
 ```
 
 When that completes you will have version 1 of the app in an image stored locally. Run a container from that image to start the app:
@@ -121,7 +128,7 @@ When that completes, you'll have two Docker images:
 
 - `<your-docker-id>/bulletin-board-db:v2` - which is based on Microsoft's SQL Server image and packages the database schema for the bulletin board
 
-- - `<your-docker-id>/bulletin-board-app:v2` - which is the new version of the Node.js application, using SQL Server to store events
+- `<your-docker-id>/bulletin-board-app:v2` - which is the new version of the Node.js application, using SQL Server to store events
 
 You can start the whole app with Docker Compose:
 
@@ -142,16 +149,6 @@ docker container ls --all
 You'll see it's the same user interface, but now you can add and delete events and when you refresh the page they're still there. The data is persisted in SQL Server.
 
 The SQL Server database is not publicly available. In the [docker-compose.yml](https://github.com/dockersamples/node-bulletin-board/blob/v2/docker-compose.yml) file, the web container, the port `8080` is published so you can send traffic in, but no ports are published for the database. It's only available to other containers and to Docker.
-
-You can check the data by running a SQL command inside the container:
-
-```.term1
-docker container exec nodebulletinboard_bb-db_1 \
- /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P DockerCon!!! -d BulletinBoard \
- -Q 'SELECT * FROM Events'
-```
-
-That shows the data is stored in the database. Next you'll learn how to deploy the application with high availability using Docker swarm mode.
 
 ## <a name="Task_3"></a>Task 3: Switch to high availability in swarm mode
 
