@@ -8,9 +8,9 @@ categories: beginner
 terms: 1
 ---
 
-This lab walks through the evolution of a simple Node.js bulletin board application, running on Docker. We'll start with a simple app that uses hard-coded data, then add SQL Server for persistent storage, and a proxy to improve web performance.
+This lab walks through the evolution of a simple Node.js bulletin board application, running on Docker. You'll start with a simple app that uses hard-coded data, then add SQL Server for persistent storage, and a proxy to improve web performance.
 
-You'll learn about packaging applications in Docker images, running distributed applications across multiple containers and adding instrumentation to your containers so you can see the health of your application. We'll use Docker Compose and Docker swarm for running the app.
+You'll learn about packaging applications in Docker images, running distributed applications across multiple containers, and adding instrumentation to your containers so you can see the health of your application. You'll use the Docker command line, Docker Compose and Docker swarm for running the app.
 
 > **Difficulty**: Beginner (assumes no familiarity with Docker)
 
@@ -33,7 +33,7 @@ You will need:
 - a copy of the application source code
 - a Docker ID
 
-### Clone the Lab's GitHub Repo
+### Clone the source code from GitHub
 
 Use the following command to clone the application source code from GitHub (you can click the command or manually type it). This will make a copy of the lab's repo in a new sub-directory called `node-bulletin-board`.
 
@@ -61,7 +61,7 @@ echo $dockerId
 
 ## <a name="Task_1"></a>Task 1: Run v1 of the app in a container
 
-The first version of the application uses one container to run the Node.js application, and the data is only stored on the client's browser.
+The first version of the application uses a single container, running the Node.js application, and the data is only stored on the client's browser.
 
 Switch to the `v1` source code branch:
 
@@ -69,7 +69,7 @@ Switch to the `v1` source code branch:
 git checkout v1
 ```
 
-Now build the Docker image, which packages the source code on top of the official Node.js image:
+Now build the Docker image, which uses this [Dockerfile](https://github.com/dockersamples/node-bulletin-board/blob/v1/bulletin-board-app/Dockerfile) to package the source code on top of the official Node.js image:
 
 ```.term1
 docker image build --tag $dockerId/bb-app:v1 --file bulletin-board-app/Dockerfile .
@@ -111,7 +111,7 @@ docker container rm --force $(docker container ls --quiet)
 
 You'll use Docker Compose to build and run the application. The compose file specifies the database and application containers to run, and how to configure them.
 
-The compose file also contains the path to the Dockerfile, so you can build the database and application images with one command:
+The compose file also contains the path to the [application Dockerfile](https://github.com/dockersamples/node-bulletin-board/blob/v2/bulletin-board-app/Dockerfile) and to the [database Dockerfile](https://github.com/dockersamples/node-bulletin-board/blob/v2/bulletin-board-db/Dockerfile), so you can build the database and application images with one command:
 
 ```.term1
 docker-compose build
@@ -129,7 +129,7 @@ You can start the whole app with Docker Compose:
 docker-compose up -d
 ```
 
-You'll see compose starts the database first, because it's specified as a dependency for the application container. Then in starts the app container.
+You'll see compose starts the database first, because it's specified as a dependency for the application container. Then it starts the app container.
 
 > If you list all containers, you'll see there are two instances of the app container. One container started before the database was ready, so it failed - and then Docker Compose started a replacement container, which did connect to the database.
 
@@ -139,9 +139,9 @@ docker container ls --all
 
 [Click here for v2 of the app](/){:data-term=".term1"}{:data-port="8080"}
 
-You'll see it's the same user interface, but now you can add and delete events and when you refresh the page they're still there. The data is persisted in SQL Server now.
+You'll see it's the same user interface, but now you can add and delete events and when you refresh the page they're still there. The data is persisted in SQL Server.
 
-The SQL Server database is not publicly available. For the web container, the port `8080` is published so you cna send traffic in, but no ports are published for the database. It's only available to other containers and to Docker.
+The SQL Server database is not publicly available. In the [docker-compose.yml](https://github.com/dockersamples/node-bulletin-board/blob/v2/docker-compose.yml) file, the web container, the port `8080` is published so you can send traffic in, but no ports are published for the database. It's only available to other containers and to Docker.
 
 You can check the data by running a SQL command inside the container:
 
@@ -157,7 +157,7 @@ That shows the data is stored in the database. Next you'll learn how to deploy t
 
 Swarm mode lets you join several Docker servers together and treat them as a single unit. You deploy your app as services to the swarm, and Docker runs containers across all the servers. 
 
-You can run multiple instances of a container to cope with scale, and if a server goes down and you lose containers, Docker starts replacement containers on other servers. 
+You can run multiple instances of a container to deal with scale, and if a server goes down and you lose containers, Docker starts replacement containers on other servers. 
 
 First clear down all the containers from part 2:
 
@@ -185,9 +185,9 @@ And build the application with Docker Compose:
 docker-compose build
 ```
 
-Version 3 has the same source code, but the Dockerfile for the web app includes a `HEALTHCHECK` instruction. That tells Docker how to test if the application is healthy, and unhealthy containers are stopped and replaced with noew ones.
+Version 3 has the same source code, but the [Dockerfile for v3](https://github.com/dockersamples/node-bulletin-board/blob/v3/bulletin-board-app/Dockerfile) of the the web app includes a `HEALTHCHECK` instruction. That tells Docker how to test if the application is healthy, and unhealthy containers are stopped and replaced with new ones.
 
-You use the same Docker Compose file format to deploy in swarm mode, and there are some additional options available. Deploy version 3 of the app:
+You use the same Docker Compose file format to deploy in swarm mode, and there are some additional options available. Deploy version 3 of the app using the [docker-stack.yml](https://github.com/dockersamples/node-bulletin-board/blob/v3/docker-stack.yml) file:
 
 ```.term1
 docker stack deploy -c docker-stack.yml bb
@@ -203,13 +203,13 @@ docker stack services bb
 
 You'll see the application behaviour is exactly the same - containers are running from the same Docker images, but now they're being scheduled by Docker swarm.
 
-Docker swarm also supports rolling updates for applications running as stacks. In the next part you'll add more functionality to the app, by running a web proxy,
+Docker swarm also supports rolling updates for applications running as stacks. In the next part you'll add more functionality to the app, by running a web proxy.
 
 ## <a name="Task_4"></a>Task 4: Add a reverse proxy to improve performance
 
-Node.js is a good server platform, but it's easy to improve performance by putting a reverse proxy in front of the Node.js application. The proxy is the public entrypoint to the app, and it handles requests from users.
+[Node.js](https://nodejs.org/en/) is a good server platform, but it's easy to improve performance by putting a reverse proxy in front of the Node.js application. The proxy is the public entrypoint to the app, and it handles requests from users.
 
-Nginx is a popular open source web server which you can easily configure as a reverse proxy. The setup for Nginx in this part makes use of browser and server caching, which reduces the load on the web application and improves performance.
+[Nginx](http://nginx.org) is a popular open source web server which you can easily configure as a reverse proxy. The [Nginx configuration](https://github.com/dockersamples/node-bulletin-board/blob/v4/bulletin-board-proxy/nginx.conf) in this part makes use of browser and server caching, which reduces the load on the web application and improves performance.
 
 Switch to the v4 code branch:
 
@@ -223,7 +223,7 @@ And use Docker Compose to build the application:
 docker-compose build
 ```
 
-Now you have `v4` Docker images for all the application parts, you can upgrade the running stack:
+Now you have `v4` Docker images for all the application parts, you can upgrade the running stack using the new [docker-stack.yml](https://github.com/dockersamples/node-bulletin-board/blob/v4/docker-stack.yml) file:
 
 ```.term1
 docker stack deploy -c docker-stack.yml bb
@@ -233,9 +233,9 @@ Version 4 adds a proxy server to the stack which publishes port `80`, so now you
 
 [Click here for v4 of the app](/){:data-term=".term1"}{:data-port="80"}
 
-The web application looks the same, but behind the scenes all the hard work is being done by the Nginx proxy. You can open developer tools on your browser and inspect the network responses - Nginx has added browser caching hints, and it's also using it's own cache to reduce traffic to the Node.js app.
+The web application looks the same, but behind the scenes all the hard work is being done by the Nginx proxy. You can open developer tools on your browser and inspect the network responses - Nginx has added browser caching hints, and it's also using a local cache to reduce traffic to the Node.js app.
 
-There are also several instances of the proxy container running - Docker swarm load-balances incoming requests between those containers. If you had multiple servers in the swarm, you would be able to scale to handle your incoming workload.
+There are also several instances of the proxy container running - Docker swarm load-balances incoming requests between those containers. If you had multiple servers in the swarm, you would be able to scale up to handle your incoming workload.
 
 In the final part you'll add monitoring to the application, so you can see what the Node.js container is doing.
 
@@ -244,7 +244,7 @@ In the final part you'll add monitoring to the application, so you can see what 
 
 Docker swarm makes it super easy to scale containers, but before you go to production witrh a Dockerized application, you'll want monitoring in place so you can see what all those containers are doing.
 
-Two open-source technologies are very popular in the Docker ecosystem for monitoring containers. Prometheus is an instrumentation server that collects and stores metrics from your containers, and Grafana is an analytics UI that plugs into Prometheus to show dashboards.
+Two open-source technologies are very popular in the Docker ecosystem for monitoring containers. [Prometheus](https://prometheus.io) is an instrumentation server that collects and stores metrics from your containers, and [Grafana](https://grafana.com) is an analytics UI that plugs into Prometheus to show dashboards.
 
 In this part you'll add Prometheus and Grafana to your application.
 
@@ -254,13 +254,13 @@ First switch to the v5 code branch:
 git checkout v5
 ```
 
-Now build the application, which will build Prometheus and Grafana containers:
+Now build the application, which will build images from [the Prometheus Dockerfile](https://github.com/dockersamples/node-bulletin-board/blob/v5/bulletin-board-metrics/Dockerfile) and [the Grafana Dockerfile](https://github.com/dockersamples/node-bulletin-board/blob/v5/bulletin-board-dashboard/Dockerfile):
 
 ```.term1
 docker-compose build
 ```
 
-You have `v5` images for all the application components now. Upgrade the stack to v5:
+You have `v5` images for all the application components now. Upgrade the stack to the v5 [docker-stack.yml](https://github.com/dockersamples/node-bulletin-board/blob/v5/docker-stack.yml) file:
 
 ```
 docker stack deploy -c docker-stack.yml bb
@@ -307,6 +307,6 @@ And you can leave swarm mode to return to a single-server Docker host:
 docker swarm leave --force
 ```
 
-Thanks for completing the Node.js and SQL Server lab! You've leanred how to build and run applications with Docker and Docker Compose, how to achieve high availability with Docker Swarm and how to get your application production ready by adding a proxy and a metrics dashboard.
+Thanks for completing the Node.js and SQL Server lab! You've learned how to build and run applications with Docker and Docker Compose, how to achieve high availability with Docker Swarm and how to get your application production ready by adding a proxy and a metrics dashboard.
 
 The [Play with Docker Training site](http://training.play-with-docker.com) is always on, and there are plenty more labs you can try at home.
