@@ -58,7 +58,7 @@ In this step we're going to start a new container and tell it to run the `hostna
 1. Run the following command in your Linux console.
 
     ```.term1
-    docker container run alpine hostname
+    docker run alpine hostname
     ```
 
     The output below shows that the `alpine:latest` image could not be found locally. When this happens, Docker automatically *pulls* it from Docker Hub.
@@ -102,7 +102,7 @@ In the next example, we are going to run an Ubuntu Linux container on top of an 
 1. Run a Docker container and access its shell.
 
     ```.term1
-    docker container run --interactive --tty --rm ubuntu bash
+    docker run --interactive --tty --rm ubuntu bash
     ```
 
     In this example, we're giving Docker three parameters:
@@ -170,7 +170,7 @@ Background containers are how you'll run most applications. Here's a simple exam
 1. Run a new MySQL container with the following command.
 
     ```.term1
-    docker container run \
+    docker run \
     --detach \
     --name mydb \
     -e MYSQL_ROOT_PASSWORD=my-secret-pw \
@@ -380,7 +380,7 @@ Let's have a look at the  Dockerfile we'll be using, which builds a simple websi
     As this container will be running an NGINX web server, we'll use the `--publish` flag to publish port 80 inside the container onto port 80 on the host. This will allow traffic coming in to the Docker host on port 80 to be directed to port 80 in the container. The format of the `--publish` flag is `host_port`:`container_port`.
 
     ```.term1
-    docker container run \
+    docker run \
     --detach \
     --publish 80:80 \
     --name linux_tweet_app \
@@ -423,7 +423,7 @@ When you use a bind mount, a file or directory on the host machine is mounted in
   Be sure to run this command from within the `linux_tweet_app` directory on your Docker host.
 
 ```.term1
-docker container run \
+docker run \
 --detach \
 --publish 80:80 \
 --name linux_tweet_app \
@@ -465,7 +465,7 @@ To show this, stop the current container and re-run the `1.0` image without a bi
 2. Rerun the current version without a bind mount.
 
     ```.term1
-    docker container run \
+    docker run \
     --detach \
     --publish 80:80 \
     --name linux_tweet_app \
@@ -520,7 +520,7 @@ To persist the changes you made to the `index.html` file into the image, you nee
 1. Run a new container from the new version of the image.
 
     ```.term1
-    docker container run \
+    docker run \
     --detach \
     --publish 80:80 \
     --name linux_tweet_app \
@@ -540,7 +540,7 @@ To persist the changes you made to the `index.html` file into the image, you nee
     Notice that this command maps the new container to port 8080 on the host. This is because two containers cannot map to the same port on a single Docker host.
 
     ```.term1
-    docker container run \
+    docker run \
     --detach \
     --publish 8080:80 \
     --name old_linux_tweet_app \
