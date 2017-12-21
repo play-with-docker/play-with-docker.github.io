@@ -28,7 +28,7 @@ layout: default
     </div>
 
     <div class="panel-right">
-        <span class="resize-warning">If the commandline doesn't appear in the terminal, try resizing the browser window.</span>
+        <span class="resize-warning">If the commandline doesn't appear in the terminal, make sure popups are enabled or try resizing the browser window.</span>
         {% for i in (1..terms) %}
         <div class="term{{i}}"></div>
         {% endfor %}
@@ -49,15 +49,35 @@ layout: default
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
-<script src="https://rawgit.com/play-with-docker/sdk/master/dist/pwd.js"></script>
+<script src="https://cdn.rawgit.com/play-with-docker/sdk/6f5f37c1e067eb778efecd93e58b25b2457695ef/dist/pwd.js"></script>
 <script src="{{site.baseurl}}/js/quiz.js"></script>
 <script>
-    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {ImageName: '{{page.image}}'
-});
-      $(".panel-left").resizable({
-      handleSelector: ".splitter",
-      resizeHeight: false,
-      onDragEnd: pwd.resize.bind(pwd)
-  });
-</script>
+    var siteUrl = "{{ site.url }}"
+      {% if site.url == 'http://training.play-with-docker.com' %}
+      if ((window.location.protocol + '//' + window.location.hostname) == siteUrl) {
+      pwd.on('init', function() {
+      pwd.getUserInfo(function(pwduser){
+        user = pwduser;
+          if(user !== undefined){
+              analytics.identify(user.provider_user_id);
+              } else {
+                  analytics.identify();
+                  }
+      });
+    });
+      } else {
+          console.log('In _config.yml, the site url does not match the url you are serving from, so no analytics were pushed.')
+      }
+    {% endif %}
+    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}'});
+    $(".panel-left").resizable({
+        handleSelector: ".splitter",
+        resizeHeight: false,
+        onDragEnd: pwd.resize.bind(pwd)
+    });
+    window.onbeforeunload = function(e) {
+        pwd.closeSession(function(){});
+        return;
+    }
 
+</script>

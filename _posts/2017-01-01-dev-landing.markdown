@@ -3,7 +3,7 @@ layout: landing
 title:  "Docker for Developers"
 date:   2017-01-20
 author: "@manomarks"
-tags: [windows,operations,developer]
+tags: [windows,operations,developer, landing]
 categories: 
 terms: 0
 ---
@@ -37,3 +37,13 @@ This final stage will help you
   * Manage your staging environment with Docker Swarm Mode
 
   * Learn how to build a secure application
+
+## Next Steps
+
+Once you've finished the three stages, you can
+
+  * [Download Docker](https://docker.com/get-docker)
+
+  * [Sign up for the Docker Community](https://community.docker.com)
+
+  * [Explore the Docker documentation](https://docs.docker.com)

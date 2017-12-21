@@ -3,7 +3,7 @@ layout: post
 title:  "Security Lab: Capabilities"
 date:   2017-03-06
 author: "@manomarks"
-tags: [linux,operations]
+tags: [linux,operations,security]
 categories: advanced
 ---
 

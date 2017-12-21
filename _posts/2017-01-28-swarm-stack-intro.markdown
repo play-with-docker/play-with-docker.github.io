@@ -3,7 +3,7 @@ layout: post
 title: "Swarm stack introduction"
 date:   2017-01-28
 author: "@lucj"
-tags: [linux,operations]
+tags: [linux,operations,swarm,community]
 categories: beginner
 img: "compose_swarm.png"
 terms: 2

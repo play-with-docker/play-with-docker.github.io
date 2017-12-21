@@ -3,12 +3,12 @@ layout: post
 title: "Reducing nodejs Docker images size by %50 using multi-stage builds and Zeit pkg."
 date:   2017-05-04
 author: "@marcosnils"
-tags: [linux,development, nodejs, zeit]
+tags: [linux,development, nodejs, community]
 categories: others
 image: franela/dind:overlay2
 ---
 
-This is a followup interactive tutorial from my [previous blogpost](https://medium.com/@marcosnils/reducing-nodejs-docker-images-size-by-47-using-multi-sage-builds-and-zeit-pkg-360ab8b6c6d2)
+This is a followup interactive tutorial from this [blogpost](https://medium.com/@marcosnils/reducing-nodejs-docker-images-size-by-47-using-multi-sage-builds-and-zeit-pkg-360ab8b6c6d2)
 to reduce docker nodejs images by 50% using Zeit [pkg](https://github.com/zeit/pkg) and docker multi-stage builds.
 
 

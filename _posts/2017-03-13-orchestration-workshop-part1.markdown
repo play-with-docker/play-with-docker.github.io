@@ -3,7 +3,7 @@ layout: post
 title:  "Orchestration, part 1: from Compose to Swarm"
 date:   2017-03-13
 author: "@jpetazzo"
-tags: [linux,developer,operations]
+tags: [linux,developer,operations,landing]
 categories: intermediate
 terms: 0
 ---
