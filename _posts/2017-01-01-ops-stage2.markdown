@@ -29,7 +29,7 @@ This stage will help you
 ### Networking
 [Docker Networking Hands-on Lab](/docker-networking-hol)
 ### Orchestration
-[Docker Orchstration Hands-on Lab](orchestration-hol)
+[Docker Orchestration Hands-on Lab](/orchestration-hol)
 
 <span><em>And for a bonus, you can work through a comprehensive Orchestration Workshop</em></span>
 
