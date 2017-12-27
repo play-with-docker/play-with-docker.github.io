@@ -275,10 +275,10 @@ We also remove all the images
 docker image rm $(docker image ls -q)
 ```
 
-We will now have a look inside the **/graph/overlay2** folder where the image and container layers are stored.
+We will now have a look inside the **/var/lib/docker/overlay2** folder where the image and container layers are stored.
 
 ```.term1
-ls /graph/overlay2
+ls /var/lib/docker/overlay2
 ```
 
 As we do not have any images yet, there should not be anything in this folder.
@@ -301,10 +301,10 @@ Digest: sha256:33ff28a2763feccc1e1071a97960b7fef714d6e17e2d0ff573b74825d0049303
 Status: Downloaded newer image for nginx:latest
 ```
 
-If we have a look to the changes that occurs in the /graph/overlay2 folder
+If we have a look to the changes that occurs in the /var/lib/docker/overlay2 folder
 
 ```.term1
-ls /graph/overlay2
+ls /var/lib/docker/overlay2
 ```
 
 we can see the following:
