@@ -58,10 +58,10 @@ You should then get an output like the following (the ID will not be the same th
 ```
 {
     "Data": {
-        "LowerDir": "/graph/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2-init/diff:/graph/overlay2/30474f5fc34277d1d9e5ed5b48e2fb979eee9805a61a0b2c4bf33b766ba65a16/diff",
-        "MergedDir": "/graph/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2/merged",
-        "UpperDir": "/graph/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2/diff",
-        "WorkDir": "/graph/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2/work"
+        "LowerDir": "/var/lib/docker/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2-init/diff:/var/lib/docker/overlay2/30474f5fc34277d1d9e5ed5b48e2fb979eee9805a61a0b2c4bf33b766ba65a16/diff",
+        "MergedDir": "/var/lib/docker/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2/merged",
+        "UpperDir": "/var/lib/docker/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2/diff",
+        "WorkDir": "/var/lib/docker/overlay2/55922a6b646ba6681c5eca253a19e90270e3872329a239a82877b2f8c505c9a2/work"
     },
     "Name": "overlay2"
 }
@@ -71,7 +71,7 @@ From our host, if we inspect the folder which path is specified in **UpperDir**,
 
 Try the below command, to see the contents of the /data folder:
 ```
-ls /graph/overlay2/[YOUR_ID]/diff/data
+ls /var/lib/docker/overlay2/[YOUR_ID]/diff/data
 ```
 
 What happen if we remove our c1 container now ? Let's try.
@@ -154,13 +154,13 @@ You should then get an output like the following (the ID will not be the same th
         "Name": "2f5b7c6b77494934293fc7a09198dd3c20406f05272121728632a4aab545401c",
         "Propagation": "",
         "RW": true,
-        "Source": "/graph/volumes/2f5b7c6b77494934293fc7a09198dd3c20406f05272121728632a4aab545401c/_data",
+        "Source": "/var/lib/docker/volumes/2f5b7c6b77494934293fc7a09198dd3c20406f05272121728632a4aab545401c/_data",
         "Type": "volume"
     }
 ]
 ```
 
-This output shows that the volume defined in /data is stored in **/graph/volumes/2f5...01c/_data** on the host (removing part of the ID for a better readability).
+This output shows that the volume defined in /data is stored in **/var/lib/docker/volumes/2f5...01c/_data** on the host (removing part of the ID for a better readability).
 
 Copy your own path (the one under the **Source** key) and make sure the **hello.txt** file we created (from within the container) is there.
 
@@ -204,7 +204,7 @@ We have pretty much the same output as we had when we defined the volume in the 
   {
     "Type": "volume",
     "Name": "af621cde2717307e5bf91be850c5a00474d58b8cdc8d6e37f2e373631c2f1331",
-    "Source": "/graph/volumes/af621cde2717307e5bf91be850c5a00474d58b8cdc8d6e37f2e373631c2f1331/_data",
+    "Source": "/var/lib/docker/volumes/af621cde2717307e5bf91be850c5a00474d58b8cdc8d6e37f2e373631c2f1331/_data",
     "Destination": "/data",
     "Driver": "local",
     "Mode": "",
@@ -217,7 +217,7 @@ We have pretty much the same output as we had when we defined the volume in the 
 If we use the folder defined in the **Source** key, and check the content of the ping.txt within the /data folder, we get something similar to the following.
 
 ```
-tail -f /graph/volumes/OUR_ID/_data/ping.txt
+tail -f /var/lib/docker/volumes/OUR_ID/_data/ping.txt
 64 bytes from 8.8.8.8: seq=34 ttl=37 time=0.462 ms
 64 bytes from 8.8.8.8: seq=35 ttl=37 time=0.436 ms
 64 bytes from 8.8.8.8: seq=36 ttl=37 time=0.512 ms
@@ -275,7 +275,7 @@ The output should be the following one.
     {
         "Driver": "local",
         "Labels": {},
-        "Mountpoint": "/graph/volumes/html/_data",
+        "Mountpoint": "/var/lib/docker/volumes/html/_data",
         "Name": "html",
         "Options": {},
         "Scope": "local"
@@ -298,17 +298,17 @@ Note: we use the -p option to map the nginx default port (80) to a port on the h
 From the host, let's have a look at the content of the volume.
 
 ```.term1
-ls /graph/volumes/html/_data
+ls /var/lib/docker/volumes/html/_data
 ```
 
-The content of the **/usr/share/nginx/html** folder of the **www** container has been copied into the **/graph/volumes/html/_data** folder on the host.
+The content of the **/usr/share/nginx/html** folder of the **www** container has been copied into the **/var/lib/docker/volumes/html/_data** folder on the host.
 
 Let's have a look at the nginx's [welcome page](/){:data-term=".term1"}{:data-port="8080"}
 
 From our host, we can now modify the index.html file and verify the changes are taken into account within the container.
 
 ```.term1
-cat<<END >/graph/volumes/html/_data/index.html
+cat<<END >/var/lib/docker/volumes/html/_data/index.html
 SOMEONE HERE ?
 END
 ```
