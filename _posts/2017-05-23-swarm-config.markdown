@@ -5,7 +5,6 @@ date:   2017-01-22
 author: "@marcosnils"
 tags: [developer,operations,linux,swarm]
 categories: beginner
-image: franela/dind:overlay2
 terms: 1
 ---
 
