@@ -11,7 +11,7 @@ terms: 0
 
 This self-paced learning journey for IT Pros and System Administrators will help you understand and be able to deploy applications with Docker. We've designed three stages.
 
-## [Stage 1: The Basics](/stage-one)
+## [Stage 1: The Basics](#stage-one)
 
 This stage will 
   
@@ -32,7 +32,7 @@ This stage will help you
 
   * Develop a proof of concept application deployment
 
-## [Stage 3: Moving to Production](/stage-three)
+## [Stage 3: Moving to Production](#stage-three)
 
 This final stage will help you
 
