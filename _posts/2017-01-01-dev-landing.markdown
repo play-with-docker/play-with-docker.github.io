@@ -90,7 +90,7 @@ This stage show you how to
 <span><em>In this video, Abby Fuller goes deep into creating effective Docker Images</em></span>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/pPsREQbf3PA?list=PLkA60AVN3hh8_lyxE2jjGaGyr0UoqIv4K" frameborder="0" allowfullscreen></iframe>
 
-  # Stage Three
+# Stage Three
 
 This final stage will help you
 
