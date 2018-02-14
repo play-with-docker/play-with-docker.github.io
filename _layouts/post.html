@@ -59,7 +59,7 @@ layout: default
       pwd.getUserInfo(function(pwduser){
         user = pwduser;
           if(user !== undefined){
-              analytics.identify(user.provider_user_id);
+              analytics.identify(user.provider_user_id,{"traits":{"email":user.email}});
               } else {
                   analytics.identify();
                   }
