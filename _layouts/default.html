@@ -49,8 +49,7 @@ layout: compress
       pwd.getUserInfo(function(pwduser){
               user = pwduser;
               if(user !== undefined){
-                  analytics.identify(user.provider_user_id);
-              } else {
+                  analytics.identify(user.provider_user_id,{"traits":user.email});              } else {
                   analytics.identify();
               }
           });
