@@ -50,6 +50,8 @@ layout: compress
               user = pwduser;
               if(user !== undefined){
                   analytics.identify(user.provider_user_id,{"email":user.email});
+              }
+              else {
                   analytics.identify();
               }
           });
