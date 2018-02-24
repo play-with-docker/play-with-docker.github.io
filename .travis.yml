@@ -10,7 +10,7 @@ deploy:
   provider: s3
   access_key_id: "$ACCESS_KEY"
   secret_access_key: "$SECRET_KEY"
-  bucket: "pwd-training-site"
+  bucket: "pwd-training-test"
   acl: public_read
   local_dir: _site
   on:
