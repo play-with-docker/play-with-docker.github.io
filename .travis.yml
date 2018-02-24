@@ -4,6 +4,7 @@ services:
     - docker
 
 script:
+    - mkdir _site
     - docker-compose run build jekyll build
 
 deploy:
