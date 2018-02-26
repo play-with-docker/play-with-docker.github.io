@@ -12,7 +12,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Play with docker tutorials
   
 baseurl: # the subpath of your site, e.g. /blog
-url: "http://training.play-with-docker.com" # the base hostname & protocol for your site
+url: "https://training.play-with-docker.com" # the base hostname & protocol for your site
 
 #sidebar
 default-image: docker-logo.svg # If there is no featured image in a post then this image will be showed. Also on all pages this image will be showed. Use a 500x250 image.
@@ -21,7 +21,7 @@ default-image: docker-logo.svg # If there is no featured image in a post then th
 built-by: PWD Team
 copyright:
    name: PWD
-   link: 'http://play-with-docker.com'
+   link: 'https://play-with-docker.com'
 
 # Build settings
 markdown: kramdown
