@@ -108,7 +108,7 @@ In the next example, we are going to run an Ubuntu Linux container on top of an 
     In this example, we're giving Docker three parameters:
 
     * `--interactive` says you want an interactive session.
-    * `--tty` allocates a psuedo-tty.
+    * `--tty` allocates a pseudo-tty.
     * `--rm` tells Docker to go ahead and remove the container when it's done executing.
 
     The first two parameters allow you to interact with the Docker container.
