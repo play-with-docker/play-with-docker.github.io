@@ -41,7 +41,7 @@ docker container run hello-world
 
 That's it: your first container. The *hello-world* container output tells you a bit about what just happened. Essentially, the Docker engine running in your terminal tried to find an **image** named hello-world. Since you just got started there are no images stored locally (`Unable to find image...`) so Docker engine goes to its default **Docker registry**, which is [Docker Store](https://store.docker.com), to look for an image named "hello-world". It finds the image there, pulls it down, and then runs it in a container. And hello-world's only function is to output the text you see in your terminal, after which the container exits.
 
-![Hello world explainer](/images/ops-basics-hello-world.png)
+![Hello world explainer](/images/ops-basics-hello-world.svg)
 
 If you are familiar with VMs, you may be thinking this is pretty much just like running a virtual machine, except with a central repository of VM images. And in this simple example, that is basically true. But as you go through these exercises you will start to see important ways that Docker and containers differ from VMs. For now, the simple explanation is this:
 * The VM is a *hardware* abstraction: it takes physical CPUs and RAM from a host, and divides and shares it across several smaller virtual machines. There is an OS and application running inside the VM, but the virtualization software usually has no real knowledge of that.
