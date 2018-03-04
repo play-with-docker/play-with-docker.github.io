@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Docker Orchstration Hands-on Lab"
+title:  "Docker Orchestration Hands-on Lab"
 date:   2017-01-20
 tags: [operations,networking,swarm]
 categories: beginner
