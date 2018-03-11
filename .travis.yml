@@ -14,5 +14,6 @@ deploy:
   bucket: "pwd-training-site"
   acl: public_read
   local_dir: _site
+  skip_cleanup: true
   on:
       branch: master
