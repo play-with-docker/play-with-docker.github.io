@@ -622,4 +622,8 @@ Distribution is built into the Docker platform. You can build images locally and
 
 You can browse to `https://hub.docker.com/r/<your docker id>/` and see your newly-pushed Docker images. These are public repositories, so anyone can pull the image - you don't even need a Docker ID to pull public images. Docker Hub also supports private repositories.
 
+### Next Step
+
+Check out this introduction to orchestration with [Docker Swarm Stack Introduction](/swarm-stack-intro)
+
 ---
