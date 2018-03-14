@@ -82,7 +82,7 @@ As with Dockerfiles and the Compose files, the file that defines a stack is a pl
 cat docker-stack.yml
 ```
 
-This YAML file defines our entire stack: the architecture of the services, number of instances, how everything is wired together, how to handle updates to each service. It is the source code for our application design. A few items of particular notet:
+This YAML file defines our entire stack: the architecture of the services, number of instances, how everything is wired together, how to handle updates to each service. It is the source code for our application design. A few items of particular note:
 
 - Near the top of the file you will see the line "services:". These are the individual application components. In the voting app we have redis, db, vote, result, worker, and visualizer as our services.
 - Beneath each service are lines that specify how that service should run:
@@ -156,13 +156,13 @@ The [SWARM VISUALIZER](/){:data-term=".term1"}{:data-port="8080"} gives you the 
 ![Stack, services and tasks](/images/ops-swarm-stack-service-task.svg)
 
 ## Scaling An Application
-Let us pretend that our cats vs. dogs vote has gone viral and our two front-end web servers are no longer able to handle the load. How can we tell our app to add more replicas of our *vote* service? In production you might automate it through Docker's APIs but for now we will do it manually. You could also edit the `docker-stack.yml` file and change the specs if you wanted to make the scale size more permanent. You will need to get the service ID for the voting service, which was part of the output of the `docker stack services ls` command you entered above. In the sample output above, the vote service has an ID of `ou47zdyf6cd0` or `ou47` for short. Type the following at the [node1] terminal:
+Let us pretend that our cats vs. dogs vote has gone viral and our two front-end web servers are no longer able to handle the load. How can we tell our app to add more replicas of our *vote* service? In production you might automate it through Docker's APIs but for now we will do it manually. You could also edit the `docker-stack.yml` file and change the specs if you wanted to make the scale size more permanent. Type the following at the [node1] terminal:
 
 ```.term1
 docker service scale voting_stack_vote=5
 ```
 
-Now enter your `docker stack services ls` command again. You should see the number of replicas for the vote service increase to 5 and in a few seconds Swarm will have all of them running. Go back to your [front-end voting UI](/){:data-term=".term1"}{:data-port="5000"} and refresh the page a few times. You should see the *container ID* listed at the bottom cycle through all 5 of your containers. If you go back and refresh your [SWARM VISUALIZER](/){:data-term=".term1"}{:data-port="8080"} you should see your updated architecture there as well.
+Now enter your `docker stack services voting_stack` command again. You should see the number of replicas for the vote service increase to 5 and in a few seconds Swarm will have all of them running. Go back to your [front-end voting UI](/){:data-term=".term1"}{:data-port="5000"} and refresh the page a few times. You should see the *container ID* listed at the bottom cycle through all 5 of your containers. If you go back and refresh your [SWARM VISUALIZER](/){:data-term=".term1"}{:data-port="8080"} you should see your updated architecture there as well.
 
 Here's our new architecture after scaling:
 ![Swarm scaling](/images/ops-swarm-scale.svg)
@@ -171,7 +171,7 @@ That's all there is to it! Docker Swarm can easily and quickly scale your applic
 
 ## Conclusion
 
-Using only a couple of commands enables to deploy a stack of services using Docker Swarm Mode to orchestrate the entire stack, all maintained in the simple, human readable Docker Compose file format.
+Using only a couple of commands enables you to deploy a stack of services using Docker Swarm Mode to orchestrate the entire stack, all maintained in the simple, human readable Docker Compose file format.
 
 ## What next?
 Hopefully these first few labs have given you some familiarity with Docker, containers, and Docker Swarm Mode orchestration. We encourage you to keep Playing With Docker to learn more. There are several things you can do to continue your learning:
@@ -197,8 +197,8 @@ What is a stack?
 
 {:.quiz}
 A stack can:
-- [x] be deployed from the commandline
-- [x] can use the compose file format to deploy
-- [ ] can run a Dockerfile
-- [ ] be used to manage your hosts
-- [x] can be used to manage services over multiple nodes
+- (x) be deployed from the commandline
+- (x) use the compose file format to deploy
+- ( ) run a Dockerfile
+- ( ) be used to manage your hosts
+- (x) be used to manage services over multiple nodes
