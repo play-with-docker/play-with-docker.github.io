@@ -5,7 +5,7 @@ date:   2017-05-04
 author: "@marcosnils"
 tags: [linux,development, nodejs, community]
 categories: others
-image: franela/dind:overlay
+image: franela/dind
 ---
 
 This is a followup interactive tutorial from this [blogpost](https://medium.com/@marcosnils/reducing-nodejs-docker-images-size-by-47-using-multi-sage-builds-and-zeit-pkg-360ab8b6c6d2)
