@@ -106,6 +106,7 @@ To get ready, stop and remove the running container, and then change the directo
 docker container stop movieplex7
 docker container rm movieplex7
 cd ..
+./add_ee_pwd_host.sh
 more react-client/Dockerfile
 ```
 
