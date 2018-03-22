@@ -119,7 +119,7 @@ In the next example, we are going to run an Ubuntu Linux container on top of an 
 
 2. Run the following commands in the container.
 
-    `ls /` will list the contents of the root director in the container, `ps aux` will show running processes in the container, `cat /etc/issue` will show which Linux distro the container is running, in this case Ubuntu 16.04.3 LTS.
+    `ls /` will list the contents of the root director in the container, `ps aux` will show running processes in the container, `cat /etc/issue` will show which Linux distro the container is running, in this case Ubuntu 16.04.4 LTS.
 
    ```.term1
    ls /
