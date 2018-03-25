@@ -56,7 +56,7 @@ Docker uses seccomp in *filter mode* and has its own JSON-based DSL that allows 
 
 The following example command starts an interactive container based off the Alpine image and starts a shell process. It also applies the seccomp profile described by `<profile>.json` to it.
 
-   ```.term1
+   ```
    docker run -it --rm --security-opt seccomp=<profile>.json alpine sh ...
    ```
 
@@ -96,7 +96,7 @@ In this step you will use the `deny.json` seccomp profile included the lab guide
    docker run --rm -it --cap-add ALL --security-opt apparmor=unconfined --security-opt seccomp=seccomp-profiles/deny.json alpine sh
    ```
    ```
-   docker: Error response from daemon: exit status 1: "cannot start a container that has run and stopped\n".
+   docker: Error response from daemon: cannot start a stopped process: unknown.
    ```
 
 In this scenario, Docker doesn't actually have enough syscalls to start the container!
@@ -142,7 +142,7 @@ Unless you specify a different profile, Docker will apply the [default seccomp p
    root
    ```
 
-3. To prove that we are not running with the default seccomp profile, try running a `unshare` command, which creates a new namespace:
+3. To prove that we are not running with the default seccomp profile, try running a `unshare` command, which runs a shell process in a new namespace:
   ```.term1
   unshare --map-root-user --user
   whoami
@@ -151,8 +151,9 @@ Unless you specify a different profile, Docker will apply the [default seccomp p
   root
   ```
 
-4. Exit the container.
+4. Exit the new shell and the container.
 ```.term1
+exit
 exit
 ```
 
@@ -240,7 +241,7 @@ exit
 
 5. Check both profiles for the presence of the `chmod()`, `fchmod()`, and `chmodat()` syscalls.
 
-   Be sure to perform these commands from the command line of you Docker Host and not from inside of the container created in the previous step.
+   Be sure to perform these commands from the command line of your Docker Host and not from inside of the container created in the previous step.
 
    ```.term1
    cat ./seccomp-profiles/default.json | grep chmod
@@ -291,7 +292,7 @@ The layout of a Docker seccomp profile looks like the following:
 The most authoritative source for how to write Docker seccomp profiles is the structs used to deserialize the JSON.
 
 * [https://github.com/docker/engine-api/blob/c15549e10366236b069e50ef26562fb24f5911d4/types/seccomp.go](https://github.com/docker/engine-api/blob/c15549e10366236b069e50ef26562fb24f5911d4/types/seccomp.go)
-* [https://github.com/opencontainers/runtime-spec/blob/master/specs-go/config.go#L357](https://github.com/opencontainers/runtime-spec/blob/master/specs-go/config.go#L357)
+* [https://github.com/opencontainers/runtime-spec/blob/6be516e2237a6dd377408e455ac8b41faf48bdf6/specs-go/config.go#L502](https://github.com/opencontainers/runtime-spec/blob/6be516e2237a6dd377408e455ac8b41faf48bdf6/specs-go/config.go#L502)
 
 The table below lists the possible *actions* in order of precedence. Higher actions overrule lower actions.
 
@@ -406,7 +407,7 @@ Syscall numbers are architecture dependent. This limits the portability of BPF f
 
 * Using the `--privileged` flag when creating a container with `docker run` disables seccomp in all versions of docker - even if you explicitly specify a seccomp profile. In general you should avoid using the `--privileged` flag as it does too many things. You can achieve the same goal with `--cap-add ALL --security-opt apparmor=unconfined --security-opt seccomp=unconfined`. If you need access to devices use `-ice`.
 
-* In docker 1.10-1.12 `docker exec --privileged` does not bypass seccomp. This may change in future versions https://github.com/docker/docker/issues/21984.
+* In docker 1.10-1.12 `docker exec --privileged` does not bypass seccomp. This may change in future versions (see  [https://github.com/docker/docker/issues/21984](https://github.com/docker/docker/issues/21984)).
 
 * In docker 1.12 and later, adding a capability may enable some appropriate system calls in the default seccomp profile. However, it does not disable apparmor.
 
@@ -414,7 +415,7 @@ Syscall numbers are architecture dependent. This limits the portability of BPF f
 
 The only way to use multiple seccomp filters, as of Docker 1.12, is to load additional filters within your program at runtime. The kernel supports layering filters.
 
-When using multiple layered filters, all filters are always executed starting with the most recently added. The highest precedence action returned is taken. See the man page for all the details: [http://man7.org/linux/man-pages/man2/seccomp.2.html](http://man7.org/linux/man-pages/man2/seccomp.2.html)
+When using multiple layered filters, all filters are always executed starting with the most recently added. The highest precedence action returned is taken. See the man page for all the details: [http://man7.org/linux/man-pages/man2/seccomp.2.html](http://man7.org/linux/man-pages/man2/seccomp.2.html).
 
 ### Misc
 
@@ -423,7 +424,7 @@ There is no easy way to use seccomp in a mode that reports errors without crashi
 ### Further reading:
 
 - Very comprehensive presentation about seccomp that goes into more detail than this document.
-[https://lwn.net/Articles/656307/](https://lwn.net/Articles/656307/)]
-[http://man7.org/conf/lpc2015/limiting_kernel_attack_surface_with_seccomp-LPC_2015-Kerrisk.pdf](http://man7.org/conf/lpc2015/limiting_kernel_attack_surface_with_seccomp-LPC_2015-Kerrisk.pdf)
+  - Article: [https://lwn.net/Articles/656307/](https://lwn.net/Articles/656307/)
+  - Slides: [http://man7.org/conf/lpc2015/limiting_kernel_attack_surface_with_seccomp-LPC_2015-Kerrisk.pdf](http://man7.org/conf/lpc2015/limiting_kernel_attack_surface_with_seccomp-LPC_2015-Kerrisk.pdf)
 - Chrome's DSL for generating seccomp BPF programs:
 [https://cs.chromium.org/chromium/src/sandbox/linux/bpf_dsl/bpf_dsl.h?sq=package:chromium&dr=CSs](https://cs.chromium.org/chromium/src/sandbox/linux/bpf_dsl/bpf_dsl.h?sq=package:chromium&dr=CSs)
