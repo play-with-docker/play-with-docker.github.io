@@ -115,11 +115,11 @@ In the next example, we are going to run an Ubuntu Linux container on top of an 
 
     We're also telling the container to run `bash` as its main process (PID 1).
 
-When the container starts you'll drop into the bash shell with the default prompt `root@<container id>:/#`. Docker has attached to the shell in the container, relaying input and output between your local session and the shell session in the container.
+    When the container starts you'll drop into the bash shell with the default prompt `root@<container id>:/#`. Docker has attached to the shell in the container, relaying input and output between your local session and the shell session in the container.
 
 2. Run the following commands in the container.
 
-    `ls /` will list the contents of the root director in the container, `ps aux` will show running processes in the container, `cat /etc/issue` will show which Linux distro the container is running, in this case Ubuntu 16.04.3 LTS.
+    `ls /` will list the contents of the root director in the container, `ps aux` will show running processes in the container, `cat /etc/issue` will show which Linux distro the container is running, in this case Ubuntu 16.04.4 LTS.
 
    ```.term1
    ls /
@@ -154,9 +154,9 @@ When the container starts you'll drop into the bash shell with the default promp
     Kernel \r on an \m (\l)
     ```
 
-    Notice that our host VM is running Alpine Linux, yet we were able to run an Ubuntu container. As previously mentioned, the distribution of Linux inside the container does not need to match the distribution of Linux running on the Docker host.
+Notice that our host VM is running Alpine Linux, yet we were able to run an Ubuntu container. As previously mentioned, the distribution of Linux inside the container does not need to match the distribution of Linux running on the Docker host.
 
-    However, Linux containers require the Docker host to be running a Linux kernel. For example, Linux containers cannot run directly on Windows Docker hosts. The same is true of Windows containers - they need to run on a Docker host with a Windows kernel.
+However, Linux containers require the Docker host to be running a Linux kernel. For example, Linux containers cannot run directly on Windows Docker hosts. The same is true of Windows containers - they need to run on a Docker host with a Windows kernel.
 
 Interactive containers are useful when you are putting together your own image. You can run a container and verify all the steps you need to deploy your app, and capture them in a Dockerfile.
 
@@ -218,33 +218,33 @@ Background containers are how you'll run most applications. Here's a simple exam
 
 3. You can check what's happening in your containers by using a couple of built-in Docker commands: `docker container logs` and `docker container top`.
 
-  ```.term1
-  docker container logs mydb
-  ```
+    ```.term1
+    docker container logs mydb
+    ```
 
-  This shows the logs from the MySQL Docker container.
+    This shows the logs from the MySQL Docker container.
 
-  ```
-    <output truncated>
-    2017-09-29T16:02:58.605004Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check.
-    2017-09-29T16:02:58.605026Z 0 [Note] Beginning of list of non-natively partitioned tables
-    2017-09-29T16:02:58.616575Z 0 [Note] End of list of non-natively partitioned tables
-  ```
+    ```
+      <output truncated>
+      2017-09-29T16:02:58.605004Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check.
+      2017-09-29T16:02:58.605026Z 0 [Note] Beginning of list of non-natively partitioned tables
+      2017-09-29T16:02:58.616575Z 0 [Note] End of list of non-natively partitioned tables
+    ```
 
-    Let's look at the processes running inside the container.
+      Let's look at the processes running inside the container.
 
-  ```.term1
-    docker container top mydb
-  ```
+    ```.term1
+      docker container top mydb
+    ```
 
-  You should see the MySQL daemon (`mysqld`) is running in the container.
+    You should see the MySQL daemon (`mysqld`) is running in the container.
 
-  ```
-  PID                 USER                TIME                COMMAND
-  2876                999                 0:00                mysqld
-  ```
+    ```
+    PID                 USER                TIME                COMMAND
+    2876                999                 0:00                mysqld
+    ```
 
-  Although MySQL is running, it is isolated within the container because no network ports have been published to the host. Network traffic cannot reach containers from the host unless ports are explicitly published.
+    Although MySQL is running, it is isolated within the container because no network ports have been published to the host. Network traffic cannot reach containers from the host unless ports are explicitly published.
 
 4. List the MySQL version using `docker container exec`.
 
@@ -418,22 +418,22 @@ When you use a bind mount, a file or directory on the host machine is mounted in
 
 1. Let's start the web app and mount the current directory into the container.
 
-  In this example we'll use the `--mount` flag to mount the current directory on the host into `/usr/share/nginx/html` inside the container.
+    In this example we'll use the `--mount` flag to mount the current directory on the host into `/usr/share/nginx/html` inside the container.
 
-  Be sure to run this command from within the `linux_tweet_app` directory on your Docker host.
+    Be sure to run this command from within the `linux_tweet_app` directory on your Docker host.
 
-```.term1
-docker container run \
---detach \
---publish 80:80 \
---name linux_tweet_app \
---mount type=bind,source="$(pwd)",target=/usr/share/nginx/html \
-$DOCKERID/linux_tweet_app:1.0
-```
+    ```.term1
+    docker container run \
+    --detach \
+    --publish 80:80 \
+    --name linux_tweet_app \
+    --mount type=bind,source="$(pwd)",target=/usr/share/nginx/html \
+    $DOCKERID/linux_tweet_app:1.0
+    ```
 
-> Remember from the Dockerfile, `usr/share/nginx/html` is where the html files are stored for the web app.
+    > Remember from the Dockerfile, `usr/share/nginx/html` is where the html files are stored for the web app.
 
-2. The [website](/){:data-term=".term1"}{:data-port="80"} should be running
+2. The [website](/){:data-term=".term1"}{:data-port="80"} should be running.
 
 ### Modify the running website
 
@@ -441,11 +441,11 @@ Bind mounts mean that any changes made to the local file system are immediately 
 
 1. Copy a new `index.html` into the container.
 
-  The Git repo that you pulled earlier contains several different versions of an index.html file. You can manually run an `ls` command from within the `~/linux_tweet_app` directory to see a list of them. In this step we'll replace `index.html` with `index-new.html`.
+    The Git repo that you pulled earlier contains several different versions of an index.html file. You can manually run an `ls` command from within the `~/linux_tweet_app` directory to see a list of them. In this step we'll replace `index.html` with `index-new.html`.
 
-```.term1
-cp index-new.html index.html
-```
+    ```.term1
+    cp index-new.html index.html
+    ```
 
 2. Go to the running [website](/){:data-term=".term1"}{:data-port="80"} and **refresh the page**. Notice that the site has changed.
 
@@ -486,13 +486,13 @@ To persist the changes you made to the `index.html` file into the image, you nee
 
 1. Build a new image and tag it as `2.0`
 
-  Remember that you previously modified the `index.html` file on the Docker hosts local filesystem. This means that running another `docker image build` command will build a new image with the updated `index.html`
+    Remember that you previously modified the `index.html` file on the Docker hosts local filesystem. This means that running another `docker image build` command will build a new image with the updated `index.html`
 
-  Be sure to include the period (`.`) at the end of the command.
+    Be sure to include the period (`.`) at the end of the command.
 
-  ```.term1
-  docker image build --tag $DOCKERID/linux_tweet_app:2.0 .
-  ```
+    ```.term1
+    docker image build --tag $DOCKERID/linux_tweet_app:2.0 .
+    ```
 
     Notice how fast that built! This is because Docker only modified the portion of the image that changed vs. rebuilding the whole image.
 
@@ -565,13 +565,13 @@ To persist the changes you made to the `index.html` file into the image, you nee
     <docker id>/linux_tweet_app    1.0                 bb32b5783cd3        7 minutes ago       108MB
     ```
 
-These images are only stored in your Docker hosts local repository. You Docker host will be deleted after the workshop. In this step we'll push the images to a public repository so you can run them from any Linux machine with Docker.
+    These images are only stored in your Docker hosts local repository. You Docker host will be deleted after the workshop. In this step we'll push the images to a public repository so you can run them from any Linux machine with Docker.
 
-Distribution is built into the Docker platform. You can build images locally and push them to a public or private [registry](https://docs.docker.com/registry/), making them available to other users. Anyone with access can pull that image and run a container from it. The behavior of the app in the container will be the same for everyone, because the image contains the fully-configured app - the only requirements to run it are Linux and Docker.
+    Distribution is built into the Docker platform. You can build images locally and push them to a public or private [registry](https://docs.docker.com/registry/), making them available to other users. Anyone with access can pull that image and run a container from it. The behavior of the app in the container will be the same for everyone, because the image contains the fully-configured app - the only requirements to run it are Linux and Docker.
 
-[Docker Hub](https://hub.docker.com) is the default public registry for Docker images.
+    [Docker Hub](https://hub.docker.com) is the default public registry for Docker images.
 
-1. Before you can push your images, you will need to log into Docker Hub.
+2. Before you can push your images, you will need to log into Docker Hub.
 
     ```.term1
     docker login
@@ -585,7 +585,7 @@ Distribution is built into the Docker platform. You can build images locally and
     Login Succeeded
     ```
 
-2. Push version `1.0` of your web app using `docker image push`.
+3. Push version `1.0` of your web app using `docker image push`.
 
     ```.term1
     docker image push $DOCKERID/linux_tweet_app:1.0
@@ -602,7 +602,7 @@ Distribution is built into the Docker platform. You can build images locally and
     24e065a5f328: Pushed
     1.0: digest: sha256:51e937ec18c7757879722f15fa1044cbfbf2f6b7eaeeb578c7c352baba9aa6dc size: 1363
     ```
-3. Now push version `2.0`.
+4. Now push version `2.0`.
 
     ```.term1
     docker image push $DOCKERID/linux_tweet_app:2.0

@@ -8,7 +8,7 @@ categories: beginner
 img: "compose_swarm.png"
 terms: 2
 ---
-Let's deploy the voting app stack on a swarm
+Let's deploy the voting app stack on a swarm. 
 
 ## Purpose
 
@@ -24,7 +24,9 @@ This application is available on Github and updated very frequently when new fea
 
 ## Init your swarm
 
-Let's create a Docker Swarm first
+There should be two terminals displayed. The first accesses the swarm `manager` node and the second accesses the swarm `worker` node once the swarm is created.
+
+Let's create a Docker Swarm first. Copy the below command into the first terminal.
 
 ```.term1
 docker swarm init --advertise-addr $(hostname -i)
@@ -40,7 +42,7 @@ From the first terminal, check the number of nodes in the swarm (running this co
 docker node ls
 ```
 
-The above command should output 2 nodes, the first one being the manager, and the second one a worker.
+The above command should output 2 nodes, the first one being the `manager`, and the second one a `worker`.
 
 ## Clone the voting-app
 
@@ -64,7 +66,7 @@ Ensure you are in the first terminal and do the below:
 docker stack deploy --compose-file=docker-stack.yml voting_stack
 ```
 
-Note: been able to create a stack from a docker compose file is a great feature added in Docker 1.13.
+Note: being able to create a stack from a docker compose file is a great feature added in Docker 1.13.
 
 Check the stack deployed from the first terminal
 
