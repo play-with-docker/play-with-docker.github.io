@@ -12,21 +12,14 @@ This stage show you how to
 
   * Create and run Docker image registries
 
-  * Use Docker with in a continuous integration environment
  
 ## Self-guided in-browser tutorials
 
-  <!--
-   CI Overview TODO: create
-   Cloud build lab TODO: create
-   Docker Trusted Registry lab TODO: create 
-  -->
   * [Docker registry for Linux Part 1](/linux-registry-part1)
   * [Docker registry for Linux Part 2](/linux-registry-part2)
 
 ## Self-guided on desktop labs
 
-  * [Continuous Integration With Docker Cloud](/ci-docker-cloud-hol/)
   * In-container development - learn how to integrate Docker into your IDE
     * [Java Development: Eclipse](/java-debugging-eclipse/)
     * [Java Development: IntelliJ](/java-debugging-intellij/)
