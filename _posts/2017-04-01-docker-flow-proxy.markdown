@@ -3,7 +3,7 @@ layout: post
 title:  "WebApps with Docker Flow Proxy"
 date:   2017-04-01 10:51:47 +0530
 author: "Sébastien Allamand (@allamand)"
-category: others
+category: community
 tags: [docker,operations,community]
 terms: 2
 ---
