@@ -24,8 +24,6 @@ This stage will
 This stage show you how to
 
   * Create and run Docker image registries
-
-  * Use Docker with in a continuous integration environment
  
 
 ## [Stage 3: Moving to Staging](/dev-stage3)
