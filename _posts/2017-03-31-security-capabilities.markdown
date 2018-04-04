@@ -43,7 +43,7 @@ Docker imposes certain limitations that make working with capabilities much simp
 
 In an environment without file based capabilities, it's not possible for applications to escalate their privileges beyond the *bounding set* (a set beyond which capabilities cannot grow). Docker sets the *bounding set* before starting a container. You can use Docker commands to add or remove capabilities to or from the *bounding set*.
 
-By default, Docker drops all capabilities except [those needed](https://github.com/docker/docker/blob/master/oci/defaults_linux.go#L64-L79), using a whitelist approach.
+By default, Docker drops all capabilities except [those needed](https://github.com/moby/moby/blob/5f17312653c3e4dc5474f86692b09f06262a1ebd/oci/defaults.go#L14-L31), using a whitelist approach.
 
 # <a name="docker_cap"></a>Step 2: Working with Docker and capabilities
 
