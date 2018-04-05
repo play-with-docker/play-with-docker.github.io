@@ -18,10 +18,10 @@ url: "https://training.play-with-docker.com" # the base hostname & protocol for 
 default-image: docker-logo.svg # If there is no featured image in a post then this image will be showed. Also on all pages this image will be showed. Use a 500x250 image.
 
 #footer
-built-by: PWD Team
+built-by: Docker
 copyright:
-   name: PWD
-   link: 'https://play-with-docker.com'
+   name: Docker, Inc.
+   link: 'https://docker.com'
 
 # Build settings
 markdown: kramdown
