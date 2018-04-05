@@ -3,12 +3,15 @@ layout: post
 title: "Deploy mongodb cluster using bricks"
 date:   2017-12-30
 author: "@athakwani"
-tags: [linux,  mongodb, bricks, cluster]
+tags: [linux, mongodb, bricks, cluster]
 categories: advanced
 terms: 1
 ---
 
-This tutorial will show you how to setup a mongodb cluster using bricks.
+This tutorial will show you how to setup a mongodb cluster using Bricks. 
+
+Bricks allow building any container stack without service discovery. Bricks can be compared with Unix Shell. As Shell can pipe processes together to accomplish complex task, Bricks can connect containers together to build complex stacks. 
+More details are available in [Github Repo](https://github.com/pipecloud/Bricks)
 
 ## Init swarm mode
 
