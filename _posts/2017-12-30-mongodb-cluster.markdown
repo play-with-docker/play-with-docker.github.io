@@ -4,7 +4,7 @@ title: "Deploy mongodb cluster using bricks"
 date:   2017-12-30
 author: "@athakwani"
 tags: [linux, mongodb, bricks, cluster]
-categories: advanced
+categories: community
 terms: 1
 ---
 
