@@ -46,7 +46,7 @@ As a bonus, check out these videos. The first video is from DockerCon 2017 in Au
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IK3l9UhwOGU" frameborder="0" allowfullscreen></iframe>
 
-Next we have Nico Kabar discusses design considerations, tools and best practices to address a globally distributed bybrid cloud infrastructure with hundres or even thousands of apps using Docker.
+Next we have Nico Kabar discussing design considerations, tools and best practices to address a globally distributed hybrid cloud infrastructure with hundreds or even thousands of apps using Docker.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TYN-XgVmITE" frameborder="0" allowfullscreen></iframe>
 
