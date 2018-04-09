@@ -694,7 +694,7 @@ docker network inspect overnet
 ]
 ```
 
-Notice that the IP address listed for the service task (container) running is different to the IP address for the service task running on the second node. Note also that they are one the sane "overnet" network.
+Notice that the IP address listed for the service task (container) running is different to the IP address for the service task running on the second node. Note also that they are on the same "overnet" network.
 
 Run a `docker ps` command to get the ID of the service task so that you can log in to it in the next step.
 
