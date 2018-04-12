@@ -20,8 +20,8 @@ default-image: docker-logo.svg # If there is no featured image in a post then th
 #footer
 built-by: PWD Team
 copyright:
-   name: PWD
-   link: 'https://play-with-docker.com'
+   name: Docker, Inc.
+   link: 'https://docker.com'
 
 # Build settings
 markdown: kramdown
