@@ -38,7 +38,7 @@ Only `terms` is optional, as it defaults to `1`.
 * `date`: must match the date used in the file name
 * `author`: use your GitHub user name
 * `tags`: must be an array, such as `[linux, operations, webapp]`. This will be used by Play with Docker to populate list of tutorials the front page. Always use lower-case.
-* `categories`: choose one of: `beginner`, `intermediate`, `advanced`, `others`. This will be used to place the post in the list of tutorials on the front page. Always use lower-case.
+* `categories`: choose one of: `beginner`, `intermediate`, `advanced`, `community`. This will be used to place the post in the list of tutorials on the front page. Always use lower-case.
 * `terms`: an integer between 0 and 6. This is the number of terminal windows on the tutorial page. This will default to `1` if you don't specify it. If you specify `0`, there won't be any terminals. `0` should only be used if you are giving overview content with no interactivity, or describing a hands-on tutorial that has to run on the reader's local machine or in a VM.
 
 ## Formatting

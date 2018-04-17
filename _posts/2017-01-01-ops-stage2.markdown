@@ -20,7 +20,7 @@ This stage will help you
 <span><em>Dig deeper into some hands-on learning in the browser</em></span>
 
 ### Docker Enterprise Edition
-[Try the Docker Enterprise Edition Hosted Trial](https://dockertrial.com)
+[Try the Docker Enterprise Edition Hosted Trial](https://trial.docker.com)
 
 ### Security
 [Seccomp profiles](/security-seccomp)
