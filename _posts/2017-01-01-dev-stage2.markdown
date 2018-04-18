@@ -10,13 +10,7 @@ terms: 0
 
 This stage show you how to
 
-  * Create and run Docker image registries
-
- 
-## Self-guided in-browser tutorials
-
-  * [Docker registry for Linux Part 1](/linux-registry-part1)
-  * [Docker registry for Linux Part 2](/linux-registry-part2)
+  * This stage show you how to incorporate Docker into your entire developer workflow.
 
 ## Self-guided on desktop labs
 
