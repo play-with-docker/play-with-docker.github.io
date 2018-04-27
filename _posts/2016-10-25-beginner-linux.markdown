@@ -565,7 +565,7 @@ To persist the changes you made to the `index.html` file into the image, you nee
     <docker id>/linux_tweet_app    1.0                 bb32b5783cd3        7 minutes ago       108MB
     ```
 
-    These images are only stored in your Docker hosts local repository. You Docker host will be deleted after the workshop. In this step we'll push the images to a public repository so you can run them from any Linux machine with Docker.
+    These images are only stored in your Docker hosts local repository. Your Docker host will be deleted after the workshop. In this step we'll push the images to a public repository so you can run them from any Linux machine with Docker.
 
     Distribution is built into the Docker platform. You can build images locally and push them to a public or private [registry](https://docs.docker.com/registry/), making them available to other users. Anyone with access can pull that image and run a container from it. The behavior of the app in the container will be the same for everyone, because the image contains the fully-configured app - the only requirements to run it are Linux and Docker.
 
