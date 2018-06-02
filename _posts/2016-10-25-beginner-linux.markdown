@@ -326,7 +326,7 @@ Let's have a look at the  Dockerfile we'll be using, which builds a simple websi
 
 3. In order to make the following commands more copy/paste friendly, export an environment variable containing your DockerID (if you don't have a DockerID you can get one for free via [Docker Cloud](https://cloud.docker.com)).
 
-    You will have to manually type this command is it requires your unique DockerID.
+    You will have to manually type this command as it requires your unique DockerID.
 
     `export DOCKERID=<your docker id>`
 
