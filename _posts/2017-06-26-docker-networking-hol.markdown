@@ -169,7 +169,7 @@ The output above also shows that the **bridge** network is scoped locally. This 
 
 All networks created with the *bridge* driver are based on a Linux bridge (a.k.a. a virtual switch).
 
-Install the `brctl` command and use it to list the Linux bridges on your Docker host. You can do this by running `apk add bridge`.
+Install the `brctl` command and use it to list the Linux bridges on your Docker host. You can do this by running `sudo apt-get install bridge-utils`.
 
 ```.term1
 apk update
@@ -849,13 +849,13 @@ docker kill yourcontainerid1 yourcontainerid2
 
 Finally, lets remove node1 and node2 from the Swarm. We can use the `docker swarm leave --force` command to do that. 
 
-Lets run `docker swarm leave --force`.
+Lets run `docker swarm leave --force` on node1.
 
 ```.term1
 docker swarm leave --force
 ```
 
-Lets also run `docker swarm leave --force`.
+Lets also run `docker swarm leave --force` on node2.
 
 ```.term2
 docker swarm leave --force
