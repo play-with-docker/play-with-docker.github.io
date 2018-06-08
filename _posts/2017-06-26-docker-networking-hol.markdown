@@ -169,7 +169,7 @@ The output above also shows that the **bridge** network is scoped locally. This 
 
 All networks created with the *bridge* driver are based on a Linux bridge (a.k.a. a virtual switch).
 
-Install the `brctl` command and use it to list the Linux bridges on your Docker host. You can do this by running `sudo apt-get install bridge-utils`.
+Install the `brctl` command and use it to list the Linux bridges on your Docker host. You can do this by running `apk add bridge`.
 
 ```.term1
 apk update
