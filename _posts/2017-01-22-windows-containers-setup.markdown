@@ -121,7 +121,7 @@ Install-Script -Name Install-DockerOnWS2016UsingDSC
 Install-DockerOnWS2016UsingDSC.ps1
 ```
 
-See Daniel's blog post for [details on installing Docker with DCS](https://dscottraynsford.wordpress.com/2016/10/15/install-docker-on-windows-server-2016-using-dsc/).
+See Daniel's blog post for [details on installing Docker with DSC](https://dscottraynsford.wordpress.com/2016/10/15/install-docker-on-windows-server-2016-using-dsc/).
 
 Whether using the PowerShell Package Provider or DSC, Docker Engine is now running as a Windows service, listening on the default Docker named pipe.
 
