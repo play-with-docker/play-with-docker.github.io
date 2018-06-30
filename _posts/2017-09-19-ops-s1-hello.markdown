@@ -231,9 +231,9 @@ In the last section, you saw a lot of Docker-specific jargon which might be conf
 - *Docker Store* - Store is, among other things, a [registry](https://store.docker.com/) of Docker images. You can think of the registry as a directory of all available Docker images. You'll be using this later in this tutorial.
 
 {:.quiz}
-Where do images get pulled from by default?
-- ( ) Docker Registry
-- ( ) Something you have set up on your machine
+Where do images get pulled from by default when not found locally?
+- ( ) Docker Trusted Registry
+- ( ) Docker Hub
 - ( ) There is no default
 - (x) Docker Store
 
