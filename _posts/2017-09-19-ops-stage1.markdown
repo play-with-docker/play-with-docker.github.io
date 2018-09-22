@@ -7,7 +7,7 @@ tags: [windows,operations,developer]
 categories:
 terms: 0
 ---
-Welcome to the first stage of your Docker learning joureny. This stage will 
+Welcome to the first stage of your Docker learning journey. This stage will 
   
   * Get you familiar with the core concepts of Docker
 
