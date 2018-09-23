@@ -490,6 +490,8 @@ CONTAINER ID        IMAGE                 COMMAND             CREATED           
 d69c0150a754        linkextractor:step3   "./main.py"         9 seconds ago       Up 8 seconds0.0.0.0:5000->5000/tcp   linkextractor
 ```
 
+We can now make an HTTP request in the form `/api/<url>` to talk to this server and fetch the response containing extracted links:
+
 ```.term1
 curl -i http://localhost:5000/api/http://example.com/
 ```
