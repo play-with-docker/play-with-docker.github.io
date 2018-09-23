@@ -31,11 +31,12 @@ The stack will look like the figure below:
 > * Table of contents
 > {:toc}
 
-Let's get started by first cloning the demo code repository and changing the working directory.
+Let's get started by first cloning the demo code repository, changing the working directory, and checking the `demo` branch out.
 
 ```.term1
 git clone https://github.com/ibnesayeed/linkextractor.git
 cd linkextractor
+git checkout demo
 ```
 
 ## Step 0: Basic Link Extractor Script
@@ -43,7 +44,7 @@ cd linkextractor
 Checkout the `step0` branch and list files in it.
 
 ```.term1
-git checkout -t origin/step0
+git checkout step0
 tree
 ```
 
@@ -133,7 +134,7 @@ In the next step we will try to containerize this script and make it easier to e
 Checkout the `step1` branch and list files in it.
 
 ```.term1
-git checkout -t origin/step1
+git checkout step1
 tree
 ```
 
@@ -261,7 +262,7 @@ In the next step we will make these changes and some other improvements to the s
 Checkout the `step2` branch and list files in it.
 
 ```.term1
-git checkout -t origin/step2
+git checkout step2
 tree
 ```
 
@@ -331,8 +332,8 @@ docker image ls
 ```
 
 ```
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-linkextractor       step2               be2939eada96        3 seconds ago       931MB
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+linkextractor       step2               be2939eada96        3 seconds ago        931MB
 linkextractor       step1               673d045a822f        About a minute ago   931MB
 python              latest              a9d071760c82        2 weeks ago          923MB
 ```
@@ -385,7 +386,7 @@ In the next step we will build a web service that will utilize this script and w
 Checkout the `step3` branch and list files in it.
 
 ```.term1
-git checkout -t origin/step3
+git checkout step3
 tree
 ```
 
@@ -405,7 +406,7 @@ tree
 Checkout the `step4` branch and list files in it.
 
 ```.term1
-git checkout -t origin/step4
+git checkout step4
 tree
 ```
 
@@ -429,7 +430,7 @@ tree
 Checkout the `step5` branch and list files in it.
 
 ```.term1
-git checkout -t origin/step5
+git checkout step5
 tree
 ```
 
@@ -454,7 +455,7 @@ tree
 Checkout the `step6` branch and list files in it.
 
 ```.term1
-git checkout -t origin/step6
+git checkout step6
 tree
 ```
 
