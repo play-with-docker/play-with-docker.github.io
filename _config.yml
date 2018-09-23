@@ -49,10 +49,12 @@ fb-page-title: Docker
 sass:
   style: compressed
 
+# Gems
+gems: [jekyll-paginate]
+
 # Plugins
-plugins:
+plugins_dir:
   - jekyll-paginate
 
 # Play with Docker
 pwdurl: https://labs.play-with-docker.com
-
