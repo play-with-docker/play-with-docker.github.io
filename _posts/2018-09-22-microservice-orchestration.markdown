@@ -33,63 +33,148 @@ cd linkextractor
 
 ## Step 0: Basic Link Extractor Script
 
-Checkout the `step0` branch and list files.
+Checkout the `step0` branch and list files in it.
 
 ```.term1
 git checkout -t origin/step0
 tree
 ```
 
+
+```
+.
+├── README.md
+└── linkextractor.py
+
+0 directories, 2 files
+```
+
 ## Step 1: Containerized Link Extractor Script
 
-Checkout the `step1` branch and list files.
+Checkout the `step1` branch and list files in it.
 
 ```.term1
 git checkout -t origin/step1
 tree
 ```
 
+```
+.
+├── Dockerfile
+├── README.md
+└── linkextractor.py
+
+0 directories, 3 files
+```
+
 ## Step 2: Link Extractor Module with Full URI and Anchor Text
 
-Checkout the `step2` branch and list files.
+Checkout the `step2` branch and list files in it.
 
 ```.term1
 git checkout -t origin/step2
 tree
 ```
 
+```
+.
+├── Dockerfile
+├── README.md
+└── linkextractor.py
+
+0 directories, 3 files
+```
+
 ## Step 3: Link Extractor API Service
 
-Checkout the `step3` branch and list files.
+Checkout the `step3` branch and list files in it.
 
 ```.term1
 git checkout -t origin/step3
 tree
 ```
 
+```
+.
+├── Dockerfile
+├── README.md
+├── linkextractor.py
+├── main.py
+└── requirements.txt
+
+0 directories, 5 files
+```
+
 ## Step 4: Link Extractor API and Web Front End Services
 
-Checkout the `step4` branch and list files.
+Checkout the `step4` branch and list files in it.
 
 ```.term1
 git checkout -t origin/step4
 tree
 ```
 
+```
+.
+├── README.md
+├── api
+│   ├── Dockerfile
+│   ├── linkextractor.py
+│   ├── main.py
+│   └── requirements.txt
+├── docker-compose.yml
+└── www
+    └── index.php
+
+2 directories, 7 files
+```
+
 ## Step 5: Redis Service for Caching
 
-Checkout the `step5` branch and list files.
+Checkout the `step5` branch and list files in it.
 
 ```.term1
 git checkout -t origin/step5
 tree
 ```
 
+```
+.
+├── README.md
+├── api
+│   ├── Dockerfile
+│   ├── linkextractor.py
+│   ├── main.py
+│   └── requirements.txt
+├── docker-compose.yml
+└── www
+    ├── Dockerfile
+    └── index.php
+
+2 directories, 8 files
+```
+
 ## Step 6: Swap Python API Service with Ruby
 
-Checkout the `step6` branch and list files.
+Checkout the `step6` branch and list files in it.
 
 ```.term1
 git checkout -t origin/step6
 tree
+```
+
+```
+.
+├── README.md
+├── api
+│   ├── Dockerfile
+│   ├── Gemfile
+│   └── linkextractor.rb
+├── docker-compose.yml
+├── logs
+└── www
+    ├── Dockerfile
+    └── index.php
+
+3 directories, 7 files
 ```
