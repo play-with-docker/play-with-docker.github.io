@@ -18,6 +18,8 @@ This stage will
 
   * [Docker for Beginners - Linux](/beginner-linux)
 
+  * [Application Containerization and Microservice Orchestration](/microservice-orchestration)
+
   * [Deploying a Multi-Service App in Docker Swarm Mode](/swarm-stack-intro)
 
   
@@ -30,4 +32,3 @@ This stage will
 
 <!-- ## Videos
  TODO: Add Docker 101 video -->
-
