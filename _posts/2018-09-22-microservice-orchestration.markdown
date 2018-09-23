@@ -47,13 +47,31 @@ git checkout -t origin/step0
 tree
 ```
 
-
 ```
 .
 ├── README.md
 └── linkextractor.py
 
 0 directories, 2 files
+```
+
+The `linkextractor.py` file is the interesting one here, so let's look at its contents:
+
+```.term1
+cat linkextractor.py
+```
+
+```py
+#!/usr/bin/env python
+
+import sys
+import requests
+from bs4 import BeautifulSoup
+
+res = requests.get(sys.argv[-1])
+soup = BeautifulSoup(res.text, "html.parser")
+for link in soup.find_all("a"):
+    print(link.get("href"))
 ```
 
 ## Step 1: Containerized Link Extractor Script
