@@ -19,3 +19,77 @@ The code is organized in steps that incrementally introduce changes and new conc
 After completion, the application stack will look like the figure below:
 
 ![A Microservice Architecture of the Link Extractor Application](/images/linkextractor-microservice-diagram.png)
+
+> **Steps:**
+> * Table of contents
+> {:toc}
+
+Let's get started by first cloning the demo code repository and changing the working directory.
+
+```.term1
+git clone https://github.com/ibnesayeed/linkextractor.git
+cd linkextractor
+```
+
+## Step 0: Basic Link Extractor Script
+
+Checkout the `step0` branch and list files.
+
+```.term1
+git checkout -t origin/step0
+tree
+```
+
+## Step 1: Containerized Link Extractor Script
+
+Checkout the `step1` branch and list files.
+
+```.term1
+git checkout -t origin/step1
+tree
+```
+
+## Step 2: Link Extractor Module with Full URI and Anchor Text
+
+Checkout the `step2` branch and list files.
+
+```.term1
+git checkout -t origin/step2
+tree
+```
+
+## Step 3: Link Extractor API Service
+
+Checkout the `step3` branch and list files.
+
+```.term1
+git checkout -t origin/step3
+tree
+```
+
+## Step 4: Link Extractor API and Web Front End Services
+
+Checkout the `step4` branch and list files.
+
+```.term1
+git checkout -t origin/step4
+tree
+```
+
+## Step 5: Redis Service for Caching
+
+Checkout the `step5` branch and list files.
+
+```.term1
+git checkout -t origin/step5
+tree
+```
+
+## Step 6: Swap Python API Service with Ruby
+
+Checkout the `step6` branch and list files.
+
+```.term1
+git checkout -t origin/step6
+tree
+```
