@@ -16,7 +16,14 @@ If you are new to Docker, we recommend you check out [Docker for Beginners](/beg
 We will start from a basic Python script that scrapes links from a given web page and gradually evolve it into a multi-service application stack.
 The demo code is available in the [Link Extractor](https://github.com/ibnesayeed/linkextractor) repo.
 The code is organized in steps that incrementally introduce changes and new concepts.
-After completion, the application stack will look like the figure below:
+After completion, the application stack will contain the following microservices:
+
+* A web application written in PHP and served using Apache that takes a URL as the input and summarizes extracted links from it
+* The web application talks to an API server written in Python (and Ruby) that takes care of the link extraction and returns a JSON response
+* A Redis cache that is used by the API server to avoid repeated fetch and link extraction for pages that are already scraped
+
+The API server will only load the page of the input link from the web if it is not in the cache.
+The stack will look like the figure below:
 
 ![A Microservice Architecture of the Link Extractor Application](/images/linkextractor-microservice-diagram.png)
 
