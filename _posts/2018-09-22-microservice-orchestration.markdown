@@ -80,7 +80,7 @@ User-supplied command line argument (which is expected to be a URL to an HTML pa
 The parsed object is then iterated over to find all the anchor elements (i.e., `<a>` tags) and print the value of their `href` attribute that contains the hyperlink.
 
 However, this seemingly simple script might not be the easiest one to run on a machine that does not meet its requirements.
-The `README.md` file suggests how to run it, so lets give it a try:
+The `README.md` file suggests how to run it, so let's give it a try:
 
 ```.term1
 ./linkextractor.py http://example.com/
@@ -609,7 +609,7 @@ We will supply an environment variable named `API_ENDPOINT` with the value `http
 Notice that we are not using an IP address here, instead, `api:5000` is being used because we will have a dynamic hostname entry in the private network for the API service matching its service name.
 Finally, we will bind mount the `./www` folder to make the `index.php` file available inside of the `web` service container at `/var/www/html`, which is the default web root for the Apache web server.
 
-Now, lets have a look at the user-facing `www/index.php` file:
+Now, let's have a look at the user-facing `www/index.php` file:
 
 ```.term1
 cat www/index.php
@@ -751,6 +751,130 @@ tree
 
 2 directories, 8 files
 ```
+
+Some noticeable changes from the previous step are as following:
+
+* Another `Dockerfile` is added in the `./www` folder for the PHP web application to build a self-contained image and avoid live file mounting
+* A Redis container is added for caching using the official Redis Docker image
+* The API service talks to the Redis service to avoid downloading and parsing pages that were already scraped before
+
+Let's first inspect the newly added `Dockerfile` under the `./www` folder:
+
+```.term1
+cat www/Dockerfile
+```
+
+```Dockerfile
+FROM       php:7-apache
+LABEL      maintainer="Sawood Alam <@ibnesayeed>"
+
+COPY       . /var/www/html/
+```
+
+This is a rather simple `Dockerfile` that uses the official `php:7-apache` image as the base and copies all the files from the `./www` folder into the `/var/www/html/` folder of the image.
+This is exactly what was happening in the previous step, but that was bind mounted using a volume, while here we are making the code part of the self-contained image.
+
+Next, we will look at the API server's `api/main.py` file where we are utilizing the Redis cache:
+
+```.term1
+cat api/main.py
+```
+
+The file has many lines, but the important bits are as illustrated below:
+
+```py
+redis = Redis(host="redis", port=6379)
+# ...
+    jsonlinks = redis.get(url)
+    if not jsonlinks:
+        links = extract_links(url)
+        jsonlinks = json.dumps(links, indent=2)
+        redis.set(url, jsonlinks)
+```
+
+A `redis` client instance is created using the hostname `redis` (same as the name of the service as we will see later) and the default redis port `6379`.
+We are first trying to see if a cache is present in the Redis store for given URL, if not then we use the `extract_links` function as before and populate the cache for future attempts.
+
+Now, let's look into the udpated `docker-compose.yml` file:
+
+```.term1
+cat docker-compose.yml
+```
+
+```yml
+version: '3'
+
+services:
+  api:
+    image: api:python
+    build: ./api
+    ports:
+      - "5000:5000"
+  web:
+    image: web:php
+    build: ./www
+    ports:
+      - "80:80"
+    environment:
+      - API_ENDPOINT=http://api:5000/api/
+  redis:
+    image: redis
+```
+
+The `api` service configuration remains the same as before.
+For the `web` service, we are using the custom `web:php` image that will be built using the newly added `Dockerfile` in the `./www` folder.
+We are no longer mounting the `./www` folder using the `volumes` config.
+Finally, a new service named `redis` is added that will use the official image from DockerHub and needs no specific configurations for now.
+This service is accessible to the Python API using its service name, the same way the API service is accessible to the PHP front-end service.
+
+Let's boot these services up:
+
+```.term1
+docker-compose up -d --build
+```
+
+```
+... [OUTPUT REDACTED] ...
+
+Creating linkextractor_web_1   ... done
+Creating linkextractor_api_1   ... done
+Creating linkextractor_redis_1 ... done
+```
+
+Now, that all three services are up, access the web interface by [clicking the Link Extractor](/){:data-term=".term1"}{:data-port="80"}.
+There should be no visual difference from the previous step.
+However, if you extract links from a page with a lot of links, the first time it should take longer, but the successive attempts to the same page should return the response fairly quickly.
+
+Now that we are not mounting the `/www` folder inside the container, local changes should not reflect in the running service:
+
+```.term1
+sed -i 's/Link Extractor/Super Link Extractor/g' www/index.php
+```
+
+Verify this by reloading the web interface and then revert changes:
+
+```.term1
+git reset --hard
+```
+
+Now, shut these services down and get ready for the next step:
+
+```.term1
+docker-compose down
+```
+
+```
+Stopping linkextractor_web_1   ... done
+Stopping linkextractor_redis_1 ... done
+Stopping linkextractor_api_1   ... done
+Removing linkextractor_web_1   ... done
+Removing linkextractor_redis_1 ... done
+Removing linkextractor_api_1   ... done
+Removing network linkextractor_default
+```
+
+We have successfully orchestrated three microservices to compose our Link Extractor application.
+In the next step we will explore how easy it is to swap components from an application with the microservice architecture.
 
 ## Step 6: Swap Python API Service with Ruby
 
