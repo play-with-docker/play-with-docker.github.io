@@ -1582,6 +1582,10 @@ pre code {
   background-color: transparent;
   border-radius: 0;
 }
+pre:not(.highlight) {
+  color: #fff;
+  background-color: #000;
+}
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll;
