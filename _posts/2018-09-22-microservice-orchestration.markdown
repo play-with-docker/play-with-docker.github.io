@@ -23,13 +23,19 @@ After completion, the application stack will contain the following microservices
 * A Redis cache that is used by the API server to avoid repeated fetch and link extraction for pages that are already scraped
 
 The API server will only load the page of the input link from the web if it is not in the cache.
-The stack will look like the figure below:
+The stack will eventually look like the figure below:
 
 ![A Microservice Architecture of the Link Extractor Application](/images/linkextractor-microservice-diagram.png)
+
+This tutorial was initially developed for a colloquium in the [Computer Science Department](https://odu.edu/compsci) of the [Old Dominion University](https://www.odu.edu/), Norfolk, Virginia. A [video recording](https://www.youtube.com/watch?v=Y_X0F2FgYm8), [presentation slides](https://www.slideshare.net/ibnesayeed/introducing-docker-application-containerization-service-orchestration), and a brief description of the talk can be found in [a blog post](https://ws-dl.blogspot.com/2017/12/2017-12-03-introducing-docker.html).
+
 
 > **Steps:**
 > * Table of contents
 > {:toc}
+
+
+## Stage Setup
 
 Let's get started by first cloning the demo code repository, changing the working directory, and checking the `demo` branch out.
 
@@ -38,6 +44,7 @@ git clone https://github.com/ibnesayeed/linkextractor.git
 cd linkextractor
 git checkout demo
 ```
+
 
 ## Step 0: Basic Link Extractor Script
 
@@ -128,6 +135,7 @@ Depending on which machine and operating system you are trying to run this scrip
 
 This is where application containerization tools like Docker come in handy.
 In the next step we will try to containerize this script and make it easier to execute.
+
 
 ## Step 1: Containerized Link Extractor Script
 
@@ -257,6 +265,7 @@ This looks good, but we can improve the output.
 For example, some links are relative, we can convert them into full URLs and also provide the anchor text they are linked to.
 In the next step we will make these changes and some other improvements to the script.
 
+
 ## Step 2: Link Extractor Module with Full URI and Anchor Text
 
 Checkout the `step2` branch and list files in it.
@@ -380,6 +389,7 @@ docker container run -it --rm linkextractor:step1 https://training.play-with-doc
 So far, we have learned how to containerize a script with its necessary dependencies to make it more portable.
 We have also learned how to make changes in the application and build different variants of Docker images that can co-exist.
 In the next step we will build a web service that will utilize this script and will make the service run inside a Docker container.
+
 
 ## Step 3: Link Extractor API Service
 
@@ -533,6 +543,7 @@ docker container rm -f linkextractor
 
 In this step we have successfully ran an API service listening on port `5000`.
 This is great, but APIs and JSON responses are for machines, so in the next step we will run a web service with a human-friendly web interface in addition to this API service.
+
 
 ## Step 4: Link Extractor API and Web Front End Services
 
@@ -727,6 +738,7 @@ Removing network linkextractor_default
 
 In the next step we will add one more service to our stack and will build a self-contained custom image for our web interface service.
 
+
 ## Step 5: Redis Service for Caching
 
 Checkout the `step5` branch and list files in it.
@@ -876,6 +888,7 @@ Removing network linkextractor_default
 We have successfully orchestrated three microservices to compose our Link Extractor application.
 We now have an application stack that represents the architecture illustrated in the figure shown in the introduction of this tutorial.
 In the next step we will explore how easy it is to swap components from an application with the microservice architecture.
+
 
 ## Step 6: Swap Python API Service with Ruby
 
@@ -1090,4 +1103,23 @@ cat logs/extraction.log
 This illustrates that the caching is functional as the second attempt to the `http://example.com/` resulted in a cache `HIT`.
 
 In this step we explored the possibility of swapping components of an application with microservice architecture with their equivalents without impacting rest of the parts of the stack.
-We have also explored data persistence using bind mount volumes that persists even after the containers writing to the volume are removed.
+We have also explored data persistence using bind mount volumes that persists even after the containers writing to the volume are gone.
+
+So far, we have used `docker-compose` utility to orchestrate the application stack, which is good for development environment, but for production environment we use `docker stack deploy` command to run the application in a [Docker Swarm Cluster](/swarm-stack-intro).
+It is left for you as an assignment to deploy this application in a Docker Swarm Cluster.
+
+
+## Conclusions
+
+We started this tutorial with a simple Python script that scrapes links from a give web page URL.
+We demonstrated various difficulties in running the script.
+We then illustrated how easy to run and portable the script becomes onces it is containerized.
+In the later steps we gradually evolved the script into a multi-service application stack.
+In the process we explored various concepts of microservice architecture and how Docker tools can be helpful in orchestrating a multi-service stack.
+Finally, we demonstrated the ease of microservice component swapping and data persistence.
+
+The next step would be to learn how to deploy such service stacks in a [Docker Swarm Cluster](/swarm-stack-intro).
+
+As an aside, here are some introductory Docker slides.
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/qAjE65X2E8tkxe" width="700" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ibnesayeed/introducing-docker-application-containerization-service-orchestration" title="Introducing Docker - Application Containerization &amp; Service Orchestration" target="_blank">Introducing Docker - Application Containerization &amp; Service Orchestration</a> </strong> by <strong><a href="//www.slideshare.net/ibnesayeed" target="_blank">Sawood Alam</a></strong> </div>
