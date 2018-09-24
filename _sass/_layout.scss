@@ -229,6 +229,11 @@ code[class*="."] {
     cursor: pointer;
 }
 
+pre:not(.highlight) {
+  color: #fff;
+  background-color: #000;
+}
+
 .resize-warning {
     background-color: black;
     color: white;
