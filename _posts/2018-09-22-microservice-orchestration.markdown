@@ -1123,3 +1123,5 @@ The next step would be to learn how to deploy such service stacks in a [Docker S
 As an aside, here are some introductory Docker slides.
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/qAjE65X2E8tkxe" width="700" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ibnesayeed/introducing-docker-application-containerization-service-orchestration" title="Introducing Docker - Application Containerization &amp; Service Orchestration" target="_blank">Introducing Docker - Application Containerization &amp; Service Orchestration</a> </strong> by <strong><a href="//www.slideshare.net/ibnesayeed" target="_blank">Sawood Alam</a></strong> </div>
+
+---
