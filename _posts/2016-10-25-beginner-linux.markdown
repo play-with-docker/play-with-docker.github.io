@@ -624,6 +624,6 @@ You can browse to `https://hub.docker.com/r/<your docker id>/` and see your newl
 
 ### Next Step
 
-Check out this introduction to orchestration with [Docker Swarm Stack Introduction](/swarm-stack-intro)
+Check out the introduction to a multi-service application stack orchestration in the [Application Containerization and Microservice Orchestration](/microservice-orchestration) tutorial.
 
 ---
