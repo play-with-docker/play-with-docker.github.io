@@ -162,7 +162,7 @@ Let's look into its contents:
 cat Dockerfile
 ```
 
-```Dockerfile
+```dockerfile
 FROM       python
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
@@ -425,7 +425,7 @@ Let's first look at the `Dockerfile` for changes:
 cat Dockerfile
 ```
 
-```Dockerfile
+```dockerfile
 FROM       python
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
@@ -776,7 +776,7 @@ Let's first inspect the newly added `Dockerfile` under the `./www` folder:
 cat www/Dockerfile
 ```
 
-```Dockerfile
+```dockerfile
 FROM       php:7-apache
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
@@ -992,7 +992,7 @@ In a microservice architecture application, swapping components with an equivale
 cat api/Dockerfile
 ```
 
-```Dockerfile
+```dockerfile
 FROM       ruby
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
