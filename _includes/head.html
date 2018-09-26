@@ -1,13 +1,13 @@
 <head>
-<title>{{ page.title }}</title>
+<title>{{ page.title | default: 'Play with Docker Classroom' }}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="{{ page.title }}" />
-<meta name="twitter:description" content="Learn docker through online trainings in training.play-with-docker.com" />
-<meta name="twitter:image" content="https://training.play-with-docker.com/images/simple-logo.png" />
+<meta name="twitter:title" content="{{ page.title | default: 'Play With Docker Classroom' }}" />
+<meta name="twitter:description" content="{{ page.description | default: 'Learn docker through online trainings in training.play-with-docker.com' }}" />
+<meta name="twitter:image" content="{{ page.image | default: 'https://training.play-with-docker.com/images/simple-logo.png' }}" />
 
   
 {% comment %}
