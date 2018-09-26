@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "Application Containerization and Microservice Orchestration"
+description: "A step by step interactive tutorial of application containerization and microservice orchestration using Docker, starting from a simple script to a multi-service application stack"
+image: "https://training.play-with-docker.com/images/linkextractor-microservice-diagram.png"
 date:   2018-09-22
 author: "@ibnesayeed"
 tags: [beginner, linux, developer, microservice, orchestration, linkextractor, api, python, php, ruby]
