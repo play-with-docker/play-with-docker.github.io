@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "Application Containerization and Microservice Orchestration"
+description: "A step by step interactive tutorial of application containerization and microservice orchestration using Docker, starting from a simple script to a multi-service application stack"
+image: "https://training.play-with-docker.com/images/linkextractor-microservice-diagram.png"
 date:   2018-09-22
 author: "@ibnesayeed"
 tags: [beginner, linux, developer, microservice, orchestration, linkextractor, api, python, php, ruby]
@@ -163,7 +165,7 @@ cat Dockerfile
 ```
 
 ```dockerfile
-FROM       python
+FROM       python:3
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
 RUN        pip install beautifulsoup4
@@ -194,7 +196,7 @@ This command should yield an output as illustrated below:
 
 ```
 Sending build context to Docker daemon  171.5kB
-Step 1/8 : FROM       python
+Step 1/8 : FROM       python:3
 
 ... [OUTPUT REDACTED] ...
 
@@ -212,7 +214,7 @@ docker image ls
 ```
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 linkextractor       step1               e067c677be37        2 seconds ago       931MB
-python              latest              a9d071760c82        2 weeks ago         923MB
+python              3                   a9d071760c82        2 weeks ago         923MB
 ```
 
 This image should have all the necessary ingredients packaged in it to run the script anywhere on a machine that supports Docker.
@@ -344,7 +346,7 @@ docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
 linkextractor       step2               be2939eada96        3 seconds ago        931MB
 linkextractor       step1               673d045a822f        About a minute ago   931MB
-python              latest              a9d071760c82        2 weeks ago          923MB
+python              3                   a9d071760c82        2 weeks ago          923MB
 ```
 
 Running a one-off container using the `linkextractor:step2` image should now yield an improved output:
@@ -426,7 +428,7 @@ cat Dockerfile
 ```
 
 ```dockerfile
-FROM       python
+FROM       python:3
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
 WORKDIR    /app
@@ -449,7 +451,7 @@ cat main.py
 ```
 
 ```py
-!/usr/bin/env python
+#!/usr/bin/env python
 
 from flask import Flask
 from flask import request
@@ -596,7 +598,7 @@ version: '3'
 
 services:
   api:
-    image: api:python
+    image: linkextractor-api:step4-python
     build: ./api
     ports:
       - "5000:5000"
@@ -611,12 +613,12 @@ services:
 ```
 
 This is a simple YAML file that describes the two services `api` and `web`.
-The `api` service will use the `api:python` image that is not built yet, but will be built on-demand using the `Dockerfile` from the `./api` directory.
+The `api` service will use the `linkextractor-api:step4-python` image that is not built yet, but will be built on-demand using the `Dockerfile` from the `./api` directory.
 This service will be exposed on the port `5000` of the host.
 
 The second service named `web` will use official `php:7-apache` image directly from the DockerHub, that's why we do not have a `Dockerfile` for it.
 The service will be exposed on the default HTTP port (i.e., `80`).
-We will supply an environment variable named `API_ENDPOINT` with the value `http://api:5000/api/` to tell the PHP script where to connect to.
+We will supply an environment variable named `API_ENDPOINT` with the value `http://api:5000/api/` to tell the PHP script where to connect to for the API access.
 Notice that we are not using an IP address here, instead, `api:5000` is being used because we will have a dynamic hostname entry in the private network for the API service matching its service name.
 Finally, we will bind mount the `./www` folder to make the `index.php` file available inside of the `web` service container at `/var/www/html`, which is the default web root for the Apache web server.
 
@@ -668,13 +670,12 @@ Pulling web (php:7-apache)...
 
 Status: Downloaded newer image for php:7-apache
 Building api
-Step 1/8 : FROM       python
-latest: Pulling from library/python
+Step 1/8 : FROM       python:3
 
 ... [OUTPUT REDACTED] ...
 
-Successfully built 83bea7a0a0eb
-Successfully tagged api:python
+Successfully built 1f419be1c2bf
+Successfully tagged linkextractor-api:step4-python
 Creating linkextractor_web_1 ... done
 Creating linkextractor_api_1 ... done
 ```
@@ -689,8 +690,8 @@ docker container ls
 
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS   PORTS                    NAMES
-03dc23a96480        php:7-apache        "docker-php-entrypoi…"   8 minutes ago       Up 8 minutes   0.0.0.0:80->80/tcp       linkextractor_web_1
-6f5f3886dd1f        api:python          "./main.py"              8 minutes ago       Up 8 minutes   0.0.0.0:5000->5000/tcp   linkextractor_api_1
+268b021b5a2c        php:7-apache                     "docker-php-entrypoi…"   3 minutes ago       Up 3 minutes        0.0.0.0:80->80/tcp       linkextractor_web_1
+5bc266b4e43d        linkextractor-api:step4-python   "./main.py"              3 minutes ago       Up 3 minutes        0.0.0.0:5000->5000/tcp   linkextractor_api_1
 ```
 
 We should now be able to talk to the API service as before:
@@ -769,6 +770,7 @@ Some noticeable changes from the previous step are as following:
 * Another `Dockerfile` is added in the `./www` folder for the PHP web application to build a self-contained image and avoid live file mounting
 * A Redis container is added for caching using the official Redis Docker image
 * The API service talks to the Redis service to avoid downloading and parsing pages that were already scraped before
+* A `REDIS_URL` environment variable is added to the API service to allow it to connect to the Redis cache
 
 Let's first inspect the newly added `Dockerfile` under the `./www` folder:
 
@@ -780,11 +782,14 @@ cat www/Dockerfile
 FROM       php:7-apache
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
+ENV        API_ENDPOINT="http://localhost:5000/api/"
+
 COPY       . /var/www/html/
 ```
 
 This is a rather simple `Dockerfile` that uses the official `php:7-apache` image as the base and copies all the files from the `./www` folder into the `/var/www/html/` folder of the image.
 This is exactly what was happening in the previous step, but that was bind mounted using a volume, while here we are making the code part of the self-contained image.
+We have also added the `API_ENDPOINT` environment variable here with a default value, which implicitly suggests that this is an important information that needs to be present in order for the service to function properly (and should be customized at run time with an appropriate value).
 
 Next, we will look at the API server's `api/main.py` file where we are utilizing the Redis cache:
 
@@ -795,7 +800,7 @@ cat api/main.py
 The file has many lines, but the important bits are as illustrated below:
 
 ```py
-redis = Redis(host="redis", port=6379)
+redis_conn = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
 # ...
     jsonlinks = redis.get(url)
     if not jsonlinks:
@@ -804,10 +809,14 @@ redis = Redis(host="redis", port=6379)
         redis.set(url, jsonlinks)
 ```
 
-A `redis` client instance is created using the hostname `redis` (same as the name of the service as we will see later) and the default redis port `6379`.
-We are first trying to see if a cache is present in the Redis store for given URL, if not then we use the `extract_links` function as before and populate the cache for future attempts.
+This time the API service needs to know how to connect to the Redis instance as it is going to use it for caching.
+This information can be made available at run time using the `REDIS_URL` environment variable.
+A corresponding `ENV` entry is also added in the `Dockerfile` of the API service with a default value.
 
-Now, let's look into the udpated `docker-compose.yml` file:
+A `redis` client instance is created using the hostname `redis` (same as the name of the service as we will see later) and the default Redis port `6379`.
+We are first trying to see if a cache is present in the Redis store for a given URL, if not then we use the `extract_links` function as before and populate the cache for future attempts.
+
+Now, let's look into the updated `docker-compose.yml` file:
 
 ```.term1
 cat docker-compose.yml
@@ -818,12 +827,14 @@ version: '3'
 
 services:
   api:
-    image: api:python
+    image: linkextractor-api:step5-python
     build: ./api
     ports:
       - "5000:5000"
+    environment:
+      - REDIS_URL=redis://redis:6379
   web:
-    image: web:php
+    image: linkextractor-web:step5-php
     build: ./www
     ports:
       - "80:80"
@@ -833,8 +844,8 @@ services:
     image: redis
 ```
 
-The `api` service configuration remains the same as before.
-For the `web` service, we are using the custom `web:php` image that will be built using the newly added `Dockerfile` in the `./www` folder.
+The `api` service configuration largely remains the same as before, except the updated image tag and added environment variable `REDIS_URL` that points to the Redis service.
+For the `web` service, we are using the custom `linkextractor-web:step5-php` image that will be built using the newly added `Dockerfile` in the `./www` folder.
 We are no longer mounting the `./www` folder using the `volumes` config.
 Finally, a new service named `redis` is added that will use the official image from DockerHub and needs no specific configurations for now.
 This service is accessible to the Python API using its service name, the same way the API service is accessible to the PHP front-end service.
@@ -863,7 +874,7 @@ Now that we are not mounting the `/www` folder inside the container, local chang
 sed -i 's/Link Extractor/Super Link Extractor/g' www/index.php
 ```
 
-Verify this by reloading the web interface and then revert changes:
+Verify that the changes made locally do not reflect in the running service by reloading the web interface and then revert changes:
 
 ```.term1
 git reset --hard
@@ -942,7 +953,7 @@ require "redis"
 
 set :protection, :except=>:path_traversal
 
-redis = Redis.new(host: "redis", port: 6379)
+redis = Redis.new(url: ENV["REDIS_URL"] || "redis://localhost:6379")
 
 Dir.mkdir("logs") unless Dir.exist?("logs")
 cache_log = File.new("logs/extraction.log", "a")
@@ -986,17 +997,18 @@ end
 ```
 
 This Ruby file is almost equivalent to what we had in Python before, except, in addition to that it also logs the link extraction requests and corresponding cache events.
-In a microservice architecture application, swapping components with an equivalent one easy as long as the expectations of consumers of the component are maintained.
+In a microservice architecture application swapping components with an equivalent one is easy as long as the expectations of consumers of the component are maintained.
 
 ```.term1
 cat api/Dockerfile
 ```
 
 ```dockerfile
-FROM       ruby
+FROM       ruby:2
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
 ENV        LANG C.UTF-8
+ENV        REDIS_URL="redis://localhost:6379"
 
 WORKDIR    /app
 COPY       Gemfile /app/
@@ -1015,18 +1027,20 @@ cat docker-compose.yml
 ```
 
 ```yml
-ersion: '3'
+version: '3'
 
 services:
   api:
-    image: api:ruby
+    image: linkextractor-api:step6-ruby
     build: ./api
     ports:
       - "4567:4567"
+    environment:
+      - REDIS_URL=redis://redis:6379
     volumes:
       - ./logs:/app/logs
   web:
-    image: web:php
+    image: linkextractor-web:step6-php
     build: ./www
     ports:
       - "80:80"
@@ -1037,7 +1051,7 @@ services:
 ```
 
 The `docker-compose.yml` file has a few minor changes in it.
-The `api` service image is now named `api:ruby`, the port mapping is changed from `5000` to `4567` (which is the default port for Sinatra server), and the `API_ENDPOINT` environment variable in the `web` service is updated accordingly so that the PHP code can talk to it.
+The `api` service image is now named `linkextractor-api:step6-ruby`, the port mapping is changed from `5000` to `4567` (which is the default port for Sinatra server), and the `API_ENDPOINT` environment variable in the `web` service is updated accordingly so that the PHP code can talk to it.
 
 With these in place, let's boot our service stack:
 
@@ -1048,14 +1062,14 @@ docker-compose up -d --build
 ```
 ... [OUTPUT REDACTED] ...
 
-Successfully built 8377c67aab58
-Successfully tagged api:ruby
+Successfully built b713eef49f55
+Successfully tagged linkextractor-api:step6-ruby
 Creating linkextractor_web_1   ... done
 Creating linkextractor_api_1   ... done
 Creating linkextractor_redis_1 ... done
 ```
 
-We should now be able to access the API (using the updated port number).
+We should now be able to access the API (using the updated port number):
 
 ```.term1
 curl -i http://localhost:4567/api/http://example.com/
