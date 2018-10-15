@@ -204,7 +204,7 @@ Successfully built 226196ada9ab
 Successfully tagged linkextractor:step1
 ```
 
-We have crated a Docker image named `linkextractor:step1` based on the `Dockerfile` illustrated above.
+We have created a Docker image named `linkextractor:step1` based on the `Dockerfile` illustrated above.
 If the build was successful, we should be able to see it in the list of image:
 
 ```.term1
