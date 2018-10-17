@@ -24,13 +24,13 @@ In this lab you will play around with the container orchestration features of Do
 
 # <a name="basics"></a>Section 1: What is Orchestration
 
-So, what is Orchestration anyways? Well, Orchestration is probably best described using an example. Lets say that you have an application that has high traffic along with high-availability requirements. Due to these requirements, you typically want to deploy across at least 3+ machines, so that in the event a host fails, your application will still be accessible from at least two others. Obviously, this is just an example and your use-case will likely have its own requirements, but you get the idea.
+So, what is Orchestration anyways? Well, Orchestration is probably best described using an example. Let's say that you have an application that has high traffic along with high-availability requirements. Due to these requirements, you typically want to deploy across at least 3+ machines, so that in the event a host fails, your application will still be accessible from at least two others. Obviously, this is just an example and your use-case will likely have its own requirements, but you get the idea.
 
 Deploying your application without Orchestration is typically very time consuming and error prone, because you would have to manually SSH into each machine, start up your application, and then continually keep tabs on things to make sure it is running as you expect.
 
 But, with Orchestration tooling, you can typically off-load much of this manual work and let automation do the heavy lifting. One cool feature of Orchestration with Docker Swarm, is that you can deploy an application across many hosts with only a single command (once Swarm mode is enabled). Plus, if one of the supporting nodes dies in your Docker Swarm, other nodes will automatically pick up load, and your application will continue to hum along as usual.
 
-If you are typically only using `docker run` to deploy your applications, then you could likely really benefit from using Docker Compose, Docker Swarm mode, and both Docker Compose and Swarm.
+If you are typically only using `docker run` to deploy your applications, then you could likely really benefit from using Docker Compose, Docker Swarm mode, or both Docker Compose and Swarm.
 
 # <a name="start-cluster"></a>Section 2: Configure Swarm Mode
 
@@ -66,7 +66,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 But, this is only on a single node. What happens if this node goes down? Well, our application just dies and it is never restarted. To restore service, we would have to manually log into this machine, and start tweaking things to get it back up and running. So, it would be helpful if we had some type of system that would allow us to run this "sleep" application/service across many machines. 
 
-In this section you will configure *Swarm Mode*. This is a new optional mode in which multiple Docker hosts form into a self-orchestrating group of engines called a *swarm*. Swarm mode enables new features such as *services* and *bundles* that help you deploy and manage multi-container apps across multiple Docker hosts.
+In this section you will configure *Swarm Mode*. This is a new optional mode in which multiple Docker hosts form a self-orchestrating group of engines called a *swarm*. Swarm mode enables new features such as *services* and *bundles* that help you deploy and manage multi-container apps across multiple Docker hosts.
 
 You will complete the following:
 
@@ -79,7 +79,7 @@ For the remainder of this lab we will refer to *Docker native clustering* as ***
 
 A swarm comprises one or more *Manager Nodes* and one or more *Worker Nodes*. The manager nodes maintain the state of swarm and schedule application containers. The worker nodes run the application containers. As of Docker 1.12, no external backend, or 3rd party components, are required for a fully functioning swarm - everything is built-in!
 
-In this part of the demo you will use all three of the nodes in your lab. __node1__ will be the Swarm manager, while __node2__ and __node3__ will be worker nodes. Swarm mode supports a highly available redundant manager nodes, but for the purposes of this lab you will only deploy a single manager node.
+In this part of the demo you will use all three of the nodes in your lab. __node1__ will be the Swarm manager, while __node2__ and __node3__ will be worker nodes. Swarm mode supports highly available redundant manager nodes, but for the purposes of this lab you will only deploy a single manager node.
 
 ## Step 2.1 - Create a Manager node
 
@@ -202,7 +202,7 @@ Our `sleep` application is becoming very popular on the internet (due to hitting
 
 You will perform this procedure from **node1**.
 
-Lets deploy `sleep` as a *Service* across our Docker Swarm.
+Let's deploy `sleep` as a *Service* across our Docker Swarm.
 
 ```.term1
 docker service create --name sleep-app ubuntu sleep infinity
@@ -243,7 +243,7 @@ docker service update --replicas 7 sleep-app
 	
 The Swarm manager schedules so that there are 7 `sleep-app` containers in the cluster. These will be scheduled evenly across the Swarm members.
 
-We are going to use the `docker service ps sleep-app` command. If you do this quick fast enough after using the  `--replicas` option you can see the containers come up in real time.
+We are going to use the `docker service ps sleep-app` command. If you do this quick enough after using the  `--replicas` option you can see the containers come up in real time.
 
 ```.term1
 docker service ps sleep-app
@@ -261,7 +261,7 @@ o4rk5aiely2o  sleep-app.5  ubuntu:latest  node2  Running        Running 2 minute
 
 Notice that there are now 7 containers listed. It may take a few seconds for the new containers in the service to all show as **RUNNING**.  The `NODE` column tells us on which node a container is running.
 
-Scale the service back down just five containers again with the `docker service update --replicas 4 sleep-app` command. 
+Scale the service back down to just four containers with the `docker service update --replicas 4 sleep-app` command. 
 
 ```.term1
 docker service update --replicas 4 sleep-app
@@ -284,7 +284,7 @@ You have successfully scaled a swarm service up and down.
 
 # <a name="recover-application"></a>Section 5: Drain a node and reschedule the containers
 
-Your sleep-app has been doing amazing after hitting Reddit and HN. It's now number 1 on the Apple Store! You have scaled up during the holidays and down during the slow season. Now you are doing maintenance on one of your servers so you will need to gracefully take a server out of the swarm without interrupting service to your customers.
+Your sleep-app has been doing amazing after hitting Reddit and HN. It's now number 1 on the App Store! You have scaled up during the holidays and down during the slow season. Now you are doing maintenance on one of your servers so you will need to gracefully take a server out of the swarm without interrupting service to your customers.
 
 
 Take a look at the status of your nodes again by running `docker node ls` on **node1**.  
@@ -301,7 +301,7 @@ yu3hbegvwsdpy9esh9t2lr431    node2   Ready   Active
 
 You will be taking **node2** out of service for maintenance.
 
-Lets see the containers that you have running on **node2**.
+Let's see the containers that you have running on **node2**.
 
 ```.term2
 docker ps
@@ -313,7 +313,7 @@ CONTAINER ID        IMAGE                                                       
 
 You can see that we have one of the slepp-app containers running here (your output might look different though).
 
-Now lets jump back to **node1** (the Swarm manager) and take **node2** out of service. To do that, lets run `docker node ls` again.
+Now let's jump back to **node1** (the Swarm manager) and take **node2** out of service. To do that, let's run `docker node ls` again.
 
 ```.term1
 docker node ls
@@ -394,7 +394,7 @@ You can use the `docker kill <CONTAINER ID>` command on **node1** to kill the sl
 docker kill yourcontainerid
 ```
 
-Finally, lets remove node1, node2, and node3 from the Swarm. We can use the `docker swarm leave --force` command to do that. 
+Finally, let's remove node1, node2, and node3 from the Swarm. We can use the `docker swarm leave --force` command to do that. 
 
 Lets run `docker swarm leave --force` on **node1**.
 
