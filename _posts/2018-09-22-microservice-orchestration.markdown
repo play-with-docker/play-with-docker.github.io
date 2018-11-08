@@ -416,7 +416,7 @@ tree
 The following changes have been made in this step:
 
 * Added a server script `main.py` that utilizes the link extraction module written in the last step
-* The `Dockerfile` is updated to refer to the `main.py` file isntead
+* The `Dockerfile` is updated to refer to the `main.py` file instead
 * Server is accessible as a WEB API at `http://<hostname>[:<prt>]/api/<url>`
 * Dependencies are moved to the `requirements.txt` file
 * Needs port mapping to make the service accessible outside of the container (the `Flask` server used here listens on port `5000` by default)
