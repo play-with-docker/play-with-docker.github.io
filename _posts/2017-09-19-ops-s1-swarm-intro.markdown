@@ -37,7 +37,7 @@ Swarm initialized: current node (tjocs7ul557phkmp6mkpjmu3f) is now a manager.
 
 To add a worker to this swarm, run the following command:
 
-    docker swarm join --token SWMTKN-1-3b33jjwsqpkcy2c8og73aorjf2ao9sjm4crvbwg3xpd1ome459-ckfdcxqqahb9gy9s2t9n5mi78 10.0.25.3:2377
+    docker swarm join --token <token> <host>
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
