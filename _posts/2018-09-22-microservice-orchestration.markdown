@@ -582,7 +582,7 @@ In this step the following changes have been made since the last step:
 
 In this step we are planning to run two separate containers, one for the API and the other for the web interface.
 The latter needs a way to talk to the API server.
-For the two containers to be able to talk to each other, we can either map their their ports on the host machine and use that for request routing or we can place the containers in a single private network and access directly.
+For the two containers to be able to talk to each other, we can either map their ports on the host machine and use that for request routing or we can place the containers in a single private network and access directly.
 Docker has an excellent support of networking and provides helpful commands to deal with networks.
 Additionally, in a Docker network containers identify themselves using their names as hostnames to avoid hunting for their IP addresses in the private network.
 However, we are not going to do any of this manually, instead we will be using Docker Compose to automate many of these tasks.
