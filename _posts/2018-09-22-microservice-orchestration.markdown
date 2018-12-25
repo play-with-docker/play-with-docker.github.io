@@ -934,7 +934,7 @@ Some significant changes from the previous step include:
 
 Notice that the `./api` folder does not contain any Python scripts, instead, it now has a Ruby file and a `Gemfile` to manage dependencies.
 
-Let's have a quick walk through the changes files:
+Let's have a quick walk through the changed files:
 
 ```.term1
 cat api/linkextractor.rb
