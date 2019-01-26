@@ -197,8 +197,8 @@ What is a stack?
 
 {:.quiz}
 A stack can:
-- (x) be deployed from the commandline
-- (x) use the compose file format to deploy
-- ( ) run a Dockerfile
-- ( ) be used to manage your hosts
-- (x) be used to manage services over multiple nodes
+- \[x\] be deployed from the commandline
+- \[x\] use the compose file format to deploy
+- \[ \] run a Dockerfile
+- \[ \] be used to manage your hosts
+- \[x\] be used to manage services over multiple nodes
