@@ -271,7 +271,7 @@ Alpine is just a small base OS image so there's just one layer:
 ["sha256:60ab55d3379d47c1ba6b6225d59d10e1f52096ee9d5c816e42c635ccc57a5a2b"]
 ```
 
-New let's look at our custom Hello image. You will need the image ID (use `docker image ls` if you need to look it up):
+Now let's look at our custom Hello image. You will need the image ID (use `docker image ls` if you need to look it up):
 
 ```
 docker image inspect --format "{{ "{{ json .RootFS.Layers "}}}}" <image ID>
