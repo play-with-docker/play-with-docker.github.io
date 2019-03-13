@@ -866,7 +866,8 @@ Creating linkextractor_redis_1 ... done
 
 Now, that all three services are up, access the web interface by [clicking the Link Extractor](/){:data-term=".term1"}{:data-port="80"}.
 There should be no visual difference from the previous step.
-However, if you extract links from a page with a lot of links, the first time it should take longer, but the successive attempts to the same page should return the response fairly quickly. To check whether or not the Redis service is being used, we use `docker-compose exec` followed by the `redis` service name and the Redis CLI's [Monitor](https://redis.io/commands/monitor) command:
+However, if you extract links from a page with a lot of links, the first time it should take longer, but the successive attempts to the same page should return the response fairly quickly.
+To check whether or not the Redis service is being utilized, we can use `docker-compose exec` followed by the `redis` service name and the Redis CLI's [monitor](https://redis.io/commands/monitor) command:
 
 ```.term1
 docker-compose exec redis redis-cli monitor
