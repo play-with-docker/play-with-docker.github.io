@@ -873,7 +873,8 @@ To check whether or not the Redis service is being utilized, we can use `docker-
 docker-compose exec redis redis-cli monitor
 ```
 
-To leave the interactive shell and continue with the rest of the tutorial, use SIGINT (Ctrl-C) to stop the `monitor` stream running via `redis-cli`.
+Now, try to extract links from some web pages using the web interface and see the difference in Redis log entries for pages that are scraped the first time and those that are repeated.
+Before continuing further with the tutorial, stop the interactive `monitor` stream as a result of the above `redis-cli` command by pressing `Ctrl + C` keys while the interactive terminal is in focus.
 
 Now that we are not mounting the `/www` folder inside the container, local changes should not reflect in the running service:
 
