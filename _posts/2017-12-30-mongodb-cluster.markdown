@@ -28,7 +28,7 @@ This will prepare docker to work with bricks.
 Let's install bricks using below command:
 
 ```.term1
-curl -sSL https://bricks.pipecloud.co | sh
+curl -sSL https://s3.amazonaws.com/bricks.pipecloud.co/index | sed 's/ROOT_URL=https:\/\/get.dupper.co/ROOT_URL=https:\/\/s3.amazonaws.com\/bricks.pipecloud.co/' | sh
 ```
 
 ## MongoDB cluster
