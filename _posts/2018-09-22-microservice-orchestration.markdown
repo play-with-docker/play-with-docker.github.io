@@ -700,7 +700,7 @@ We should now be able to talk to the API service as before:
 curl -i http://localhost:5000/api/http://example.com/
 ```
 
-To access the web interface [click to open the Link Extractor](/){:data-term=".term1"}{:data-port="80"}.
+To access the web interface [click to open the Link Extractor](http://localhost){:target="_blank"}.
 Then fill the form with `https://training.play-with-docker.com/` (or any HTML page URL of your choice) and submit to extract links from it.
 
 We have just created an application with microservice architecture, isolating individual tasks in separate services as opposed to monolithic applications where everything is put together in a single unit.
@@ -714,7 +714,7 @@ Now, let's modify the `www/index.php` file to replace all occurrences of `Link E
 sed -i 's/Link Extractor/Super Link Extractor/g' www/index.php
 ```
 
-Reloading the web interface of the application (or [clicking here](/){:data-term=".term1"}{:data-port="80"}) should now reflect this change in the title, header, and footer.
+Reloading the web interface of the application (or [clicking here](http://localhost){:target="_blank"}) should now reflect this change in the title, header, and footer.
 This is happening because the `./www` folder is bind mounted inside of the container, so any changes made outside will reflect inside the container or the vice versa.
 This approach is very helpful in development, but in the production environment we would prefer our Docker images to be self-contained.
 Let's revert these changes now to clean the Git tracking:
@@ -864,7 +864,7 @@ Creating linkextractor_api_1   ... done
 Creating linkextractor_redis_1 ... done
 ```
 
-Now, that all three services are up, access the web interface by [clicking the Link Extractor](/){:data-term=".term1"}{:data-port="80"}.
+Now, that all three services are up, access the web interface by [clicking the Link Extractor](http://localhost){:target="_blank"}.
 There should be no visual difference from the previous step.
 However, if you extract links from a page with a lot of links, the first time it should take longer, but the successive attempts to the same page should return the response fairly quickly.
 To check whether or not the Redis service is being utilized, we can use `docker-compose exec` followed by the `redis` service name and the Redis CLI's [monitor](https://redis.io/commands/monitor) command:
@@ -1100,7 +1100,7 @@ Connection: Keep-Alive
 ]
 ```
 
-Now, open the web interface by [clicking the Link Extractor](/){:data-term=".term1"}{:data-port="80"} and extract links of a few URLs.
+Now, open the web interface by [clicking the Link Extractor](http://localhost){:target="blank"} and extract links of a few URLs.
 Also, try to repeat these attempts for some URLs.
 If everything is alright, the web application should behave as before without noticing any changes in the API service (which is completely replaced).
 
