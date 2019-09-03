@@ -269,13 +269,19 @@ utes       3306/tcp            wordpressdb.1.puoe9lvfkciavkrzrkbrhrl6e
 
 As we notice, there are 2 instances of wordpressapp task(container) running on the manager node(shown above) and 1 instance of wordpressdb. 
 
-Let's pick up one of wordpressdb task running on the manager node  and try to reach out to wordpressapp running on the remote worker node as shown below:
+Let's pick up the wordpressdb task running on the manager node and try to reach out to wordpressapp running on the remote worker node. Because the container is missing the `ping` command we need to install it first:
+
+```.term1
+docker exec -it e71 bash -c "apt update && apt -y install iputils-ping"
+```
+
+Once installed, we can ping wordpressapp as shown below:
 
 ```.term1
 docker exec -it e71 ping wordpressapp
 ```
 
-This should work successfully and able to ping the wordpressapp as service name.
+This should work successfully and be able to ping the wordpressapp as service name.
 
 ```
 PING wordpressapp (10.0.0.4): 56 data bytes
