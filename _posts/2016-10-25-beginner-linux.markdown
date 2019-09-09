@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Docker for Beginners - Linux"
-date:   2016-10-25
+date:   2019-08-01
 author: "@mikegcoleman"
 tags: [beginner, linux, operations, developer]
 categories: beginner
