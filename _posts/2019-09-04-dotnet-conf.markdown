@@ -30,6 +30,8 @@ The Play-with-Docker environment is already set up with Docker and Git, so you'r
 
 Clone the application source into your local session:
 
+> Just click the text in these boxes to send the command to your terminal
+
 ```.term1
 git clone https://github.com/dockersamples/dotnetconf19.git
 ```
@@ -80,7 +82,9 @@ docker container run dotnetconf:19
 
 > Scroll up to read the message from .NET Bot - that's your .NET Conf code!
 
-If you want to learn more about what's happened here and how Docker builds and runs the app, check out this blog post: [.NET Core 3.0: Build and Run Apps Anywhere with Docker](TODO).
+If you want to learn more about what's happened here and how Docker builds and runs the app, check out this blog post: 
+
+- [.NET Core 3.0: Build and Run Apps Anywhere with Docker](TODO).
 
 ## You're done!
 
