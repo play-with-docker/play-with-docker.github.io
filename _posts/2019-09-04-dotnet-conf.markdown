@@ -82,9 +82,9 @@ docker container run dotnetconf:19
 
 > Scroll up to read the message from .NET Bot - that's your .NET Conf code!
 
-If you want to learn more about what's happened here and how Docker builds and runs the app, check out this blog post: 
+If you want to learn more about what's happened here and how you can use Docker to build cross-platform apps that run on Windows, Linux, Itenal and Arm - check out this blog post: 
 
-- [.NET Core 3.0: Build and Run Apps Anywhere with Docker](TODO).
+- [Docker + Arm Virtual Meetup Recap: Building Multi-arch Apps with Buildx](https://blog.docker.com/2019/09/docker-arm-virtual-meetup-multi-arch-with-buildx/).
 
 ## You're done!
 
