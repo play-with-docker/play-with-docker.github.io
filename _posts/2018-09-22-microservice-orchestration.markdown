@@ -254,7 +254,7 @@ https://plus.google.com/share?url=https://training.play-with-docker.com/
 http://www.linkedin.com/shareArticle?mini=true&url=https://training.play-with-docker.com/&title=Play%20with%20Docker%20Classroom&source=https://training.play-with-docker.com
 https://2018.dockercon.com/
 https://2018.dockercon.com/
-https://training.docker.com/instructor-led-training
+https://success.docker.com/training/
 https://community.docker.com/registrations/groups/4316
 https://docker.com
 https://www.docker.com
@@ -373,7 +373,7 @@ docker container run -it --rm linkextractor:step2 https://training.play-with-doc
 [[IMG]](http://www.linkedin.com/shareArticle?mini=true&url=https://training.play-with-docker.com/&title=Play%20with%20Docker%20Classroom&source=https://training.play-with-docker.com)
 [[IMG]](https://2018.dockercon.com/)
 [DockerCon 2018 in San Francisco](https://2018.dockercon.com/)
-[training.docker.com](https://training.docker.com/instructor-led-training)
+[training.docker.com](https://success.docker.com/training/)
 [Register here](https://community.docker.com/registrations/groups/4316)
 [Docker, Inc.](https://docker.com)
 [[IMG]](https://www.docker.com)
