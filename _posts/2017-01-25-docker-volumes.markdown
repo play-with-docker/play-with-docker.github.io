@@ -328,7 +328,7 @@ docker container run -v HOST_PATH:CONTAINER_PATH [OPTIONS] IMAGE [CMD]
 Note: HOST_PATH and CONTAINER_PATH can be a folder or file. HOST_PATH must exist before running this command.
 
 Several cases to consider:
-- the CONTAINER_PATH does not exist within the container
+- the HOST_PATH does not exist within the container
 - the CONTAINER_PATH exists within the container
 
 ### 1st case
