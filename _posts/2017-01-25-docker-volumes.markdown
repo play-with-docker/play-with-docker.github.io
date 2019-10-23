@@ -327,10 +327,6 @@ docker container run -v HOST_PATH:CONTAINER_PATH [OPTIONS] IMAGE [CMD]
 
 Note: HOST_PATH and CONTAINER_PATH can be a folder or file. None of the Paths have to exist before starting the Container as they will be created automatically during the start.
 
-Several cases to consider:
-- the HOST_PATH does not exist within the container
-- the CONTAINER_PATH exists within the container
-
 ### 1st case
 
 Let's run an alpine container bind mounting the local /tmp folder inside the container /data folder.
