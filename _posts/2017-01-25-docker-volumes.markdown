@@ -325,7 +325,7 @@ The last item we will talk about is named bind-mount and consist of mounting a h
 docker container run -v HOST_PATH:CONTAINER_PATH [OPTIONS] IMAGE [CMD]
 ```
 
-Note: HOST_PATH and CONTAINER_PATH can be a folder or file. HOST_PATH must exist before running this command.
+Note: HOST_PATH and CONTAINER_PATH can be a folder or file. None of the Paths have to exist before starting the Container as they will be created automatically during the start.
 
 Several cases to consider:
 - the HOST_PATH does not exist within the container
