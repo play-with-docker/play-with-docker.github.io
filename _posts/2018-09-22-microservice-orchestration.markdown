@@ -1012,7 +1012,7 @@ cat api/Dockerfile
 ```
 
 ```dockerfile
-FROM       ruby:2
+FROM       ruby:2.6
 LABEL      maintainer="Sawood Alam <@ibnesayeed>"
 
 ENV        LANG C.UTF-8
