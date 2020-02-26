@@ -14,7 +14,7 @@ In this lab you will run a popular, free, lightweight container and explore the 
 Concepts in this exercise:
 * Docker engine
 * Containers & images
-* Image registries and Docker Store (AKA Docker Hub)
+* Image registries and Docker Hub
 * Container isolation
 
 ---
@@ -39,7 +39,7 @@ It's time to get your hands dirty! As with all things technical, a "hello world"
 docker container run hello-world
 ```
 
-That's it: your first container. The *hello-world* container output tells you a bit about what just happened. Essentially, the Docker engine running in your terminal tried to find an **image** named hello-world. Since you just got started there are no images stored locally (`Unable to find image...`) so Docker engine goes to its default **Docker registry**, which is [Docker Store](https://store.docker.com), to look for an image named "hello-world". It finds the image there, pulls it down, and then runs it in a container. And hello-world's only function is to output the text you see in your terminal, after which the container exits.
+That's it: your first container. The *hello-world* container output tells you a bit about what just happened. Essentially, the Docker engine running in your terminal tried to find an **image** named hello-world. Since you just got started there are no images stored locally (`Unable to find image...`) so Docker engine goes to its default **Docker registry**, which is [Docker Hub](https://hub.docker.com), to look for an image named "hello-world". It finds the image there, pulls it down, and then runs it in a container. And hello-world's only function is to output the text you see in your terminal, after which the container exits.
 
 ![Hello world explainer](/images/ops-basics-hello-world.svg)
 
@@ -57,7 +57,7 @@ To get started, let's run the following in our terminal:
 docker image pull alpine
 ```
 
-The `pull` command fetches the alpine **image** from the **Docker registry** and saves it in our system. In this case the registry is **[Docker Store](https://store.docker.com)**. You can change the registry, but that's a different lab.
+The `pull` command fetches the alpine **image** from the **Docker registry** and saves it in our system. In this case the registry is **[Docker Hub](https://hub.docker.com)**. You can change the registry, but that's a different lab.
 
 You can use the `docker image` command to see a list of all images on your system.
 
@@ -228,14 +228,14 @@ In the last section, you saw a lot of Docker-specific jargon which might be conf
 - *Containers* - Running instances of Docker images &mdash; containers run the actual applications. A container includes an application and all of its dependencies. It shares the kernel with other containers, and runs as an isolated process in user space on the host OS. You created a container using `docker run` which you did using the alpine image that you downloaded. A list of running containers can be seen using the `docker container ls` command.
 - *Docker daemon* - The background service running on the host that manages building, running and distributing Docker containers.
 - *Docker client* - The command line tool that allows the user to interact with the Docker daemon.
-- *Docker Store* - Store is, among other things, a [registry](https://store.docker.com/) of Docker images. You can think of the registry as a directory of all available Docker images. You'll be using this later in this tutorial.
+- *Docker Hub* - Store is, among other things, a [registry](https://store.docker.com/) of Docker images. You can think of the registry as a directory of all available Docker images. You'll be using this later in this tutorial.
 
 {:.quiz}
 Where do images get pulled from by default when not found locally?
 - ( ) Docker Trusted Registry
-- ( ) Docker Hub
+- (x) Docker Hub
 - ( ) There is no default
-- (x) Docker Store
+- ( ) Docker Store
 
 {:.quiz}
 Which command lists your Docker images?
