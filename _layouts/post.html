@@ -77,7 +77,7 @@ layout: default
         onDragEnd: pwd.resize.bind(pwd)
     });
     window.onbeforeunload = function(e) {
-        pwd.closeSession(function(){});
+        navigator.sendBeacon("{{site.pwdurl}}/sessions/" + pwd.sessionId + "/close");
         return;
     }
 
