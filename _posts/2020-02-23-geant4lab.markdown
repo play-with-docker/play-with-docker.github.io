@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "Intro to medical physics with Geant4 + Docker"
+title:  "Medical physics with Geant4 + Docker = ❤️"
 date:   2020-02-23
 author: "Alberto Corbi (UNIR iTED), Francisco Albiol (IFIC-CSIC), Frack Vidal (Bangor Uni), Daniel Burgos (UNIR iTED) and Alberto Albiol (UPV)."
-tags: [beginner, geant, particle physics, medical physics]
+tags: [beginner, Geant4, particle physics, medical physics]
 categories: beginner
 terms: 1
+
 ---
 
 ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcj6lhk6srj31lc0ksdoa.jpg)
@@ -52,13 +53,13 @@ You can take a 3D look at this world in the following image:
 
 Or you can also surf a **live WebGL version** by clicking in [this link](https://htmlpreview.github.io/?https://github.com/pammacdotnet/FFRepo/blob/master/simulation%20example.html){:target="_blank"}. A quick (and tiny) animation is also displayed above.
 
-We will now launch **our own simulations**. In order to achieve so, let us first **download the Docker image** that contains the necessary infrastructure. Remember, you can just click in the code cells to have them executed (one by one) in the terminal on the left side of this page:
+We will now launch **our own simulations**. In order to achieve so, let us first **download the Docker image** that contains the necessary infrastructure. Remember, you can just **click in the code cells to have them** (one by one) **executed** ▶️ in the terminal on the left side of this page:
 
 ```.term1
 docker pull pammacdotnet/g4lpwd
 ```
 
-It may take a minute or so to download the whole image… so please, be (slightly) patient.
+It may take a minute 🕐 or so to download the whole image… so please, be (slightly) patient.
 
 ------
 
@@ -125,13 +126,13 @@ compt:   for  gamma    SubType= 13  BuildTable= 1
 …
 ```
 
-This is Geant4 telling you all the calculations it has had to carry out for you in behind the scenes in order to generate a final (and mor intuitive) file called `simulation.wrl` (default name). It is now time to launch a simple web server that will let us download or view the results:
+This is Geant4 telling you all the calculations it has had to carry out for you in behind the scenes in order to generate a final (and mor intuitive) file called `simulation.wrl` (default name). It is now time to launch a **simple web server** that will let us download or view the results:
 
 ```.term1
 python -m SimpleHTTPServer 80 > /dev/null 2>&1 &
 ```
 
-By using the `&` symbol we state we want the web server to run in the background and with the expression  `> /dev/null 2>&1` we guarantee that its output won't bother us. Once started, the previous file can be downloaded from [here](/simulation.wrl){:data-term=".term1"}{:data-port="80"}. It'll take some time because a VRLM file can be quite big. 
+By using the `&` symbol we state we want the web server to run in the background and with the expression  `> /dev/null 2>&1` we guarantee that its output won't bother us. Once started, the previous file can be downloaded from [here](/simulation.wrl){:data-term=".term1"}{:data-port="80"} ⬇️. It'll take some time because a VRLM file can be quite big. 
 
 Once in your hard drive, you can 3D-navigate/fly through this file (or any VRML scene) with any of the following software:
 
@@ -150,13 +151,13 @@ However, it is better to **transform the WRL file into WebGL-enabled HTML** with
 ./wrl2html.py 
 ```
 
-By default, this last command assumes the input WRL file to have the name `simulation.wrl` and outputs an HTML file called, by default, `index.html`. You previous instruction is equivalent to:
+By default, this last command assumes the input WRL file to have the name `simulation.wrl` and outputs an HTML file called, by default, `simulation.html`. You previous instruction is equivalent to:
 
 ```.term1
-./wrl2html.py --wrl simulation.wrl --html index.html
+./wrl2html.py --wrl simulation.wrl --html simulation.html
 ```
 
- You can fly through this 3D HTML version by clicking [here](/){:data-term=".term1"}{:data-port="80"}. 
+You can fly through this 3D HTML version by clicking [here](/simulation.html){:data-term=".term1"}{:data-port="80"} ↗️, or you can [**list all files**](/){:data-term=".term1"}{:data-port="80"} 📁.
 
 ------
 
@@ -169,7 +170,7 @@ Let's explore more simulations! You achieve this by altering any of the configur
 - **Phantom material**. Available with the option `--material`. Geant4 defines many materials: `G4_Al`, `G4_Si`, `G4_Ar`, `G4_Cu`, `G4_Fe`, `G4_Ge`, `G4_Ag`, `G4_W`, `G4_Au`, `G4_Pb`, `G4_AIR`, `G4_Galactic`, `G4_WATER`, `G4_CESIUM_IODIDE`, `G4_SODIUM_IODIDE`, `G4_PLASTIC_SC_VINYLTOLUENE`, `G4_MYLAR`, etc. The default value in our simulations is water (`G4_WATER`). Do you remember that the human body is composed of 70% water?
 - **Phantom thickness**. Available with the option `--size`. It is the size (along the longitudinal axis) of the phantom, that is, how much matter the beam of particle will have to traverse. 
 - **Output file**. Available with the option `--wrl`. It represents the name of the VRML file with a 3D representation of the simulation. The default value is `simulation.wrl`.
-- **Particle count**. Available with the option `--count`. It is the number of particles within the simulated beam. The default value is 20. We suggest that you keep this value small. Otherwise you'll end up with a huge WRL file, very difficult to manage and visually analyse. 
+- **Particle count**. Available with the option `--count`. It is the number of particles within the simulated beam. The default value is 20. We suggest that you keep this value under 💯. Otherwise you'll end up with a huge WRL file, very difficult to manage and visually analyse. 
 
 
 
@@ -181,15 +182,15 @@ For instance, the following command:
 docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=e+
 ```
 
-will **exchange photons for positrons**. Positrons are the antiparticles of electrons. The major difference from electrons is their positive charge. You can either download again the [WRL file](/simulation.wrl){:data-term=".term1"}{:data-port="80"} or generate a new HTML file. If you run again the wrl2html.py command with no arguments, the original index.html file will be overwritten. However you can change the name of the resulting HTML file:
+will **exchange photons for positrons**. Positrons are the antiparticles of electrons. The major difference from electrons is their positive charge. You can either download again the [WRL file](/simulation.wrl){:data-term=".term1"}{:data-port="80"} ⬇️ or generate a new HTML file. If you run again the `wrl2html.py` command with no arguments, the original `simulation.html` file will be overwritten ⚠️. However you can change the name of the resulting HTML file:
 
 ```.term1
 ./wrl2html.py --html simulation2.html
 ```
 
-This file is [still browsable](/simulation2.html){:data-term=".term1"}{:data-port="80"}. 
+This file is [still browsable](/simulation2.html){:data-term=".term1"}{:data-port="80"} ↗️. 
 
-<img src="http://www.physicscentral.com/explore/action/images/antics-img2.gif" style="float:right;width:20%">Positrons tend to **annihilate with electrons**. When this happens, **two photons emerge** in opposite directions.  As you can see from the following picture, the positrons (yellow traces) suddenly seem to disappear. What is happening is that those positrons find a corresponding electron (attached to the atoms that compose the material) and the energy of both particles is transformed into two photons emerging in any random direction (but opposite ways). 
+<img src="http://www.physicscentral.com/explore/action/images/antics-img2.gif" style="float:right;width:20%">Positrons tend to **annihilate with electrons**. When this happens, **two photons emerge** in opposite directions.  As you can see from the following picture, the positrons (yellow traces) suddenly seem to disappear. What is happening is that those positrons find a corresponding electron (attached to the atoms that compose the material) and the mass of both particles is transformed into two photons emerging in any random direction (but opposite ways). 
 
 ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcdmiq6fkyj30k906qq3l.jpg)
 
@@ -208,11 +209,11 @@ This file is [still browsable](/simulation2.html){:data-term=".term1"}{:data-por
 Let's now change the particle type to a more common one (electrons) and let's have them collide against a lead target:
 
 ```.term1
-docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=e- --material=G4_Pb
-./wrl2html.py
+docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=e- --material=G4_Pb --wrl simulation3.wrl
+./wrl2html.py --wrl simulation3.wrl --html simulation3.html
 ```
 
-Again, you can specify a new WRL file (with the `--wrl` option). As you can see, 1 MeV electrons are unable to penetrate the material. On the contrary, some of them seem to *bounce back*. This is due to electrostatic repulsion against the electronic cloud covering this lead shield.
+The results are displayed [here](/simulation3.html){:data-term=".term1"}{:data-port="80"} ↗️. Again, you can specify a new WRL file (with the `--wrl` option). As you can see, 1 MeV electrons are unable to penetrate the material. On the contrary, some of them seem to *bounce back*. This is due to electrostatic repulsion against the electronic cloud covering this lead shield.
 
 ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcdo3cw7pwj30l6080dgc.jpg)
 
@@ -223,11 +224,11 @@ Again, you can specify a new WRL file (with the `--wrl` option). As you can see,
 Let's repeat the same simulation with a (virtual) water target and with a greater energy:
 
 ```.term1
-docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=e- --energy=100
-./wrl2html.py
+docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=e- --energy=100 --wrl simulation4.wrl
+./wrl2html.py --wrl simulation4.wrl --html simulation4.html
 ```
 
-<img src="https://web2.uwindsor.ca/courses/physics/high_schools/2006/Medical_Imaging/x%20ray%20brem.gif" style="float:right;width:30%">If you carefully observe the simulation results, you'll notice the famous *electromagnetic showers*. This is the same process that occurs when a cosmic ray hits the upper atmosphere and triggers the generation of new particles. The primary process that we are watching here is ***bremsstrahlung***, which consists in the production of electromagnetic radiation (a photon, represented by a white line) when an electron *decelerates* by the presence of matter.
+<img src="https://web2.uwindsor.ca/courses/physics/high_schools/2006/Medical_Imaging/x%20ray%20brem.gif" style="float:right;width:30%">If you carefully observe the [simulation results](/simulation4.html){:data-term=".term1"}{:data-port="80"} ↗️, you'll notice the famous *electromagnetic showers*. This is the same process that occurs when a cosmic ray hits the upper atmosphere and triggers the generation of new particles. The primary process that we are watching here is ***bremsstrahlung***, which consists in the production of electromagnetic radiation (a photon, represented by a white line) when an electron *decelerates* by the presence of matter.
 
 ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcdq6dpi0ij31d40ncq7t.jpg)
 
@@ -241,11 +242,11 @@ Many of the already proposed simulations exhibit ionisations. In this type of in
 
 ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcdspm2qgzj30yq0d6jrw.jpg)
 
-The previous simulation was obtained with the following command:
+The previous simulation was obtained with the following command (and whose results can be explored [here](/simulation5.html){:data-term=".term1"}{:data-port="80"} ↗️):
 
 ```.term1
-docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=gamma --energy=10 --material=G4_Al
-./wrl2html.py
+docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=gamma --energy=10 --material=G4_Al --wrl simulation5.wrl
+./wrl2html.py --wrl simulation5.wrl --html simulation5.html
 ```
 
 Ionisations can also take place when a moving electron hits an atom at rest (well, one of its orbiting electrons), that is, the ionisation particle can be of the same nature as the removed one.
@@ -257,17 +258,17 @@ Ionisations can also take place when a moving electron hits an atom at rest (wel
 Let's go back a water-filled cuboid and low energies, but let's *insanely* increase the number of particles (photons). Run the following command in the terminal:
 
 ```.term1
-docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=gamma --energy=2 --count=100
-./wrl2html.py
+docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=gamma --energy=2 --count=100 --wrl simulation6.wrl
+./wrl2html.py --wrl simulation6.wrl --html simulation6.html
 ```
 
-You'll see an scenario very similar to this one, where the photons, after traveling in straight lines and/or interacting with matter, seem to disappear:
+You'll see an [scenario](/simulation6.html){:data-term=".term1"}{:data-port="80"} ↗️ very similar to this one, where the photons, after traveling in straight lines and/or interacting with matter, seem to disappear:
 
 ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcdta9jpymj31os0mk0zt.jpg)
 
 Well, where did all the photons go? Well, some of them reach the *world limits*… Do you remember the movie *[The 13th Floor](https://www.imdb.com/title/tt0139809/)*?
 
-<img src="https://66.media.tumblr.com/e1e51070e9065fb3cc74d24e8d59c2cf/tumblr_omq4gg2LUn1w4t58uo1_400.gifv" style="float:right;width:50%;padding:6px;">When this happens, Geant4 stops calculating any further interactions and any particle trace seems to suddenly vanish. However, even inside the simulation borders, some photons seem to *evaporate*. What's happening? The answer is simple: they are absorbed by the material. With more detail, these absorption processes correspond to the [**photoelectric effect**](https://en.wikipedia.org/wiki/Photoelectric_effect): photons are completely absorbed by electrons. 
+<img src="https://66.media.tumblr.com/e1e51070e9065fb3cc74d24e8d59c2cf/tumblr_omq4gg2LUn1w4t58uo1_400.gifv" style="float:right;width:50%;padding:6px;">When this happens, Geant4 stops calculating any further interactions and any particle trace that crosses the boundaries of the simulation seems to suddenly vanish. However, even inside the simulation realm, some photons seem to *evaporate*. What's happening? The answer is simple: they are absorbed by the material. With more detail, these absorption processes correspond to the [**photoelectric effect**](https://en.wikipedia.org/wiki/Photoelectric_effect): photons are completely absorbed by electrons. 
 
 Here you have a second simulation that better shows the previous processes: 
 
@@ -276,11 +277,11 @@ Here you have a second simulation that better shows the previous processes:
 This scene can be recreated with the following command, where a beam of just a few electrons hits an iron target:
 
 ```.term1
-docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=e- --material=G4_Fe --count=10 --energy=50
-./wrl2html.py
+docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=e- --material=G4_Fe --count=10 --energy=50 --wrl simulation7.wrl
+./wrl2html.py --wrl simulation7.wrl --html simulation7.html
 ```
 
-Each electron produces in turn an [***electromagnetic shower***](https://en.wikipedia.org/wiki/Particle_shower#Electromagnetic_showers). These showers consist of a bunch of photons that end up *photoelectrically absorbed*. 
+Each electron produces in turn an [***electromagnetic shower***](https://en.wikipedia.org/wiki/Particle_shower#Electromagnetic_showers). These showers consist of a bunch of photons that end up *photoelectrically absorbed*. Take [a look](/simulation7.html){:data-term=".term1"}{:data-port="80"} ↗️ for yourself (of course, after running the simulation)!
 
 
 
@@ -294,11 +295,11 @@ Each electron produces in turn an [***electromagnetic shower***](https://en.wiki
 Run the following simulation:
 
 ```.term1
-docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=gamma --material=G4_WATER --count=10 --energy=15
-./wrl2html.py --wrl simulation.wrl --html index.html
+docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=gamma --material=G4_WATER --count=10 --energy=15 --wrl simulation8.wrl
+./wrl2html.py --wrl simulation8.wrl --html simulation8.html
 ```
 
-You will see some events like the following, where a photon (with no mass and thus made of pure energy), after colliding with an atom, transfers all its momentum to the creation of two particles: an electron and anti-electron (positron). ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcex54zkp3j31240bm3z0.jpg)
+You [will see](/simulation8.html){:data-term=".term1"}{:data-port="80"} ↗️ some events like the following, where a photon (with no mass and thus made of pure energy), after colliding with an atom, transfers all its momentum to the creation of two particles: an electron and anti-electron (positron). ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcex54zkp3j31240bm3z0.jpg)
 
 That is: energy (*E*) gets converted into matter (*m*), following the famous Einstein equation: *E=m·c·c*, where *c* is the speed of light. This process is known as ***pair production***. 
 
@@ -306,4 +307,4 @@ That is: energy (*E*) gets converted into matter (*m*), following the famous Ein
 
 ## Final words
 
-Now it's time for you to play with your own simulations. This includes other materials, energies, particles, etc. As stated above, you can also increase the number of particles, but we suggest you keep this number below 100. This lab is based on the [article](https://iopscience.iop.org/article/10.1088/1361-6404/ab5011) *X-ray imaging virtual online laboratory for engineering undergraduates* (by Alberto Corbi, Daniel Burgos, Frank Vidal, Francisco Albiol and Alberto Albiol) and it has been carried out with success in the first semesters of the Computing Science degree at Universidad Internacional de La Rioja ([UNIR](https://www.unir.net)). 
+Now it's time for you to play with your own simulations. This includes other materials, energies, particles, etc. As stated above, you can also increase the number of particles, but we suggest you keep this number below 100. This lab is based on the [article](https://iopscience.iop.org/article/10.1088/1361-6404/ab5011) *X-ray imaging virtual online laboratory for engineering undergraduates* (by [Alberto Corbi](http://twitter.com/albertcorbi), [Daniel Burgos](http://www.danielburgos.eu), [Frank Vidal](https://www.bangor.ac.uk/computer-science-and-electronic-engineering/staff/franck-vidal/en), [Francisco Albiol](https://webific.ific.uv.es/web/en/content/albiol-colomer-francisco-javier) and [Alberto Albiol](http://www.upv.es/ficha-personal/alalbiol)) and it has been carried out with success in the first semesters of the [Computing Science degree](https://www.unir.net/ingenieria/grado-informatica/549200001509/) at the [School of Engineering](https://www.unir.net/ingenieria/) of Universidad Internacional de La Rioja ([UNIR](https://www.unir.net)).
