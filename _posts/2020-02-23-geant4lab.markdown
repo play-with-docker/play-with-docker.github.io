@@ -126,7 +126,7 @@ compt:   for  gamma    SubType= 13  BuildTable= 1
 …
 ```
 
-This is Geant4 telling you all the calculations it has had to carry out for you in behind the scenes in order to generate a final (and mor intuitive) file called `simulation.wrl` (default name). It is now time to launch a **simple web server** that will let us download or view the results:
+This is Geant4 telling you all the calculations it has had to carry out for you in behind the scenes in order to generate a final (and more intuitive) file called `simulation.wrl` (default name). It is now time to launch a **simple web server** that will let us download or view the results:
 
 ```.term1
 python -m SimpleHTTPServer 80 > /dev/null 2>&1 &
@@ -301,7 +301,7 @@ docker run -v ${PWD}:/root pammacdotnet/g4lpwd --type=gamma --material=G4_WATER 
 
 You [will see](/simulation8.html){:data-term=".term1"}{:data-port="80"} ↗️ some events like the following, where a photon (with no mass and thus made of pure energy), after colliding with an atom, transfers all its momentum to the creation of two particles: an electron and anti-electron (positron). ![](https://tva1.sinaimg.cn/large/00831rSTgy1gcex54zkp3j31240bm3z0.jpg)
 
-That is: energy (*E*) gets converted into matter (*m*), following the famous Einstein equation: *E=m·c·c*, where *c* is the speed of light. This process is known as ***pair production***. 
+That is: energy (*E*) is eventually converted into matter (*m*), following the famous Einstein equation: *E=m·c·c*, where *c* is the speed of light. This process is known as ***pair production***. 
 
 
 
