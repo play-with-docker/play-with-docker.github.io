@@ -47,8 +47,9 @@ vi /etc/docker/docker
 DOCKER_OPTS="--insecure-registry 127.0.0.1:5000"
 ```
 Close and save the file, then restart the docker daemon.
-```
-service docker restart
+```.term1
+pkill dockerd
+dockerd > /dev/null 2>&1 &
 ```
 
 *** If you're running on your own Mac or Windows machine instead of in this browser window ***
