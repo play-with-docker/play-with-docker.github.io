@@ -2,17 +2,23 @@ version: '3'
 
 services:
 
-  jekyll:
-    image: jekyll/jekyll:3
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile.build
     volumes:
       - ./:/srv/jekyll
     ports:
       - 4000:4000
-    command: ["jekyll", "serve"]
+    command: ["jekyll", "serve", "-d", "./docs"]
 
-#This service is just for building the site
   build:
-    image: jekyll/jekyll:3
+    build:
+      context: .
+      dockerfile: Dockerfile.build
     volumes:
       - ./:/srv/jekyll
-    command: ""
+    ports:
+      - 4000:4000
+    command: ["jekyll", "build", "-d", "./docs"]
+

@@ -41,6 +41,14 @@ $on-laptop:        800px;
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "layout",
+        "post-layout",
+        "menu-include",
+        "congratz-include",
+        "quiz",
+        "form",
         "component/tag",
-        "custom"
+        "progress-bar",
+        "custom",
+        "feedback-modal",
+        "feedback-footer"
 ;

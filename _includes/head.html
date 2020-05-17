@@ -1,20 +1,20 @@
 <head>
-<title>{{ page.title | default: 'Play with Docker Classroom' }}</title>
+<title>{{ page.title | default: 'Docker birthday party!' }}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="{{ page.title | default: 'Play With Docker Classroom' }}" />
-<meta name="twitter:description" content="{{ page.description | default: 'Learn docker through online trainings in training.play-with-docker.com' }}" />
-<meta name="twitter:image" content="{{ page.img | default: 'https://training.play-with-docker.com/images/simple-logo.png' }}" />
+<meta name="twitter:title" content="{{ page.title | default: 'Docker birthday challenge' }}" />
+<meta name="twitter:description" content="{{ page.description | default: 'Docker 7th birthday celebration! Join birthday.play-with-docker.com to earn a special badge' }}" />
+<meta name="twitter:image" content="{{site.url}}/images/meta-image.png"/>
 
   
 {% comment %}
 {% seo %}
 {% endcomment %}
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
 <style>
@@ -25,6 +25,7 @@
 </style>  
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">  
 <link rel="stylesheet" href="{{site.baseurl}}/css/quiz.css">
 </head>

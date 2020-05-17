@@ -1,89 +1,132 @@
-$(document).ready(function () {
-    var questions = {};
-    if ($('p.quiz').length == 0) {
-        return;
-    }
-    $('.post-content').append('<div id="quiz" class="carousel slide" data-interval="0" data-ride="carousel"><ol class="carousel-indicators"></ol><div class="carousel-inner" role="listbox"></div><a class="left carousel-control" href="#quiz" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#quiz" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>');
-    var items = $('.carousel-inner');
+---
+---
+const $content = $(".post-content");
+const answerElementToData = el => {
+  const $el = $(el);
+  const originalText = $el.text();
+  const type = $el.find("input[type=checkbox]").length
+    ? "checkbox"
+    : originalText.startsWith("(")
+    ? "radio"
+    : null;
 
-    $('p.quiz').each(function(index) {
-        var $this = $(this);
-        var options = $this.next();
+  const isCorrect =
+    (type == "checkbox" &&
+      $(el).find("input[type=checkbox]:checked").length &&
+      true) ||
+    (type == "radio" && originalText.startsWith("(x)"));
 
-        if (!options.is('ul')) {
-            return;
+  const text = type == "radio" ? originalText.substr(4) : originalText;
+
+  return { type, isCorrect, text };
+};
+
+const quizMarkupToData = () => {
+  const $questions = $content.find(".quiz");
+  return $questions
+    .map((index, element) => {
+      const $question = $(element);
+      const questionText = $question.text();
+      const answers = $question
+        .next()
+        .find("li")
+        .map((i, el) => answerElementToData(el))
+        .toArray();
+      return {
+        questionText,
+        answers
+      };
+    })
+    .toArray();
+};
+
+const emptyQuiz = () => {
+  const $currentQuizElements = $(".quiz");
+  $currentQuizElements.first().before("<form class='new-quiz' />");
+  $currentQuizElements.next().remove();
+  $currentQuizElements.remove();
+  return $(".new-quiz");
+};
+
+const generateQuestionCardHTML = (question, index) => {
+  // console.log(question)
+  return `
+    <div class="question-card">
+      <h5 class="question-number">Question ${index}</h5>
+      <h4 class="question-title">${question.questionText}</h4>
+
+        <ul class="question-answers">
+          ${question.answers
+            .map(
+              a => `
+            <li class="question-answers-item" data-is-correct="${a.isCorrect}">
+              <label class="question-answers-item-fieldset">
+                <input name="question ${index}" value="${a.text}" type="${
+                a.type
+              }" class="question-answers-input"/>
+                <span class="question-answers-text">
+                ${a.text}
+                </span>
+              </label>
+            </li>
+          `
+            )
+            .join("")}
+        </ul>
+    </div>
+  `;
+};
+
+const appendQuestionToQuiz = question => {
+  return ``;
+};
+
+$(() => {
+  const quizData = quizMarkupToData();
+  const $newQuiz = emptyQuiz();
+
+  $newQuiz.append(
+    `<h4 class="new-quiz-title">Please answer the following questions.</h4>`
+  );
+
+  quizData.forEach((question, index) => {
+    const questionHTML = generateQuestionCardHTML(question, index);
+    $newQuiz.append(questionHTML);
+  });
+
+  $newQuiz.append(
+    `<div class="quiz-footer">
+      <button class="text-btn submit-questions" type="submit">SUBMIT QUESTIONS</button>
+      <button class="submit-btn finish-quiz" disabled>FINISH LAB</button>
+    </div>`
+  );
+
+  $newQuiz.find(".finish-quiz").click(() => {
+    const userId = localStorage.getItem("user_id");
+
+    // If there's a badge, claim it!
+    if (userId && badgeId) {
+      fetch("{{site.badge_api_url}}/api/user/" + userId + "/badges" , {method: 'POST', body:"badgeId=" + badgeId, headers: {'Content-type': 'application/x-www-form-urlencoded'}}).then(function(res) {
+        if (res.status == 200) {
+          $("#congratz-modal").modal();
+          ga('send', 'event', 'Quiz', 'end');
         }
-
-        var question = $(this).text();
-        $this.wrap('<div class="item"><div class="container"><div class="carousel-caption"><h1>' + question + '</h1><div class="form-group" id="question' + index + '"></div></div></div></div>');
-        var formGroup = $('#question' + index);
-
-        $this.remove();
-
-        var question = {expected: 0, correct: 0, wrong: 0};
-
-        questions['question'+index] = question;
-        options.find('li').each(function() {
-            $this = $(this);
-            var text = $this.text().trim();
-            $this.text = '';
-            if (text.startsWith('[ ]')) {
-                formGroup.append('<div class="checkbox"><label class="control-label"><input type="checkbox" class="form-control-sm possible-answer" data-question="question' + index + '" data-answer="false" name="question-' + index + '">' + text.replace(/^\[ \]/, '') + '</label></div>');
-            }
-            if (text.startsWith('[x]')) {
-                question.expected++;
-                formGroup.append('<div class="checkbox"><label class="control-label"><input type="checkbox" class="form-control-sm possible-answer" data-question="question' + index + '" data-answer="true" name="question-' + index + '"> ' + text.replace(/^\[x\]/, '') + '</label></div>');
-            }
-            if (text.startsWith('( )')) {
-                formGroup.append('<div class="radio"><label class="control-label"><input type="radio" class="form-control-sm possible-answer" data-question="question' + index + '" data-answer="false" name="question-' + index + '">' + text.replace(/^\( \)/, '') + '</label></div>');
-            }
-            if (text.startsWith('(x)')) {
-                question.expected++;
-                formGroup.append('<div class="radio"><label class="control-label"><input type="radio" class="form-control-sm possible-answer" data-question="question' + index + '" data-answer="true" name="question-' + index + '"> ' + text.replace(/^\(x\)/, '') + '</label></div>');
-            }
-        });
-        options.remove();
-        $('.carousel-indicators').append('<li data-target="#quiz" data-slide-to="' + index + '"></li>');
-    });
-    $('.item').appendTo('.carousel-inner');
-    $('.item').first().addClass('active');
-    $('.item .carousel-caption').last().append('<p><br/><a class="btn btn-lg btn-primary submit-quiz" href="#" role="button">Submit your answers</p>');
-    $('ol.carousel-indicators li').first().addClass('active');
-
-    $('a.submit-quiz').click(validateQuiz);
-
-
-    function validateQuiz() {
-        $('input.possible-answer').each(function(i, o) {
-            var self = $(this);
-            if (o.checked && self.attr('data-answer') == 'false') {
-                self.parent().parent().addClass('quiz-error');
-                questions[self.attr('data-question')].wrong++;
-            } else if (o.checked && self.attr('data-answer') == 'true') {
-                questions[self.attr('data-question')].correct++;
-            }
-            if (self.attr('data-answer') == 'true') {
-                self.parent().parent().addClass('quiz-success');
-            }
-            self.prop('disabled', true);
-        });
-
-        var result = {correct: 0, total: 0};
-
-        for (var i in questions) {
-            var q = questions[i];
-
-            result.total++;
-            if (q.wrong == 0 && q.correct == q.expected) {
-                result.correct++;
-            }
-        }
-
-        var title = $('.post-title').text();
-        var hashtags = 'dockerbday';
-        var text = encodeURIComponent('I\'ve just completed the docker birthday tutorial ' + title + ' and got ' + result.correct + ' out of ' + result.total);
-
-        $('a.submit-quiz').replaceWith('<h3>You\'ve got ' + result.correct + ' out of ' + result.total + '</h3><a class="twitter-share-button" href="https://twitter.com/intent/tweet?hashtags=' + hashtags + '&text=' + text + '" data-size="large">Tweet</a>');
-        $.getScript('//platform.twitter.com/widgets.js');
+      }).catch(console.error);
     }
+  });
+
+  $('#congratz-modal').on('hidden.bs.modal', function () {
+    window.location = 'https://www.docker.com/birthday';
+  })
+
+  $newQuiz.submit(e => {
+    ga('send', 'event', 'Quiz', 'start');
+    e.preventDefault();
+    $newQuiz.addClass("show-answers");
+    const dataToSend = $(e.target).serializeArray();
+
+    $newQuiz.find(".finish-quiz").prop("disabled", false);
+    $newQuiz.find(".submit-questions").prop("disabled", true);
+    $newQuiz.find('input[type="radio"],input[type="checkbox"]').prop("disabled", true);
+  });
 });

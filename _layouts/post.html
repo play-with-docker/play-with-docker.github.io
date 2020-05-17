@@ -2,83 +2,115 @@
 layout: default
 ---
 
-{% assign terms = page.terms | default: 1 %}
+{% assign terms = page.terms | default: 1 %} {% assign badge_image =
+page.badge_image | default: "success.png" %}
+<div class="progress-bar"></div>
 <div class="panel-container">
-    {% if terms > 0 %}
-    <div class="panel-left content">
+  <div class="menu-panel">
+    {% include menu.html %}
+  </div>
+
+  {% if terms > 0 %}
+  <div class="panel-left content">
     {% else %}
     <div class="content panel-singular">
-    {% endif %}
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      {% endif %}
 
-            <header class="post-header">
-                <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-                <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
-
-            </header>
-
-            <div class="post-content" itemprop="articleBody">
-                {{ content }}
-            </div>
-        </article>
-        {% include social-share.html %}
+      <div
+        class="panel-nav index-and-nav"
+        style="padding: 11px 0 0 15px; color: #0d9cec; margin-bottom: 10px;"
+      >
+        <div class="course-index-button">
+          <i class="menu-button fa fa-bars fa-2x pull-left"></i>
+          <h4 style="line-height: 30px;" class="course-index-bttn-text">
+            Course Index
+          </h4>
+        </div>
+        <div class="pagination-buttons">
+          <a class="paginator-prev" data-paginator="main">&lt; Prev</a>
+          <span class="paginator-indicator" data-paginator="main">-</span>
+          <a class="paginator-next" data-paginator="main">Next &gt;</a>
+        </div>
+      </div>
+      <article
+        class="post content"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header class="post-header">
+          <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+        </header>
+        <div class="post-content" itemprop="articleBody">
+          {{ content }}
+        </div>
+      </article>
     </div>
 
     {% if terms > 0 %}
-    <div class="splitter">
-    </div>
-
     <div class="panel-right">
-        <span class="resize-warning">If the commandline doesn't appear in the terminal, make sure popups are enabled or try resizing the browser window.</span>
-        {% for i in (1..terms) %}
-        <div class="term{{i}}"></div>
-        {% endfor %}
+      <div class="panel-nav">
+        <i class="expand-button fa fa-expand pull-right"></i>
+        <ul class="nav nav-tabs">
+          {% for i in (1..terms) %}
+          <li class="nav-item">
+            <a
+              class="nav-link {% if forloop.first %}active{% endif %}"
+              id="term{{i}}-tab"
+              data-toggle="tab"
+              href="#term{{i}}"
+              role="tab"
+              aria-controls="term{{i}}"
+              aria-selected="true"
+              >T.{{i}}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="twrapper">
+        <div class="splitter"></div>
+        <div class="tab-content" id="myTabContent">
+          {% for i in (1..terms) %}
+          <div
+            class="tab-pane show term{{i}} {% if forloop.first %}active{% endif %}"
+            id="term{{i}}"
+            role="tabpanel"
+            aria-labelledby="term{{i}}-tab"
+          ></div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    {% endif  %}
-
-</div>
-
-<script>
-    (function() {
-        var font3 = document.createElement('link');
-        font3.type = 'text/css';
-        font3.rel = 'stylesheet';
-        font3.href = '{{site.baseurl}}/css/syntax-highlighting.css';
-        var q = document.getElementsByTagName('link')[0];
-        q.parentNode.insertBefore(font3, q);
-    })();
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
-<script src="https://cdn.rawgit.com/play-with-docker/sdk/74a853bbc404ce08c091a4b2c6f1de52df0da933/dist/pwd.js"></script>
-<script src="{{site.baseurl}}/js/quiz.js"></script>
-<script>
-    var siteUrl = "{{ site.url }}"
-      {% if site.url == 'https://training.play-with-docker.com' %}
-      if ((window.location.protocol + '//' + window.location.hostname) == siteUrl) {
-      pwd.on('init', function() {
-      pwd.getUserInfo(function(pwduser){
-        user = pwduser;
-          if(user !== undefined){
-              analytics.identify(user.provider_user_id,{"email":user.email});
-              } else {
-                  analytics.identify();
-                  }
-      });
-    });
-      } else {
-          console.log('In _config.yml, the site url does not match the url you are serving from, so no analytics were pushed.')
-      }
     {% endif %}
-    pwd.newSession([{selector: '.term1'}, {selector: '.term2'}, {selector: '.term3'}], {baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}'});
-    $(".panel-left").resizable({
-        handleSelector: ".splitter",
-        resizeHeight: false,
-        onDragEnd: pwd.resize.bind(pwd)
-    });
-    window.onbeforeunload = function(e) {
-        navigator.sendBeacon("{{site.pwdurl}}/sessions/" + pwd.sessionId + "/close");
-        return;
-    }
+  </div>
 
-</script>
+  <script>
+    var imageName = "{{page.image}}";
+    var badgeId = "{{page.badge_id}}";
+    (function () {
+      var font3 = document.createElement("link");
+      font3.type = "text/css";
+      font3.rel = "stylesheet";
+      font3.href = "{{site.baseurl}}/css/syntax-highlighting.css";
+      var q = document.getElementsByTagName("link")[0];
+      q.parentNode.insertBefore(font3, q);
+    })();
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+  <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
+  <script src="https://cdn.rawgit.com/play-with-docker/sdk/74a853bbc404ce08c091a4b2c6f1de52df0da933/dist/pwd.js"></script>
+  <script src="{{site.baseurl}}/js/quiz.js"></script>
+  <script src="{{site.baseurl}}/js/paginate.js"></script>
+  {% if terms > 0 %}
+  <script src="{{site.baseurl}}/js/post-layout.js"></script>
+  <script src="{{site.baseurl}}/js/progress-bar.js"></script>
+  <script src="{{site.baseurl}}/js/import-file.js"></script>
+  <script src="{{site.baseurl}}/js/zoom.js"></script>
+  {% endif %}
+  <script src="{{site.baseurl}}/js/menu.js"></script>
+  <script src="{{site.baseurl}}/js/feedback-footer.js"></script>
+  <script src="{{site.baseurl}}/js/dark-mode.js"></script>
+  <script src="{{site.baseurl}}/js/exit-warning.js"></script>
+  {% include congratulations.html %}
+</div>

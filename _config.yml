@@ -6,19 +6,19 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: "Play with Docker classroom"
+title: "Docker birthday"
 email: 
 description: > # this means to ignore newlines until "baseurl:"
-  Play with docker tutorials
+  Docker birthday
   
 baseurl: # the subpath of your site, e.g. /blog
-url: "https://training.play-with-docker.com" # the base hostname & protocol for your site
+url: "https://birthday.play-with-docker.com" # the base hostname & protocol for your site
 
 #sidebar
 default-image: docker-logo.svg # If there is no featured image in a post then this image will be showed. Also on all pages this image will be showed. Use a 500x250 image.
 
 #footer
-built-by: PWD Team
+built-by: Docker Inc.
 copyright:
    name: Docker, Inc.
    link: 'https://docker.com'
@@ -28,9 +28,12 @@ markdown: kramdown
 permalink: /:title/
 paginate: 6
 paginate_path: /page:num/
+toc:
+  min_level: 1
+  max_level: 2
 
 # Tracker
-analytics: UA-89019737-1
+analytics: UA-89019737-3
 
 
 #social
@@ -50,11 +53,14 @@ sass:
   style: compressed
 
 # Gems
-gems: [jekyll-paginate]
+gems: [jekyll-paginate, jekyll-toc]
 
 # Plugins
 plugins_dir:
   - jekyll-paginate
+  - jekyll-toc
 
+  
 # Play with Docker
 pwdurl: https://labs.play-with-docker.com
+badge_api_url: https://birthday.lach.dev
