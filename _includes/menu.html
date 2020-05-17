@@ -1,0 +1,84 @@
+<div class="menu-container">
+  <h3 class="menu-title">
+    {{ page.title }}
+  </h3>
+
+  <div class="toc-menu-container">
+    {% toc %}
+  </div>
+
+  <div class="menu-extra-options">
+    <a id="help" class="menu-extra-options-option">
+      <i class="fa fa-question-circle" aria-hidden="true"></i>
+      ¿Need Help?
+    </a>
+    <a class="menu-extra-options-option show-wizard">
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+      Show wizard
+    </a>
+  </div>
+</div>
+
+<!-- Help -->
+<div
+  class="modal fade"
+  id="helpModal"
+  tabindex="-2"
+  role="dialog"
+  aria-labelledby="helpModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content feedback-modal-content">
+      <div class="modal-body feedback-modal-body">
+        <h5 class="feedback-title">
+          Report an Issue.
+        </h5>
+        <p class="feedback-text">
+          ¿Having technical problems or want to give feedback on the experience?
+          Send us you message and we will get back to you as soon as possible.
+        </p>
+        <textarea
+          class="form-control feedback-textarea"
+          placeholder="Your message here.."
+          name=""
+          id="helpMessage"
+          rows="2"
+          cols="40"
+          required
+        ></textarea>
+        <div class="row">
+          <div class="col-sm">
+            <button
+              type="button"
+              data-dismiss="modal"
+              class="btn btn-link close-button"
+            >
+              CLOSE
+            </button>
+          </div>
+          <div class="col-sm">
+            <button
+              type="button"
+              id="sendHelp"
+              class="btn btn-primary float-right send-button"
+              disabled
+            >
+              SEND
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="feedback-modal-footer">
+        <h6 class="feedback-modal-footer-title">Questions on the lab material?</h6>
+        <p class="feedback-modal-footer-text">
+          Go to the
+          <a href="https://forums.docker.com" target="_blank">
+            Docker forum
+          </a>
+          , Docker community is there for you.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

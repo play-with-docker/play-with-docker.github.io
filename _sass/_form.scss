@@ -1,0 +1,20 @@
+.submit-btn {
+  padding: 12px 16px;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--btn-color);
+  color: white;
+
+  &:disabled {
+    color: var(--font-color);
+    background-color: var(--disabled-bgcolor);
+  }
+}
+
+.text-btn {
+  @extend .submit-btn;
+  background-color: transparent;
+  color: var(--btn-color);
+}

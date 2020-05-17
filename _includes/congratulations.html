@@ -1,0 +1,44 @@
+<div
+  class="modal fade"
+  id="congratz-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="{{ site.baseurl }}/images/{{ badge_image }}" />
+        <h2 class="post-title">
+          Congratulations!
+        </h2>
+        <p class="congratz-text">
+          Congratulations! You've earned a badge for completing this exercise. Share your achievement on your social network and then select CLOSE to return to the 7th Birthday Challenge page.
+        </p>
+        <div class="congratz-footer">
+          <button type="button" class="text-btn" data-dismiss="modal">
+            CLOSE
+          </button>
+          <div class="share">
+            <p class="share-text">Share your archievements</p>
+            <a
+              href="http://twitter.com/share?url={{ page.url  | absolute_url }}&text=%23myDockerBday%20challenge%20accepted%21%20I%20earned%20the%20badge%20for%20the%20lab%20{{page.title | uri_escape }}&hashtahs=docker,docker,dockerbday"
+              class="share-link"
+              target="_blank"
+            >
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u={{ page.url  | absolute_url }}&quote=%23myDockerBday%20challenge%20accepted%21%20I%20earned%20the%20badge%20for%20the%20lab%20{{page.title | uri_escape }}"
+              class="share-link"
+              target="_blank"
+            >
+              <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

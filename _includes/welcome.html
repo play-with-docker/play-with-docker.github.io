@@ -1,0 +1,85 @@
+<!-- Welcome -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="tab-content" id="welcomeContent">
+          <div class="tab-pane fade show active" id="welcome" role="tabpanel" aria-labelledby="welcome-tab">
+            <img src="{{site.baseurl}}/images/welcome.png"/>
+            <h2>Welcome to Docker Labs.</h2>
+            <p>First time here? Take a short tour through Labs platform and learn how to use the new features.</p>
+          </div>
+          <div class="tab-pane fade" id="index" role="tabpanel" aria-labelledby="index-tab">
+            <img src="{{site.baseurl}}/images/index.png"/>
+            <h2>Course index.</h2>
+            <p>You will find the Lab’s content index on the menu. Also, look for the option "help" in the menu if you experience any problem, want to send us feedback or just need advice from your peers.</p>
+          </div>
+          <div class="tab-pane fade" id="dark" role="tabpanel" aria-labelledby="dark-tab">
+            <img src="{{site.baseurl}}/images/dark.png"/>
+            <h2>Dark mode and text size.</h2>
+            <p>On the upper right corner, you will find the dark mode switch and the option to change the font size. Also, you will see the icon to import files from your local computer.</p>
+          </div>
+          <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
+            <img src="{{site.baseurl}}/images/progress.png"/>
+            <h2>Lab progress.</h2>
+            <p>You will see you Lab’s progress on a green bar, located on the top left side of your window.</p>
+          </div>
+          <div class="tab-pane fade" id="terminal" role="tabpanel" aria-labelledby="terminal-tab">
+            <img src="{{site.baseurl}}/images/terminal.png"/>
+            <h2>Full screen terminal.</h2>
+            <p>You'll be able to maximize your terminal by clicking on the icon you have on the upper right side.</p>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <button type="button" data-dismiss="modal"  class="btn btn-link">Skip</button>
+            </div>
+            <div class="col-sm my-auto">
+              <ul class="nav pagination justify-content-center" id="myTab" role="tablist">
+                <li class="page-item">
+                  <a class="page-link active" id="welcome-tab" data-toggle="tab" href="#welcome" role="tab" aria-controls="welcome" aria-selected="true"></a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" id="index-tab" data-toggle="tab" href="#index" role="tab" aria-controls="index" aria-selected="false"></a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" id="dark-tab" data-toggle="tab" href="#dark" role="tab" aria-controls="dark" aria-selected="false"></a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" id="progress-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="progress" aria-selected="false"></a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" id="terminal-tab" data-toggle="tab" href="#terminal" role="tab" aria-controls="terminal" aria-selected="false"></a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm">
+              <button type="button" id="welcomeNext" class="btn btn-primary float-right">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  if (localStorage.getItem("skipTutorial") === null) {
+    //ga('send', 'event', 'Welcome', 'skip-wizard');
+    //$('#welcomeModal').modal();
+  }
+  $('#welcomeModal').on('hidden.bs.modal', function (e) {
+    //ga('send', 'event', 'Welcome', 'skip-wizard');
+    localStorage.setItem("skipTutorial", true);
+  })
+  $('#welcomeNext').click(function() {
+    let next = $('.page-item .page-link.active').parent().next().find('a');
+    if (next.length) {
+      next.click();
+    } else {
+      $('#welcomeModal').modal('hide');
+    }
+  });
+</script>
+

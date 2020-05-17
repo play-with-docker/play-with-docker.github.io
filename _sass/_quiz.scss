@@ -1,0 +1,104 @@
+// hide old quiz
+
+.quiz, .quiz + * {
+  display: none;
+}
+
+.new-quiz {
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+
+.new-quiz-title {
+  color: var(--titles-color);
+  font-size: 24px;
+  line-height: 1.6;
+}
+
+.question-card {
+  padding: 24px;
+  background-color: var(--card-bgcolor);
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.question-number {
+  font-size: 14px;
+  color: var(--font-color);
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  font-family: "Open Sans", sans-serif;
+}
+.question-title {
+  color: var(--titles-color);
+  font-weight: normal;
+  line-height: 24px;
+  font-size: 18px;
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+}
+
+.question-answers {
+  margin-top: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.question-answers-item {
+  margin-top: 16px;
+
+  .show-answers &[data-is-correct="true"] {
+    .question-answers-item-fieldset{
+      color: var(--right-color);
+      
+      .question-answers-input:checked{
+        display: none;
+        + :before{
+          color: var(--right-color);
+          content: "\f00c";
+          display: inline-block;
+          width: 20px;
+          font: normal normal normal 16px/1 FontAwesome;
+        }
+      }
+    }
+  }
+
+  .show-answers &[data-is-correct="false"] {
+    .question-answers-item-fieldset{
+      
+      .question-answers-input:checked{
+        display: none;
+        + .question-answers-text{
+          color: var(--wrong-color);
+        }
+        + :before{
+          display: inline-block;
+          width: 20px;
+          color: var(--wrong-color);
+          content: "\f00d";
+          font: normal normal normal 16px/1 FontAwesome;
+        }
+      }
+    }
+  }
+}
+
+.question-answers-item-fieldset {
+  margin: 0;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  color: var(--titles-color);
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+}
+.question-answers-input {
+  margin-right: 10px;
+}
+
+.quiz-footer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
