@@ -745,6 +745,8 @@ docker exec -it yourcontainerid /bin/bash
 ```
 ```.term1
 cat /etc/resolv.conf
+```
+```
 search ivaf2i2atqouppoxund0tvddsa.jx.internal.cloudapp.net
 nameserver 127.0.0.11
 options ndots:0
