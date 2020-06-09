@@ -50,7 +50,7 @@ docker container inspect c1
 Or we can directly use the Go template notation and get the content of the **GraphDriver** keys right away.
 
 ```.term1
-docker container inspect -f "{{ "{{ json .GraphDriver "}}}}" c1 | python -m json.tool
+docker container inspect -f "{{ "{{ json .GraphDriver "}}}}" c1 | jq
 ```
 
 You should then get an output like the following (the ID will not be the same though)
@@ -140,7 +140,7 @@ docker container inspect c2
 Or we can directly use the Go template notation and get the content of the **Mounts** keys right away.
 
 ```.term1
-docker container inspect -f "{{ "{{ json .Mounts "}}}}"  c2 | python -m json.tool
+docker container inspect -f "{{ "{{ json .Mounts "}}}}"  c2 | jq
 ```
 
 You should then get an output like the following (the ID will not be the same though)
@@ -194,7 +194,7 @@ docker container run --name c3 -d -v /data alpine sh -c 'ping 8.8.8.8 > /data/pi
 Let's inspect the container and get the **Mounts** key using the Go template notation.
 
 ```.term1
-docker container inspect -f "{{ "{{ json .Mounts "}}}}" c3 | python -m json.tool
+docker container inspect -f "{{ "{{ json .Mounts "}}}}" c3 | jq
 ```
 
 We have pretty much the same output as we had when we defined the volume in the Dockerfile.
