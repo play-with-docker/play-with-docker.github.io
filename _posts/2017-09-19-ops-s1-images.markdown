@@ -48,7 +48,7 @@ To start, we need to get the ID of this container using the ls command (do not f
 docker container ls -a
 ```
 
-Before we create our own image, we might want to inspect all the changes we made. Try typing the command `docker container diff <container ID>` for the container you just created. You should see a list of all the files that were added or changed to in the container when you installed figlet. Docker keeps track of all of this information for us. This is part of the *layer* concept we will explore in a few minutes.
+Before we create our own image, we might want to inspect all the changes we made. Try typing the command `docker container diff <container ID>` for the container you just created. You should see a list of all the files that were added to or changed in the container when you installed figlet. Docker keeps track of all of this information for us. This is part of the *layer* concept we will explore in a few minutes.
 
 Now, to create an image we need to "commit" this container. Commit creates an image locally on the system running the Docker engine. Run the following command, using the container ID you retrieved, in order to commit the container and create an image out of it.
 
