@@ -129,7 +129,7 @@ compt:   for  gamma    SubType= 13  BuildTable= 1
 This is Geant4 telling you all the calculations it has had to carry out for you in behind the scenes in order to generate a final (and more intuitive) file called `simulation.wrl` (default name). It is now time to launch a **simple web server** that will let us download or view the results:
 
 ```.term1
-python -m SimpleHTTPServer 80 > /dev/null 2>&1 &
+python3 -m http.server 80 > /dev/null 2>&1 &
 ```
 
 By using the `&` symbol we state we want the web server to run in the background and with the expression  `> /dev/null 2>&1` we guarantee that its output won't bother us. Once started, the previous file can be downloaded from [here](/simulation.wrl){:data-term=".term1"}{:data-port="80"} ⬇️. It'll take some time because a VRLM file can be quite big. 
