@@ -114,7 +114,7 @@ This current permission `-rw-r--r--` indicates that the script is not set to be 
 We can either change it by running `chmod a+x linkextractor.py` or run it as a Python program instead of a self-executing script as illustrated below:
 
 ```.term1
-python linkextractor.py
+python3 linkextractor.py
 ```
 
 ```py
@@ -336,7 +336,7 @@ Now, let's build a new image and see these changes in effect:
 docker image build -t linkextractor:step2 .
 ```
 
-We have used a new tag `linkextractor:step2` for this image so that we don't overwrite the image from the `step0` to illustrate that they can co-exist and containers can be run using either of these images.
+We have used a new tag `linkextractor:step2` for this image so that we don't overwrite the image from the `step1` to illustrate that they can co-exist and containers can be run using either of these images.
 
 ```.term1
 docker image ls
@@ -583,7 +583,7 @@ In this step the following changes have been made since the last step:
 In this step we are planning to run two separate containers, one for the API and the other for the web interface.
 The latter needs a way to talk to the API server.
 For the two containers to be able to talk to each other, we can either map their ports on the host machine and use that for request routing or we can place the containers in a single private network and access directly.
-Docker has an excellent support of networking and provides helpful commands to deal with networks.
+Docker has excellent support for networking and provides helpful commands for dealing with networks.
 Additionally, in a Docker network containers identify themselves using their names as hostnames to avoid hunting for their IP addresses in the private network.
 However, we are not going to do any of this manually, instead we will be using Docker Compose to automate many of these tasks.
 
@@ -1133,7 +1133,7 @@ It is left for you as an assignment to deploy this application in a Docker Swarm
 
 ## Conclusions
 
-We started this tutorial with a simple Python script that scrapes links from a give web page URL.
+We started this tutorial with a simple Python script that scrapes links from a given web page URL.
 We demonstrated various difficulties in running the script.
 We then illustrated how easy to run and portable the script becomes onces it is containerized.
 In the later steps we gradually evolved the script into a multi-service application stack.
