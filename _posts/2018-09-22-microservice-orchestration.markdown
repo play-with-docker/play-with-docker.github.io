@@ -114,7 +114,7 @@ This current permission `-rw-r--r--` indicates that the script is not set to be 
 We can either change it by running `chmod a+x linkextractor.py` or run it as a Python program instead of a self-executing script as illustrated below:
 
 ```.term1
-python linkextractor.py
+python3 linkextractor.py
 ```
 
 ```py
