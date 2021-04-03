@@ -336,7 +336,7 @@ Now, let's build a new image and see these changes in effect:
 docker image build -t linkextractor:step2 .
 ```
 
-We have used a new tag `linkextractor:step2` for this image so that we don't overwrite the image from the `step0` to illustrate that they can co-exist and containers can be run using either of these images.
+We have used a new tag `linkextractor:step2` for this image so that we don't overwrite the image from the `step1` to illustrate that they can co-exist and containers can be run using either of these images.
 
 ```.term1
 docker image ls
