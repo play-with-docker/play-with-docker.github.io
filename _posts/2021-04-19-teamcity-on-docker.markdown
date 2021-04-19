@@ -128,7 +128,7 @@ docker pull jetbrains/teamcity-minimal-agent
 > **Note:** This image only provides minimal TeamCity Agent services. It is enough for this small example. Normally, you can use `jetbrains/teamcity-agent` on your own machine.
 
 Then, we can start a Docker container with TeamCity Agent which tries to connect with the TeamCity Server.
-```console
+```.term1
 docker run -it -d -e SERVER_URL="http://server:8111" --link server -u root -v /teamcity/agent:/teamcity_agent/conf jetbrains/teamcity-agent
 ```
 In this command:
