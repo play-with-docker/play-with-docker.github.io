@@ -13,7 +13,7 @@ terms: 1
 
 In this scenario, we will focus on how to run TeamCity on the docker container. It includes how to run docker images of teamcity server and agent, how to connect them, and how to build a project using teamcity on docker images. 
 
-This toturial might need a little bit long time, because we need time to pull images from Docker Hub repository.
+This tutorial might need a little bit long time, because we need time to pull images from Docker Hub repository.
 
 For preparation, create folders by these commands:
 
@@ -75,7 +75,7 @@ We keep the database type as default.
 
 <img src="../images/docker-teamcity-database-type.JPG" style="zoom:50%">
 
-Then, we accept the license agreement and continue to create administrator account. For this toturial, we enter name `admin` and password `admin`. 
+Then, we accept the license agreement and continue to create administrator account. For this tutorial, we enter name `admin` and password `admin`. 
 
 <img src="../images/docker-teamcity-create-account.JPG" style="zoom:50%">
 
@@ -84,7 +84,7 @@ Now, we can add a project and create build steps for it. By clicking on the `cre
 
 <img src="../images/docker-teamcity-main-page.JPG" style="zoom:50%">
 
-In this toturial, we want to use TeamCity to automatically compile a java file when we build the project. So, we create the project from a repository URL. I use a java hello world program from my github repository: https://github.com/Chen-Zidi/HelloWorld.git. Since it is a public repository, the username and password can be left empty. We just proceed. 
+In this tutorial, we want to use TeamCity to automatically compile a java file when we build the project. So, we create the project from a repository URL. I use a java hello world program from my github repository: https://github.com/Chen-Zidi/HelloWorld.git. Since it is a public repository, the username and password can be left empty. We just proceed. 
 
 <img src="../images/docker-teamcity-create-project.JPG" style="zoom:70%">
 
@@ -175,6 +175,6 @@ TeamCity can do far more than that. Explore yourself with different possibilitie
 
 ## Conclusion
 
-This toturial focuses on how to dockerize TeamCity Server and Agent, and create a small sample for building a project. 
+This tutorial focuses on how to dockerize TeamCity Server and Agent, and create a small sample for building a project. 
 
 Thanks for reading! ;)
