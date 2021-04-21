@@ -27,7 +27,7 @@ For an introduction to Docker specifically geared towards for sys admins and IT 
 ## Hands-on Learning
 Give Docker a try with these three beginning tutorials:
 
-* [Your First Linux Containers](/ops-s1-hello): In this lab you will explore the basics of running containers: pulling images from a registry, running an containerized application, and container instances and isolation.
+* [Your First Linux Containers](/ops-s1-hello): In this lab you will explore the basics of running containers: pulling images from a registry, running a containerized application, and container instances and isolation.
 
 * [Customizing Docker Images](/ops-s1-images): Move on to building your own custom Docker images and explore the Docker concept of image layers and the Dockerfile.
 
