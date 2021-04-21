@@ -8,9 +8,9 @@ categories:
 terms: 0
 ---
 
-This stage show you how to
+This stage shows you how to
 
-  * This stage show you how to incorporate Docker into your entire developer workflow.
+  * incorporate Docker into your entire developer workflow.
 
 ## Self-guided on desktop labs
 
@@ -20,7 +20,7 @@ This stage show you how to
     * [Java Development: Netbeans](/java-debugging-netbeans/)
     * [Live Debugging Node.js with Docker and Visual Studio Code](/nodejs-live-debugging/)
   * Windows Containers
-    * [Windows Container Setup](/windows-containers-setup/) Setup up your environment to work with Windows Containers
+    * [Windows Container Setup](/windows-containers-setup/) Set up your environment to work with Windows Containers
     * [Windows Container Basics](/windows-containers-basics/)
     * [Windows Containers Multi-Container Applications](/windows-containers-multicontainer/)
   
