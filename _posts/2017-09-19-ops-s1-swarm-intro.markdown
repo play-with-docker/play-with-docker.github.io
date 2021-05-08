@@ -14,7 +14,7 @@ So far we have explored using single instances of containers running on a single
 For real applications IT users and app teams need more sophisticated tools. Docker supplies two such tools: ***Docker Compose*** and ***Docker Swarm Mode***. The two tools have some similarities but some important differences:
 
 - **Compose** is used to control multiple containers on a single system. Much like the *Dockerfile* we looked at to build an image, there is a text file that describes the application: which images to use, how many instances, the network connections, etc. But *Compose* only runs on a single system so while it is useful, we are going to skip *Compose*<sup id="a1">[1](#fn-compose)</sup> and go straight to *Docker Swarm Mode*.
-- **Swarm Mode** tells Docker that you will be running many Docker engines and you want to coordinate operations across all of them. Swarm mode combines the ability to not only define the application architecture, like Compose, but to define and maintain high availability levels, scaling, load balancing, and more. With all this functionality, *Swarm mode* is used more often in production environments than it's more simplistic cousin, Compose.
+- **Swarm Mode** tells Docker that you will be running many Docker engines and you want to coordinate operations across all of them. Swarm mode combines the ability to not only define the application architecture, like Compose, but to define and maintain high availability levels, scaling, load balancing, and more. With all this functionality, *Swarm mode* is used more often in production environments than its more simplistic cousin, Compose.
 
 ## The application
 
