@@ -334,8 +334,8 @@ Profiles can contain more granular filters based on the value of the arguments t
     * SCMP_CMP_LT - less than
     * SCMP_CMP_LE - less than or equal to
     * SCMP_CMP_EQ - equal to
-    * SCMP_CMP_GE - greater than
-    * SCMP_CMP_GT - greater or equal to
+    * SCMP_CMP_GE - greater or equal to
+    * SCMP_CMP_GT - greater than
     * SCMP_CMP_MASKED_EQ - masked equal: true if `(value & arg == valueTwo)`
 * `value` is a parameter for the operation
 * `valueTwo` is used only for SCMP_CMP_MASKED_EQ
