@@ -58,3 +58,5 @@ plugins_dir:
 
 # Play with Docker
 pwdurl: https://labs.play-with-docker.com
+
+theme: jekyll-theme-cayman
