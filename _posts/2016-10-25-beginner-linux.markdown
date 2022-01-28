@@ -431,7 +431,7 @@ When you use a bind mount, a file or directory on the host machine is mounted in
     $DOCKERID/linux_tweet_app:1.0
     ```
 
-    > Remember from the Dockerfile, `usr/share/nginx/html` is where the html files are stored for the web app.
+    > Remember from the Dockerfile, `/usr/share/nginx/html` is where the html files are stored for the web app.
 
 2. The [website](/){:data-term=".term1"}{:data-port="80"} should be running.
 
