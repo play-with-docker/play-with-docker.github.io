@@ -1,0 +1,130 @@
+[node1] (local) root@192.168.0.13 ~
+$ docker container run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete
+Digest: sha256:aa0cc8055b82dc2509bed2e19b275c8f463506616377219d9642221ab53cf9fe
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+[node1] (local) root@192.168.0.13 ~
+$ docker image pull alpine
+Using default tag: latest
+latest: Pulling from library/alpine
+8921db27df28: Pull complete
+Digest: sha256:f271e74b17ced29b915d351685fd4644785c6d1559dd1f2d4189a5e851ef753a
+Status: Downloaded newer image for alpine:latest
+docker.io/library/alpine:latest
+[node1] (local) root@192.168.0.13 ~
+$ docker image ls
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+alpine        latest    042a816809aa   5 days ago      7.05MB
+hello-world   latest    feb5d9fea6a5   15 months ago   13.3kB
+[node1] (local) root@192.168.0.13 ~
+$ docker container run alpine ls -l
+total 8
+drwxr-xr-x    2 root     root          4096 Jan  9 12:46 bin
+drwxr-xr-x    5 root     root           340 Jan 15 13:03 dev
+drwxr-xr-x    1 root     root            66 Jan 15 13:03 etc
+drwxr-xr-x    2 root     root             6 Jan  9 12:46 home
+drwxr-xr-x    7 root     root           243 Jan  9 12:46 lib
+drwxr-xr-x    5 root     root            44 Jan  9 12:46 media
+drwxr-xr-x    2 root     root             6 Jan  9 12:46 mnt
+drwxr-xr-x    2 root     root             6 Jan  9 12:46 opt
+dr-xr-xr-x  903 root     root             0 Jan 15 13:03 proc
+drwx------    2 root     root             6 Jan  9 12:46 root
+drwxr-xr-x    2 root     root             6 Jan  9 12:46 run
+drwxr-xr-x    2 root     root          4096 Jan  9 12:46 sbin
+drwxr-xr-x    2 root     root             6 Jan  9 12:46 srv
+dr-xr-xr-x   13 root     root             0 Dec  7 20:11 sys
+drwxrwxrwt    2 root     root             6 Jan  9 12:46 tmp
+drwxr-xr-x    7 root     root            66 Jan  9 12:46 usr
+drwxr-xr-x   12 root     root           137 Jan  9 12:46 var
+[node1] (local) root@192.168.0.13 ~
+$ docker container run alpine echo "hello from alpine"
+hello from alpine
+[node1] (local) root@192.168.0.13 ~
+$ docker container run alpine /bin/sh
+[node1] (local) root@192.168.0.13 ~
+$  docker container run -it alpine /bin/sh
+/ # exit
+[node1] (local) root@192.168.0.13 ~
+$ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[node1] (local) root@192.168.0.13 ~
+$ docker container ls -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS                 PORTS     NAMES
+2aa1471a3e7e   alpine        "/bin/sh"                2 minutes ago   Exited (0)16 seconds ago             recursing_jepsen
+2d16247615c7   alpine        "/bin/sh"                2 minutes ago   Exited (0)2 minutes ago              gracious_black
+e41903ccfd1b   alpine        "echo 'hello from al…"   2 minutes ago   Exited (0)2 minutes ago              busy_agnesi
+d5910ec19f4b   alpine        "ls -l"                  2 minutes ago   Exited (0)2 minutes ago              gifted_merkle
+bdb24fc8242b   hello-world   "/hello"                 3 minutes ago   Exited (0)3 minutes ago              festive_elgamal
+[node1] (local) root@192.168.0.13 ~
+$ docker container run -it alpine /bin/ash
+/ # echo "hello world" > hello.txt
+/ # ls
+bin        hello.txt  media      proc       sbin       tmp
+dev        home       mnt        root       srv        usr
+etc        lib        opt        run        sys        var
+/ # exit
+[node1] (local) root@192.168.0.13 ~
+$ docker container run alpine ls
+bin
+dev
+etc
+home
+lib
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+[node1] (local) root@192.168.0.13 ~
+$ docker container ls -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS                          PORTS     NAMES
+445f89bc0af5   alpine        "ls"                     About a minute ago   Exited (0) About a minute ago             fervent_lamport
+ec5a82b650be   alpine        "/bin/ash"               3 minutes ago        Exited (0) About a minute ago             busy_cori
+2aa1471a3e7e   alpine        "/bin/sh"                6 minutes ago        Exited (0) 4 minutes ago                  recursing_jepsen
+2d16247615c7   alpine        "/bin/sh"                6 minutes ago        Exited (0) 6 minutes ago                  gracious_black
+e41903ccfd1b   alpine        "echo 'hello from al…"   7 minutes ago        Exited (0) 7 minutes ago                  busy_agnesi
+d5910ec19f4b   alpine        "ls -l"                  7 minutes ago        Exited (0) 7 minutes ago                  gifted_merkle
+bdb24fc8242b   hello-world   "/hello"                 8 minutes ago        Exited (0) 8 minutes ago                  festive_elgamal
+[node1] (local) root@192.168.0.13 ~
+$ docker container start <container ID>
+bash: syntax error near unexpected token `newline'
+[node1] (local) root@192.168.0.13 ~
+$ <container ID>
+bash: syntax error near unexpected token `newline'
+[node1] (local) root@192.168.0.13 ~
+$ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[node1] (local) root@192.168.0.13 ~
+$ docker container exec <container ID>ls
+bash: container: No such file or directory
