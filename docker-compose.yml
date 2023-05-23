@@ -1,5 +1,5 @@
 version: '3'
-
+docker pull ghcr.io/unity-technologies/kube_remediator:0.0.0
 services:
 
   jekyll:
