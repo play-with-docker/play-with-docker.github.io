@@ -78,7 +78,8 @@ layout: default
     });
     window.onbeforeunload = function(e) {
         navigator.sendBeacon("{{site.pwdurl}}/sessions/" + pwd.sessionId + "/close");
-        return;
+        e.preventDefault();
+        e.returnValue = 'Hi';
     }
 
 </script>
