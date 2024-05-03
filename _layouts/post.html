@@ -53,39 +53,39 @@ layout: default
             q.parentNode.insertBefore(font3, q);
         })();
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/dist/jquery-resizable.min.js"></script>
     <script
         src="https://cdn.rawgit.com/play-with-docker/sdk/74a853bbc404ce08c091a4b2c6f1de52df0da933/dist/pwd.js"></script>
     <script src="{{site.baseurl}}/js/quiz.js"></script>
     <script>
-        var siteUrl = "{{ site.url }}"
-        {% if site.url == 'https://training.play-with-docker.com' %}
-        if ((window.location.protocol + '//' + window.location.hostname) == siteUrl) {
-            pwd.on('init', function () {
-                pwd.getUserInfo(function (pwduser) {
-                    user = pwduser;
-                    if (user !== undefined) {
-                        analytics.identify(user.provider_user_id, { "email": user.email });
-                    } else {
-                        analytics.identify();
-                    }
+        addEventListener("load", (event) => {
+            var siteUrl = "{{ site.url }}"
+            {% if site.url == 'https://training.play-with-docker.com' %}
+            if ((window.location.protocol + '//' + window.location.hostname) == siteUrl) {
+                pwd.on('init', function () {
+                    pwd.getUserInfo(function (pwduser) {
+                        user = pwduser;
+                        if (user !== undefined) {
+                            analytics.identify(user.provider_user_id, { "email": user.email });
+                        } else {
+                            analytics.identify();
+                        }
+                    });
                 });
+            } else {
+                console.log('In _config.yml, the site url does not match the url you are serving from, so no analytics were pushed.')
+            }
+            {% endif %}
+            pwd.newSession([{ selector: '.term1' }, { selector: '.term2' }, { selector: '.term3' }], { baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}' });
+            $(".panel-left").resizable({
+                handleSelector: ".splitter",
+                resizeHeight: false,
+                onDragEnd: pwd.resize.bind(pwd)
             });
-        } else {
-            console.log('In _config.yml, the site url does not match the url you are serving from, so no analytics were pushed.')
-        }
-        {% endif %}
-        pwd.newSession([{ selector: '.term1' }, { selector: '.term2' }, { selector: '.term3' }], { baseUrl: '{{site.pwdurl}}', ImageName: '{{page.image}}' });
-        $(".panel-left").resizable({
-            handleSelector: ".splitter",
-            resizeHeight: false,
-            onDragEnd: pwd.resize.bind(pwd)
+            window.onbeforeunload = function (e) {
+                navigator.sendBeacon("{{site.pwdurl}}/sessions/" + pwd.sessionId + "/close");
+                e.preventDefault();
+                e.returnValue = 'Hi';
+            }
         });
-        window.onbeforeunload = function (e) {
-            navigator.sendBeacon("{{site.pwdurl}}/sessions/" + pwd.sessionId + "/close");
-            e.preventDefault();
-            e.returnValue = 'Hi';
-        }
 
     </script>
