@@ -108,7 +108,7 @@ The registry server and the Docker client support [basic authentication](https:/
 Create the password file with an entry for user "moby" with password "gordon";
 ```.term1
 mkdir auth
-docker run --entrypoint htpasswd registry:latest -Bbn moby gordon > auth/htpasswd
+docker run --entrypoint htpasswd httpd:2 -Bbn moby gordon > auth/htpasswd
 ```
 The options are:
 
