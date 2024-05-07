@@ -50,7 +50,8 @@ sass:
   style: compressed
 
 # Gems
-gems: [jekyll-paginate]
+plugins:
+  - jekyll-paginate
 
 # Plugins
 plugins_dir:
