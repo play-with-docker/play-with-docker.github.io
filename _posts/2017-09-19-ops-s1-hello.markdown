@@ -242,3 +242,7 @@ Which command lists your Docker images?
 - (x) docker image ls
 - ( ) docker run
 - ( ) docker container ls
+
+{:.quiz}
+What command would you use to inspect "ubuntu" Docker image?
+> docker image inspect ubuntu
