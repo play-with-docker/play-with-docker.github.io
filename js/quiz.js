@@ -31,10 +31,19 @@
 // test
 // document.documentElement.setAttribute('data-theme', 'dark');
 {
-    let questions = [];
+    const questions = [];
+    const questionsMetadata = {
+        totalQuestions: 0,
+        answeredQuestions: 0,
+        correctlyAnsweredQuestions: 0
+    };
 
     function getQuestionContentId(questionIndex) {
         return `question-${questionIndex}-content`;
+    }
+
+    function getAnswerButtonId(questionIndex) {
+        return `answer-button-${questionIndex}`;
     }
 
     // Case-insensitive string comparison. Returns true on match.
@@ -68,14 +77,16 @@
         if (strcmpi(givenAnswer, expectedAnswer)) {
             answerElement.classList.add("correct-choice");
             answerElement.disabled = true;
+            questionMetadata.correctlyAnsweredQuestions++;
         } else {
             answerElement.classList.add("wrong-choice");
+            answerElement.addEventListener("input", function () {
+                answerElement.classList.remove("wrong-choice", "font-semibold");
+            }, { once: true });
         }
 
-        answerElement.classList.add("font-semibold", "chosen-choice");
-        answerElement.addEventListener("input", function () {
-            answerElement.classList.remove("wrong-choice", "font-semibold");
-        }, { once: true });
+        if (!answerElement.classList.contains("answered")) questionMetadata.answeredQuestions++;
+        answerElement.classList.add("font-semibold", "answered");
     }
 
     function validateQuestionWithChoices(questionContextElement, questionMetadata) {
@@ -85,14 +96,16 @@
             const choice = checkboxElement.checked;
             const expectedChoice = questionMetadata.expectedAnswer[choiceIndex];
 
-            if (choice) labelElement.classList.add("chosen-choice");
+            if (choice) labelElement.classList.add("answered");
 
             if (choice && !expectedChoice) {
                 labelElement.classList.add("wrong-choice");
                 // mark up only "active" (checked) correct answers
             } else if (expectedChoice) {
                 labelElement.classList.add("correct-choice");
+                questionMetadata.correctlyAnsweredQuestions++;
             }
+            questionsMetadata.answeredQuestions++;
             checkboxElement.disabled = true;
         });
     }
@@ -169,9 +182,15 @@
                 questionMetadata.type = QuestionTypes.OpenEnded;
                 questionMetadata.expectedAnswer = answerField.textContent.trim();
 
-                const html = `<input placeholder="Answer" class="answer" autocomplete="off" />`;
+                const answerElementId = `answer-input-${questionIndex}`
+                const html = `<input placeholder="Answer" class="answer" autocomplete="off" id="${answerElementId}" />`;
                 questionContextElement.insertAdjacentHTML('beforeend', html);
                 questionContextElement.classList.add("open-ended");
+                document.getElementById(answerElementId).addEventListener("keydown", (e) => {
+                    if (e.key === 'Enter') {
+                        document.getElementById(getAnswerButtonId(questionIndex)).click();
+                    }
+                });
             } else {
                 // Question with choice
                 answerField.querySelectorAll('li').forEach((choice, choiceIndex) => {
@@ -214,14 +233,14 @@
                 questionContextElement.insertAdjacentHTML('beforebegin', descriptionHTML);
             }
 
-            const buttonElementId = `check-button-${questionIndex}`;
+            const buttonElementId = getAnswerButtonId(questionIndex);
             const verifyActionButtonHTML = `<button id="${buttonElementId}" data-question-id="${questionIndex}" type="button" class="check">Check</button>`;
             questionContextElement.insertAdjacentHTML('beforeend', verifyActionButtonHTML);
             document.getElementById(buttonElementId).addEventListener('click', validateQuestion);
 
             answerField.remove();
         });
-
+        questionsMetadata.totalQuestions++;
     }
 
     addEventListener("load", render);

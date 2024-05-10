@@ -87,9 +87,8 @@ input[type="checkbox"] {
   position: relative;
   z-index: 1;
   margin: 15px;
-  /* I am not happy with this solution, but putting checkbox inside of the 
- label, prevents checkbox:checked ~ .control-label from working. */
-  margin-bottom: -45px;
+  /* Currently this is the way to handle bootstrap style.
+     Suboptimal since it's not very accessible. */
   display: none;
 }
 
@@ -111,13 +110,13 @@ input[type="checkbox"]:checked::before {
   font-weight: 400;
 }
 
+input:is([type="checkbox"], [type="radio"]):focus~.control-label,
 .control-label:hover {
   border: 1px solid var(--primary-color);
   background: var(--background-color2);
 }
 
-input[type="checkbox"]:checked~.control-label,
-input[type="radio"]:checked~.control-label {
+input:is([type="checkbox"], [type="radio"]):checked~.control-label {
   font-weight: 600;
   transform: scale(1);
   transition: 520ms transform ease-in-out;
@@ -151,7 +150,7 @@ input[type="radio"]:checked~.control-label {
   background: var(--correct-choice-color2);
 }
 
-.chosen-choice {
+.answered {
   border: currentColor solid 1px !important;
   border-radius: 4px;
 }
