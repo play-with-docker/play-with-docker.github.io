@@ -114,7 +114,7 @@ Wait, nothing happened! Is that a bug? No! In fact, something did happen. You st
 
 You are now inside the container running a Linux shell and you can try out a few commands like `ls -l`, `uname -a` and others. Note that Alpine is a small Linux OS so several commands might be missing. Exit out of the shell and container by typing the `exit` command.
 
-Ok, we said that we had run each of our commands above in a separate container instance. We can see these instances using the `docker container ls` command. The `docker container ls` command by itself shows you all containers that are currently running:
+Ok, we said that we had run each of our commands above in a separate container instance. We can see these instances using the `docker container ls` (same as `docker ps`) command. The `docker container ls` command by itself shows you all containers that are currently running:
 
 ```.term1
 docker container ls
@@ -242,3 +242,15 @@ Which command lists your Docker images?
 - (x) docker image ls
 - ( ) docker run
 - ( ) docker container ls
+
+{:.quiz}
+What command would you use to inspect "ubuntu" Docker image?
+> docker image inspect ubuntu
+
+{:.quiz}
+Which command(s) list your currently running docker containers?
+- \[x] docker container ls
+- \[ ] docker containers
+- \[ ] docker ls container
+- \[x] docker ps
+- \[ ] docker list-containers

@@ -1,117 +1,123 @@
 "use strict";
 
-addEventListener("load", () => {
-    let questions = {};
-    const paragraphs = document.querySelectorAll('p.quiz');
+/**
+ * This script dynamically generates a quiz interface 
+ * based on HTML markup generated from Markdown by Jekyll.
+ * 
+ * Amount of possible choices is arbitrary.
+ * 
+ * Usage:
+ *  Markdown syntax for questions:
+ *      For single-choice questions:
+ *          Question
+ *           - ( ) Wrong choice
+ *           - (x) Correct choice
+ *           - ( ) Wrong choice
+ * 
+ *      For multi-choice questions:
+ *          Question
+ *           - [ ] Wrong choice
+ *           - [x] Correct choice
+ *           - [x] Correct choice
+ * 
+ *      For open ended questions:
+ *          Question
+ *          > Expected answer
+ * 
+ * Note: don't mix choice types, it will lead to parsing errors and choice will be ignored
+ * Note: validation results will be logged to the browser console.
+ */
 
-    if (paragraphs.length == 0) {
-        return;
+// test
+// document.documentElement.setAttribute('data-theme', 'dark');
+{
+    const questions = [];
+    const questionsMetadata = {
+        totalQuestions: 0,
+        answeredQuestions: 0,
+        correctlyAnsweredQuestions: 0
+    };
+
+    function getQuestionContentId(questionIndex) {
+        return `question-${questionIndex}-content`;
     }
 
-    const carouselHTML = `
-        <div id="quiz" class="carousel slide" data-interval="0" data-ride="carousel">
-            <ol class="carousel-indicators"></ol>
-            <div class="carousel-inner" role="listbox"></div>
-            <a class="left carousel-control" href="#quiz" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#quiz" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    `;
+    function getAnswerButtonId(questionIndex) {
+        return `answer-button-${questionIndex}`;
+    }
 
-    document.querySelector('.post-content').insertAdjacentHTML('beforeend', carouselHTML);
+    // Case-insensitive string comparison. Returns true on match.
+    function strcmpi(a, b) {
+        return typeof a === 'string' && typeof b === 'string'
+            ? a.localeCompare(b, undefined, { sensitivity: 'accent' }) === 0
+            : a === b;
+    }
 
-    paragraphs.forEach((paragraph, index) => {
-        const options = paragraph.nextElementSibling;
 
-        if (!options || options.tagName !== 'UL') {
-            return;
+    function validateQuestion(event) {
+        const buttonElement = event.target;
+        const questionId = buttonElement.dataset.questionId;
+        const questionContextElement = document.getElementById(getQuestionContentId(questionId));
+        const questionMetadata = questions[questionId];
+
+        const isOpenEnded = questionContextElement.classList.contains('open-ended');
+        if (isOpenEnded) {
+            return validateQuestionWithAnswer(questionContextElement, questionMetadata);
+        } else {
+            return validateQuestionWithChoices(questionContextElement, questionMetadata);
+        }
+    }
+
+    function validateQuestionWithAnswer(questionContextElement, questionMetadata) {
+        console.log(questionContextElement, questionMetadata);
+        const answerElement = questionContextElement.querySelector("input.answer");
+        const givenAnswer = answerElement.value;
+        const expectedAnswer = questionMetadata.expectedAnswer;
+
+        if (strcmpi(givenAnswer, expectedAnswer)) {
+            answerElement.classList.add("correct-choice");
+            answerElement.disabled = true;
+            questionMetadata.correctlyAnsweredQuestions++;
+        } else {
+            answerElement.classList.add("wrong-choice");
+            answerElement.addEventListener("input", function () {
+                answerElement.classList.remove("wrong-choice", "font-semibold");
+            }, { once: true });
         }
 
-        const question = paragraph.textContent;
-        paragraph.outerHTML = `
-            <div class="item">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>${question}</h1>
-                        <div class="form-group" id="question${index}"></div>
-                    </div>
-                </div>
-            </div>
-        `;
-        const formGroup = document.getElementById(`question${index}`);
+        if (!answerElement.classList.contains("answered")) questionMetadata.answeredQuestions++;
+        answerElement.classList.add("font-semibold", "answered");
+    }
 
-        options.querySelectorAll('li').forEach(option => {
-            const text = option.textContent.trim();
-            option.textContent = '';
+    function validateQuestionWithChoices(questionContextElement, questionMetadata) {
+        questionContextElement.querySelectorAll('.choice').forEach((choiceElement, choiceIndex) => {
+            const checkboxElement = choiceElement.querySelector('input');
+            const labelElement = choiceElement.querySelector('label');
+            const choice = checkboxElement.checked;
+            const expectedChoice = questionMetadata.expectedAnswer[choiceIndex];
 
-            if (text.startsWith('[ ]')) {
-                formGroup.insertAdjacentHTML('beforeend', `<div class="checkbox"><label class="control-label"><input type="checkbox" class="form-control-sm possible-answer" data-question="question${index}" data-answer="false" name="question-${index}">${text.replace(/^\[ \]/, '')}</label></div>`);
-            } else if (text.startsWith('[x]')) {
-                formGroup.insertAdjacentHTML('beforeend', `<div class="checkbox"><label class="control-label"><input type="checkbox" class="form-control-sm possible-answer" data-question="question${index}" data-answer="true" name="question-${index}"> ${text.replace(/^\[x\]/, '')}</label></div>`);
-                questions[`question${index}`] = { expected: 1, correct: 0, wrong: 0 };
-            } else if (text.startsWith('( )')) {
-                formGroup.insertAdjacentHTML('beforeend', `<div class="radio"><label class="control-label"><input type="radio" class="form-control-sm possible-answer" data-question="question${index}" data-answer="false" name="question-${index}">${text.replace(/^\( \)/, '')}</label></div>`);
-            } else if (text.startsWith('(x)')) {
-                formGroup.insertAdjacentHTML('beforeend', `<div class="radio"><label class="control-label"><input type="radio" class="form-control-sm possible-answer" data-question="question${index}" data-answer="true" name="question-${index}"> ${text.replace(/^\(x\)/, '')}</label></div>`);
-                questions[`question${index}`] = { expected: 1, correct: 0, wrong: 0 };
+            if (choice) labelElement.classList.add("answered");
+
+            if (choice && !expectedChoice) {
+                labelElement.classList.add("wrong-choice");
+                // mark up only "active" (checked) correct answers
+            } else if (expectedChoice) {
+                labelElement.classList.add("correct-choice");
+                questionMetadata.correctlyAnsweredQuestions++;
             }
+            questionsMetadata.answeredQuestions++;
+            checkboxElement.disabled = true;
         });
+    }
 
-        options.remove();
-        document.querySelector('.carousel-indicators').insertAdjacentHTML('beforeend', `<li data-target="#quiz" data-slide-to="${index}"></li>`);
-    });
-
-    document.querySelectorAll('.item').forEach(item => {
-        item.parentNode.querySelector('.carousel-inner').appendChild(item);
-    });
-
-    document.querySelector('.item').classList.add('active');
-    document.querySelector('.item:last-child .carousel-caption').insertAdjacentHTML('beforeend', '<p><br/><a class="btn btn-lg btn-primary submit-quiz" href="#" role="button">Submit your answers</p>');
-    document.querySelector('ol.carousel-indicators li').classList.add('active');
-    document.querySelector('a.submit-quiz').addEventListener('click', validateQuiz);
-
-    function validateQuiz() {
-        document.querySelectorAll('input.possible-answer').forEach(input => {
-            const self = input;
-            const parent = self.parentElement.parentElement;
-            const dataQuestion = self.getAttribute('data-question');
-            const dataAnswer = self.getAttribute('data-answer');
-
-            if (self.checked && dataAnswer === 'false') {
-                parent.classList.add('quiz-error');
-                questions[dataQuestion].wrong++;
-            } else if (self.checked && dataAnswer === 'true') {
-                questions[dataQuestion].correct++;
-            }
-            if (dataAnswer === 'true') {
-                parent.classList.add('quiz-success');
-            }
-            self.disabled = true;
-        });
-
-        const result = { correct: 0, total: 0 };
-
-        for (const key in questions) {
-            const q = questions[key];
-
-            result.total++;
-            if (q.wrong === 0 && q.correct === q.expected) {
-                result.correct++;
-            }
-        }
-
+    function addTwitterShareButton() {
         const title = document.querySelector('.post-title').textContent;
         const hashtags = 'dockerbday';
         const text = encodeURIComponent(`I've just completed the docker birthday tutorial ${title} and got ${result.correct} out of ${result.total}`);
 
         const submitQuizLink = document.querySelector('a.submit-quiz');
         submitQuizLink.outerHTML = `<h3>You've got ${result.correct} out of ${result.total}</h3>
-            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?hashtags=${hashtags}&text=${text}" data-size="large">Tweet</a>`;
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?hashtags=${hashtags}&text=${text}" data-size="large">Tweet</a>`;
 
         fetch('https://platform.twitter.com/widgets.js')
             .then(response => {
@@ -131,4 +137,111 @@ addEventListener("load", () => {
 
     }
 
-});
+    function render() {
+        const QuestionTypes = Object.freeze({
+            Undetermined: -1,
+            SingleChoice: 0,
+            MultiChoice: 1,
+            OpenEnded: 2,
+        });
+
+        const questionHeaders = document.querySelectorAll('p.quiz');
+        if (questionHeaders.length == 0) {
+            return;
+        }
+
+        // Render all question based on server-side rendered HTML based on Markdown
+        questionHeaders.forEach((questionHeader, questionIndex) => {
+            const answerField = questionHeader.nextElementSibling;
+
+            if (!answerField || (answerField.tagName !== 'UL' && answerField.tagName !== 'BLOCKQUOTE')) {
+                console.error(`Invalid answer field: "${answerField}".`);
+                return;
+            }
+
+            const questionContentId = getQuestionContentId(questionIndex);
+            const questionText = questionHeader.textContent.trim();
+            questionHeader.outerHTML = `
+                <div class="quiz no-select">
+                    <div class="quiz-title">${questionText}</div>
+                    <div class="quiz-question-content" id="${questionContentId}"></div>
+                </div>
+                `;
+            const questionContextElement = document.getElementById(questionContentId);
+
+            questions[questionIndex] = {
+                type: QuestionTypes.Undetermined,
+                expectedAnswer: [],
+                givenAnswer: [],
+                isAnswered: false
+            };
+            const questionMetadata = questions[questionIndex];
+
+            // Open-ended question
+            if (answerField.tagName === 'BLOCKQUOTE') {
+                questionMetadata.type = QuestionTypes.OpenEnded;
+                questionMetadata.expectedAnswer = answerField.textContent.trim();
+
+                const answerElementId = `answer-input-${questionIndex}`
+                const html = `<input placeholder="Answer" class="answer" autocomplete="off" id="${answerElementId}" />`;
+                questionContextElement.insertAdjacentHTML('beforeend', html);
+                questionContextElement.classList.add("open-ended");
+                document.getElementById(answerElementId).addEventListener("keydown", (e) => {
+                    if (e.key === 'Enter') {
+                        document.getElementById(getAnswerButtonId(questionIndex)).click();
+                    }
+                });
+            } else {
+                // Question with choice
+                answerField.querySelectorAll('li').forEach((choice, choiceIndex) => {
+                    const text = choice.textContent.trim();
+                    const choiceId = `choice-${questionIndex}-${choiceIndex}`;
+                    const choiceName = `choice-${questionIndex}`;
+
+                    const prefixOptionsWhitelist = ['[ ]', '[x]', '( )', '(x)']
+                    const textPrefix = text.slice(0, 3);
+
+                    if (!prefixOptionsWhitelist.includes(textPrefix)) {
+                        console.error(`Invalid question format: "${text}"`);
+                        return;
+                    }
+
+                    const choiceType = textPrefix[0] == '[' ? QuestionTypes.MultiChoice : QuestionTypes.SingleChoice;
+                    if (questionMetadata['type'] !== QuestionTypes.Undetermined && questionMetadata['type'] != choiceType) {
+                        console.error(`Mixed question type: "${text}". Previous choice: ${questionMetadata['type']}`);
+                        return;
+                    }
+                    questionMetadata['type'] = choiceType;
+                    // TODO: check for more than 1 "correct" choices for single-choice question
+
+                    const htmlType = choiceType ? "checkbox" : "radio";
+                    questionMetadata['expectedAnswer'][choiceIndex] = textPrefix[1] == 'x';
+
+                    const html = `
+                    <div class="choice no-select">
+                        <input type="${htmlType}" class="form-control-sm given-answer" 
+                            id="${choiceId}" name="${choiceName}">
+                        </input>
+                        <label class="control-label" for="${choiceId}">
+                            ${text.slice(3)}
+                        </label>
+                    </div>`;
+                    questionContextElement.insertAdjacentHTML('beforeend', html);
+                });
+                const questionMetaDescription = questionMetadata['type'] === QuestionTypes.MultiChoice ? 'Multiple Choice Question (Select all that apply)' : 'Single Choice Question';
+                const descriptionHTML = `<div class="question-description">${questionMetaDescription}</div>`;
+                questionContextElement.insertAdjacentHTML('beforebegin', descriptionHTML);
+            }
+
+            const buttonElementId = getAnswerButtonId(questionIndex);
+            const verifyActionButtonHTML = `<button id="${buttonElementId}" data-question-id="${questionIndex}" type="button" class="check">Check</button>`;
+            questionContextElement.insertAdjacentHTML('beforeend', verifyActionButtonHTML);
+            document.getElementById(buttonElementId).addEventListener('click', validateQuestion);
+
+            answerField.remove();
+        });
+        questionsMetadata.totalQuestions++;
+    }
+
+    addEventListener("load", render);
+}
