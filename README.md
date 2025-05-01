@@ -1,5 +1,6 @@
 # Contributing
 
+Crazy stuff
 Just check the [posts](https://github.com/franela/franela.github.io/tree/master/_posts) folder and submit your tutorials there.
 
 # Running trainings site
